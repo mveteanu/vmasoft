@@ -16,11 +16,13 @@ body {
     padding: 0 0px;
 }
 
+/*
 .navbar-brand>img {
   height: 100%;
-  padding: 15px;  /*firefox bug fix */
+  padding: 15px;
   width: auto;
 }
+*/
 
 footer {
     padding: 30px 0;
