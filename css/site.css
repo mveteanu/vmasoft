@@ -18,7 +18,7 @@ body {
 
 .navbar-brand>img {
   height: 100%;
-  padding: 15px; /* firefox bug fix */
+  /*padding: 15px;  firefox bug fix */
   width: auto;
 }
 
