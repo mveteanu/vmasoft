@@ -1,0 +1,81 @@
+body, td, a
+{
+  margin:0px;
+  font-family: SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+body
+{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+
+.mainText1, .mainText2
+{
+ font-weight:200;
+ font-size: 24px;
+}
+
+.mainText2
+{
+ font-size: 16px;
+}
+
+.button
+{
+  background-color: lightblue;
+  width: 110px;
+  height: 40px;
+}
+
+a
+{
+  height: 100px;
+  text-decoration:none;
+  color: #0078D7;
+}
+
+a:hover
+{
+  text-decoration:underline;
+  color: indianred;
+}
+
+.logo
+{
+  font-famlily: verdana;
+  font-size:24px;
+  color: black;
+}
+
+.textBox
+{
+ color: gray;
+ font-family: verdana;
+}
+
+.divHeader
+{
+  background-color: white;
+  height: 80px;
+}
+
+.divMain
+{
+  background-color: #DDDDDD;
+  height: 410px;
+}
+
+.divProducts
+{
+  background-color: white;
+}
+
+.divContact
+{
+  padding-top:10px;
+  background-color: white;
+}
+
