@@ -44,8 +44,18 @@
                     <li>
                         <a href="#">Store</a>
                     </li>
-                    <li>
-                        <a href="#">Products</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ptn.html">PowerTests.NET</a></li>
+                            <li><a href="powertests.html">PowerTests</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="dbutils.html">DBUtils</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="vmawin.html">VMAWin</a></li>
+                            <li><a href="physics.html">Physics</a></li>
+                            <li><a href="mcga.html">MCGA</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#">Support</a>
@@ -78,6 +88,15 @@
 
         <!-- Heading Row -->
         <div class="row">
+            <div class="col-md-12">
+                <h1>MCGA</h1>
+                <hr>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Heading Row -->
+        <div class="row">
             <div class="col-md-8">
                 <video width=640 height=400 controls autoplay>
 					<source src="https://github.com/mveteanu/MCGA/blob/master/screencasts/mcga.mp4?raw=true" type="video/mp4">
@@ -87,7 +106,22 @@
             </div>
             <!-- /.col-md-8 -->
             <div class="col-md-4">
-                <h1>MCGA screencast</h1>
+                <p>MCGA is a Turbo Pascal for DOS library for implementing fast 256 color games. MCGA is optimized for speed with x386 assembler code.</p>
+
+                <p>Features
+                    <ul>
+                    <li>graphic primitives (circle, line, etc.)</li>
+                    <li>unlimited virtual screens</li>
+                    <li>double buffering support</li>
+                    <li>x386 assembler optimizations</li>
+                    <li>256 color support</li>
+                    <li>sprite support</li>
+                    <li>pallete effects (rotate pallete, etc.)</li>
+                    </ul>
+                </p>
+
+                <hr>
+
                 <p>You can get the source code of MCGA library, as well as other VMASOFT products from GitHub.com</p>
                 <a class="btn btn-primary btn-lg" href="https://github.com/mveteanu/MCGA/">See MCGA on GitHub ></a>
             </div>
