@@ -1,0 +1,10 @@
+{
+    "Sounds" : 
+    [
+        { 
+            "Name" : "doorbell", 
+            "Tags" : ["house"],
+            "File" : "assets/sounds/doorbell.mp3"
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+<script src="lib/p5.js"></script>
+<script src="lib/scenemanager.js"></script>
+
+<script src="game/intro.js"></script>
+<script src="game/game.js"></script>
+<script src="game/credits.js"></script>
+
+<script>
+
+var bkImage;
+
+function preload()
+{
+    //bkImage = loadImage("img/bk.jpg");    
+}
+
+function setup()
+{
+    createCanvas(800, 600);
+
+    var mgr = new SceneManager();
+    //mgr.bkImage = bkImage; // inject bkImage property
+    mgr.wire();
+    mgr.showScene( Intro );
+}
+
+</script>

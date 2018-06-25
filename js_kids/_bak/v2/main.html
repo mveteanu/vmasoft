@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<script src="lib/p5.js"></script>
+<script src="lib/p5.sound.js"></script>
+<script src="lib/p5.play_.js"></script>
+<script src="src/EasyFunctions.js"></script>
+<script src="src/Sketch.js"></script>
+<script src="src/CodeUtils.js"></script>
+<script src="src/AssetsData.js"></script>
+<script src="src/AssetsFinder.js"></script>
+<script src="src/AssetsCache.js"></script>
+<script src="src/SpriteBuilder.js"></script>
+<script src="src/start.js"></script>
+
+<button id="btnRun">Run</button>
+
+
+<script id="Scene1" language="sketch">
+background("lightyellow");
+var player = sprite("player");
+player.depth = 0;
+sprite("player", 100, 100);
+
+sprite("askterisk_stretching", 500, 100);
+
+sprite("asterisk_explode", 500, 250);
+
+var x = 0;
+
+PublicVars.MyName = "VMA";
+GlobalVars.MyName = "VMASOFT";
+
+function loop()
+{
+    line(0, x, width, x);
+    x = x + 1;
+
+    if ( x == height )
+        x = 0;
+
+    text( "From " + PublicVars.PreviousScene + ": " + PublicVars.Arguments, 10, 10 );
+
+    var s2vars = getPublicVars("Scene2");
+    text( "Scene2 PublicVars.x = " + s2vars.x, 10, 30);
+}
+
+function mouseClicked()
+{
+    sound("doorbell");
+    showScene("Scene2", x);
+    //showNextScene(x);
+}
+</script>
+
+
+<script id="Scene2" language="sketch">
+background("lightblue");
+
+if (PublicVars.Arguments != null)
+{
+    background("pink");
+}
+
+sprite("asterisk_explode").position.x += 100;
+
+var x = 0;
+
+circle(300, 200, 100);
+
+text( "From " + PublicVars.PreviousScene + ": " + PublicVars.Arguments, 10, 10 );
+
+//PublicVars.x = Math.random(10);
+if (!PublicVars.x)PublicVars.x = 0;
+PublicVars.x++;
+
+function enter_()
+{
+    if (PublicVars.Arguments != null)
+    {
+        background("green");
+        text("Text displayed by enter(). Should be green...", 10, 30);   
+    }
+}
+
+function loop_()
+{
+    line(x, 0, x, height);
+    x = x + 1;
+
+    if ( x == width )
+        x = 0;
+
+    text( "From " + PublicVars.PreviousScene + ": " + PublicVars.Arguments, 10, 10 );
+
+    PublicVars.x = x;
+}
+
+function mouseClicked()
+{
+    var scene1Vars = getPublicVars("Scene1");
+    console.log(scene1Vars.MyName);
+    console.log(GlobalVars.MyName);
+    
+    showScene("Scene1", x);
+    //showNextScene(x);
+}
+</script>

@@ -1,0 +1,10 @@
+{
+    "Backgrounds" : 
+    [
+        { 
+            "Name" : "clouds",
+            "Tags" : ["nature", "summer"],
+            "Images" : ["assets/backgrounds/clouds.png"]
+        }
+    ]
+}

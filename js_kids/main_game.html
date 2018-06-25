@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<script src="lib/p5.js"></script>
+<script src="lib/p5.sound.js"></script>
+<script src="lib/p5.play_.js"></script>
+<script src="src/EasyFunctions.js"></script>
+<script src="src/Sketch.js"></script>
+<script src="src/CodeUtils.js"></script>
+<script src="src/AssetsData.js"></script>
+<script src="src/AssetsFinder.js"></script>
+<script src="src/AssetsCache.js"></script>
+<script src="src/SpriteBuilder.js"></script>
+<script src="src/start.js"></script>
+
+<button id="btnRun">Run</button>
+
+<script id="Game" language="sketch">
+
+var p = sprite("player");
+
+function loop()
+{
+    if ( keyIsDown(LEFT_ARROW) && p.position.x > 0 )
+    {
+        p.position.x -= 3;
+        p.mirrorX(-1);
+    } else if ( keyIsDown(RIGHT_ARROW) && p.position.x < width )
+    {
+        p.position.x += 3;
+        p.mirrorX(1);
+    }
+}
+
+function keyPressed()
+{
+    if (key == "Z")
+    {
+        p.position.x = 0;
+    }
+    else if (key == "X")
+    {
+        p.position.x = width;
+    }
+}
+</script>

@@ -1,0 +1,76 @@
+<script src="lib/p5.js"></script>
+<script src="lib/p5.play_.js"></script>
+
+<script>
+
+var player_frames = {
+    anim1 : [
+  {"name":"player_walk01", "frame":{"x":0, "y": 0, "width": 70, "height": 94}},
+  {"name":"player_walk02", "frame":{"x":71, "y": 0, "width": 70, "height": 94}},
+  {"name":"player_walk03", "frame":{"x":142, "y": 0, "width": 70, "height": 94}},
+  {"name":"player_walk04", "frame":{"x":0, "y": 95, "width": 70, "height": 94}},
+  {"name":"player_walk05", "frame":{"x":71, "y": 95, "width": 70, "height": 94}},
+  {"name":"player_walk06", "frame":{"x":142, "y": 95, "width": 70, "height": 94}},
+  {"name":"player_walk07", "frame":{"x":213, "y": 0, "width": 70, "height": 94}},
+  {"name":"player_walk08", "frame":{"x":284, "y": 0, "width": 70, "height": 94}},
+  {"name":"player_walk09", "frame":{"x":213, "y": 95, "width": 70, "height": 94}},
+  {"name":"player_walk10", "frame":{"x":355, "y": 0, "width": 70, "height": 94}},
+  {"name":"player_walk11", "frame":{"x":284, "y": 95, "width": 70, "height": 94}} ],
+  
+  anim2 : [{"name":"player_stand", "frame":{"x":284, "y": 95, "width": 70, "height": 94}}]
+    };
+
+var img1_1, img1_2, img1_3, img1_4, img1_5, img1_6, img1_7, img1_8; 
+var img2;
+var img3;
+
+var sprite1;
+var sprite2;
+var sprite3;
+
+function preload()
+{
+    img1_1 = loadImage("assets/sprites/asterisk_stretching0001.png");
+    img1_2 = loadImage("assets/sprites/asterisk_stretching0002.png");
+    img1_3 = loadImage("assets/sprites/asterisk_stretching0003.png");
+    img1_4 = loadImage("assets/sprites/asterisk_stretching0004.png");
+    img1_5 = loadImage("assets/sprites/asterisk_stretching0005.png");
+    img1_6 = loadImage("assets/sprites/asterisk_stretching0006.png");
+    img1_7 = loadImage("assets/sprites/asterisk_stretching0007.png");
+    img1_8 = loadImage("assets/sprites/asterisk_stretching0008.png");
+
+    img2 = loadImage("assets/sprites/player_spritesheet.png");
+
+    img3 = loadImage("assets/sprites/explode_sprite_sheet.png");
+}
+
+function setup()
+{
+    createCanvas(800, 336);
+
+    sprite1 = createSprite(100, 100);
+    var animStrech = loadAnimation(img1_1, img1_2, img1_3, img1_4, img1_5, img1_6, img1_7, img1_8);
+    sprite1.addAnimation("stretch", animStrech );
+
+    sprite2 = createSprite(300, 100);
+    var spreadPlayer1 = loadSpriteSheet(img2, player_frames.anim1);
+    var spreadPlayer2 = loadSpriteSheet(img2, player_frames.anim2);
+    var player_walk = loadAnimation(spreadPlayer1);
+    var player_stand = loadAnimation(spreadPlayer2);
+    sprite2.addAnimation("walk", player_walk);
+    sprite2.addAnimation("stand", player_stand);
+    
+    var explode_sprite_sheet = loadSpriteSheet(img3, 171, 158, 11);
+    var explode_animation = loadAnimation(explode_sprite_sheet);
+    sprite3 = createSprite(200, 100);
+    sprite3.addAnimation('explode', explode_animation);
+}
+
+function draw()
+{
+    background("white");
+    
+    drawSprites();
+}
+
+</script>

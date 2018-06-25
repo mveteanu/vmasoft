@@ -1,0 +1,56 @@
+<script src="lib/p5.js"></script>
+<script src="lib/p5.play.js"></script>
+<script src="lib/scenemanager.js"></script>
+<script>
+
+var img;
+var animation;
+var sprite;
+
+function preload()
+{
+  
+}
+
+
+function stamp(x, y)
+{
+    var animation = loadAnimation('assets/ghost_standing0001.png', 'assets/ghost_standing0007.png');
+    animatedSprite = createSprite(x, y);
+    animatedSprite.addAnimation("floating", animation);
+
+    return animatedSprite;
+}
+
+function setup()
+{
+    createCanvas(800, 300);
+
+    var mgr = new SceneManager();
+    mgr.wire();
+    mgr.showScene( Sprites );
+}
+  
+
+function Sprites()
+{
+
+  this.setup = function() 
+  {
+    sprite = stamp(100, 100);
+  }
+
+  this.draw = function() 
+  {
+        background(255, 255, 255);
+
+        //sprite.position.x = mouseX;
+        //sprite.position.y = mouseY;
+
+        //draw all the sprites
+        drawSprites();
+  }
+
+}
+
+</script>
