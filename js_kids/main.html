@@ -12,7 +12,7 @@
 <script src="src/start.js"></script>
 
 <button id="btnRun">Run</button>
-
+<input type="text"><br>
 
 <script id="Scene1" language="sketch">
 background("lightyellow");
@@ -48,6 +48,14 @@ function mouseClicked()
     sound("doorbell");
     showScene("Scene2", x);
     //showNextScene(x);
+}
+
+function touchStarted()
+{
+    sound("doorbell");
+    showScene("Scene2", x);
+
+    return false;
 }
 </script>
 

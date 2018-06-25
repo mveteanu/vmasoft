@@ -2,7 +2,22 @@
 
 function Sketch()
 {
-    const P5Events = ["mouseClicked", "keyPressed", "mouseDragged", "mouseMoved"];
+    const P5Events = [  "mouseClicked", 
+                        "mousePressed", 
+                        "mouseReleased", 
+                        "mouseMoved", 
+                        "mouseDragged", 
+                        "doubleClicked", 
+                        "mouseWheel", 
+                        "keyPressed", 
+                        "keyReleased", 
+                        "keyTyped", 
+                        "touchStarted", 
+                        "touchMoved", 
+                        "touchEnded", 
+                        "deviceMoved", 
+                        "deviceTurned", 
+                        "deviceShaken" ];
 
     var scenes = [];
     var scene = null;
@@ -26,7 +41,7 @@ function Sketch()
         for(var i = 0; i < P5Events.length; i++)
         {
             let sEvent = P5Events[i]; // let is necesary to set the scope at the level of for
-            o[sEvent] = function() { handleEvent(sEvent) };
+            o[sEvent] = function() { return handleEvent(sEvent); };  // return false for mouse based events...?!
         }
     }
 
