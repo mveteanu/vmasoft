@@ -20,7 +20,7 @@ function setup()
     btn.onclick = handleButtonRun;
 
     createCanvas(600, 300);
-    pixelDensity(1);
+    //pixelDensity(1);
 
     oSketch = Sketch();
     oSketch.wire();
