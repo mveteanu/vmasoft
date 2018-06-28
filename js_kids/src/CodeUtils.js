@@ -135,6 +135,10 @@ function CodeUtils(code)
         return `
             var PublicVars = sceneFunctionArgs.PublicVars;
 
+            function preload()
+            {
+            }
+
             function background()
             {
                 sceneFunctionArgs.SceneBackground = arguments;

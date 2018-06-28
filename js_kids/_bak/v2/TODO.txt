@@ -1,5 +1,0 @@
-- animate sprites also for static scenes (without loop) by redirecting the drawing functions 
-  in an offscreen buffer (probably using the "with" method)
-
-- implement layered backgrounds ... which are basically a static background plus an animated "sketch"
-  the user will use background("static,animated");

@@ -6,6 +6,8 @@ var _oSpritesAssets;
 var _oSoundsAssets;
 var _oMusicAssets;
 
+// p5.disableFriendlyErrors = true;
+
 function preload()
 {
     _oBackgroundsAssets = loadJSON("assets/backgrounds.json");
@@ -16,10 +18,11 @@ function preload()
 
 function setup()
 {
-    var btn = document.getElementById("btnRun");
-    btn.onclick = handleButtonRun;
+    // var btn = document.getElementById("btnRun");
+    // btn.onclick = handleButtonRun;
 
-    createCanvas(600, 300);
+    var canvas = createCanvas(800, 600);
+    parentCanvas(canvas);
     pixelDensity(1);
 
     oSketch = Sketch();
@@ -28,11 +31,20 @@ function setup()
     oSketch.run();
 }
 
-function handleButtonRun(e)
+function parentCanvas(canvas)
 {
-    oSketch.reset();
-    oSketch.addScenesFromHtml("sketch");
-    oSketch.run();
+    var div = document.getElementById("output");
+    if (!div)
+        return;
 
-    e.cancelBubble = true;
+    canvas.parent(div.id);
 }
+
+// function handleButtonRun(e)
+// {
+//     oSketch.reset();
+//     oSketch.addScenesFromHtml("sketch");
+//     oSketch.run();
+
+//     e.cancelBubble = true;
+// }

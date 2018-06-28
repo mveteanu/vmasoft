@@ -13,6 +13,28 @@
             ]
         },
         {
+            "Name" : "daffy",
+            "Tags" : ["cartoons"],
+            "Animations" : 
+            [
+                {
+                    "Name" : "normal",
+                    "Images" : ["assets/sprites/daffy_duck.png"]
+                }
+            ]
+        },
+        {
+            "Name" : "robot",
+            "Tags" : ["cartoons"],
+            "Animations" : 
+            [
+                {
+                    "Name" : "normal",
+                    "Images" : ["assets/sprites/robot.png"]
+                }
+            ]
+        },
+        {
             "Name" : "player",
             "Tags" : ["player"],
             "Animations" : 

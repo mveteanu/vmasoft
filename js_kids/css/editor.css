@@ -1,0 +1,201 @@
+* 
+{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+body, html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	color: "White";
+  }
+
+.shell 
+{
+	height: 100%;
+	width: 100%;
+	color: "White";
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	font-family: "Segoe WPC", "Segoe UI", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 11px;
+	user-select: none;
+
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+
+.navbar {
+	overflow: hidden;
+	font-size: 12px;
+	line-height: 31px;
+	height: 32px;
+	padding: 0 8px 0 6px;
+	background-color: #0058AD;
+	color: #fff;
+	user-select: none;
+	min-height: 32px;
+}
+.navbar > .navbar-item {
+	display: inline-block;
+	height: 100%;
+}
+.navbar > .navbar-item.left {
+	float: left;
+}
+.navbar > .navbar-item.right {
+	float: right;
+}
+
+.workspace {
+	background-color: lightgray;
+	flex-grow: 1;
+	display: flex;
+}
+
+.actionbar {
+	background-color: black;
+	color:white;
+	font-size:18px;
+	width:50px;
+}
+
+.actionbarbutton {
+	border:none;
+	display:inline-block;
+	padding:8px 16px;
+	vertical-align:middle;
+	overflow:hidden;
+	text-decoration:none;
+	color:white;
+	background-color:inherit;
+	text-align:center;
+	cursor:pointer;
+	white-space:nowrap
+}
+
+.actionbarbutton:hover{
+	color: black;
+	background-color: lightgray;*/
+}
+
+
+.sidebar {
+	background-color: pink;
+	width: 500px;
+	transition: 0.5s;
+	overflow: hidden;
+	display: none;
+	flex-direction: column;
+}
+
+
+.sidebarbar {
+	background-color: green;
+	height: 32px;
+}
+
+
+.sidebararea {
+	background-color: lightyellow;
+	/*width: 500px;*/
+	flex-grow: 1;
+}
+
+.closesidebar {
+	color: red;
+}
+
+
+.codewithbararea {
+	flex-grow: 1;
+	background-color: pink;
+	margin: 0;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.codearea {
+	background-color: magenta;
+	flex-grow: 1;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.codebar {
+	background-color: green;
+	height: 32px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	min-height: 32px;
+}
+
+
+.editor {
+	flex-grow: 1;
+	background-color: lime;	
+	display: flex;
+	/*min-width: 50%;*/
+	flex-basis: 50%;
+}
+
+
+.outputarea {
+	flex-grow: 1;
+	background-color: pink;
+	margin: 0;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.outputbar {
+	background-color: red;
+	height: 32px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	min-height: 32px;
+}
+
+.output {
+	background-color: lightblue;
+	width: 100%;
+	flex-grow: 1;
+
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	overflow: hidden;
+}
+
+/*
+@media only screen and (max-width: 1024px) {
+	.outputarea { 
+		display: none;
+	}
+  }
+*/
+
+.splitter {
+	background-color: maroon;
+	width : 10px;
+	min-width: 10px;
+}
+
+.statusbar {
+	height : 16px;
+	background-color: green;
+}

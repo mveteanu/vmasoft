@@ -34,6 +34,12 @@ document.write = function(sText)
     console.log(sText);
 }
 
+// Dummy function discovered by code parsing...
+function assets()
+{
+
+}
+
 // Draw sprite specified by name at specified positions (or middle of the screen if x and y are not specified)
 function sprite(spriteName, x, y)
 {

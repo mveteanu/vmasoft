@@ -290,8 +290,6 @@ function Sketch()
 
     function _executeScene(currScene)
     {
-        console.log("Executing: " + currScene.sceneName);
-
         currScene.oScene = currScene.fnScene( currScene.oSceneData );
         currScene.sceneExecuted = true;
     }
@@ -397,7 +395,9 @@ function Sketch()
     function downloadAssets(fnDownloadComplete, fnError)
     {
         // get the code in all the scenes as a big string
-        var code = scenes.reduce( (acc, curr) => acc.sceneCode + curr.sceneCode );
+        var code = "";
+        for(var o of scenes)
+            code += o.sceneCode;
         
         var oFinder = AssetsFinder(code, oAssetsData);
         var arImages = oFinder.getImages();

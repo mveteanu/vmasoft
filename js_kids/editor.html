@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+    <title>CodeBeanz Playground</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <link rel="stylesheet" href="css/editor.css">
+
+    <script src="lib/p5.js"></script>
+    <script src="lib/p5.sound.js"></script>
+    <script src="lib/p5.play_.js"></script>
+    <script src="src/EasyFunctions.js"></script>
+    <script src="src/Sketch.js"></script>
+    <script src="src/CodeUtils.js"></script>
+    <script src="src/AssetsData.js"></script>
+    <script src="src/AssetsFinder.js"></script>
+    <script src="src/AssetsCache.js"></script>
+    <script src="src/SpriteBuilder.js"></script>
+    <script src="src/start.js"></script>
+
+    <script src="editor/Shell.js"></script>
+</head>
+<body>
+
+<div class="shell">
+
+    <div id="navbar" class="navbar">
+    <div class="col-12">
+        <div class="navbar-item left">CodeBeanz</div>
+        <div class="navbar-item right">Exit</div>
+    </div>
+    </div>
+
+    <div id="workspace" class="workspace">
+        <div class="editor">
+            <div class="actionbar ">
+                <a href="#" class="actionbarbutton" title="Home"><i class="fa fa-home"></i></a> 
+                <a sidebar="barDocumentation" id="" href="#" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></a> 
+                <a sidebar="barBackgrounds" href="#" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></a> 
+                <a sidebar="barSprites" href="#" class="actionbarbutton" title="Sprites"><i class="fas fa-robot"></i></a>
+                <a sidebar="barSounds" href="#" class="actionbarbutton" title="Sounds"><i class="fas fa-volume-up"></i></a> 
+                <a sidebar="barMusic" href="#" class="actionbarbutton" title="Music"><i class="fas fa-music"></i></a> 
+            </div>
+            
+            <div id="barDocumentation" class="sidebar">
+                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
+                <div class="sidebararea">Documentation</div>
+            </div>
+            
+            <div id="barBackgrounds" class="sidebar">
+                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
+                <div class="sidebararea">Backgrounds</div>
+            </div>
+
+            <div id="barSprites" class="sidebar">
+                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
+                <div class="sidebararea">Sprites</div>
+            </div>
+
+            <div id="barSounds" class="sidebar"> 
+                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
+                <div class="sidebararea">Sounds</div>
+            </div>
+
+            <div id="barMusic" class="sidebar"> 
+                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
+                <div class="sidebararea">Music</div>
+            </div>
+
+            <div class="splitter"></div>
+
+            <div class="codewithbararea">
+                <div class="codebar"><a href=# id="btnPlay">Play</a>&nbsp; | &nbsp;<a href=# id="btnCodeFullScreen">Full Screen</a></div>
+                <div class="codearea"><textarea style='background-color:white;width:100%;flex:1;'>code</textarea></div>
+            </div>
+        </div>
+
+        <div class="splitter"></div>
+
+        <div class="outputarea">
+            <div class="outputbar"><a href=# id="btnOutputFullScreen">Full Screen</a></div>
+            <div id="output" class="output"></div>
+        </div>
+
+    </div>
+
+    <div id="statusbar" class="statusbar">Status...</div>
+
+</div>
+
+
+<script>
+
+    var oShell;
+
+    window.onload = function() 
+    {
+        oShell = Shell();
+    }
+
+    window.onresize = function()
+    {
+        oShell.onresize();
+    }
+
+</script>
+
+
+<script id="Game" language="sketch">
+
+        var p = sprite("player");
+        
+        function loop()
+        {
+            if ( keyIsDown(LEFT_ARROW) && p.position.x > 0 )
+            {
+                p.position.x -= 3;
+                p.mirrorX(-1);
+            } else if ( keyIsDown(RIGHT_ARROW) && p.position.x < width )
+            {
+                p.position.x += 3;
+                p.mirrorX(1);
+            }
+        }
+        
+        function keyPressed()
+        {
+            if (key == "Z")
+            {
+                p.position.x = 0;
+            }
+            else if (key == "X")
+            {
+                p.position.x = width;
+            }
+        }
+</script>
+        
+
+</body>
+</html>
