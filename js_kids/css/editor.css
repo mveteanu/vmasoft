@@ -175,7 +175,7 @@ a:hover, a:active {
 }
 
 .codearea {
-	background-color: magenta;
+	background-color: white; /*magenta*;
 	flex-grow: 1;
 
 	display: flex;
