@@ -37,6 +37,8 @@ function Shell()
     function onresize()
     {
         reconfigureShell();
+
+        alert("Small screen: " + isScreenSmall() + " - " + window.innerWidth);
     }
 
     function reconfigureShell()
