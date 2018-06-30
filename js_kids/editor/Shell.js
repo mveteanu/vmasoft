@@ -149,7 +149,7 @@ function Shell()
         showDiv(outputArea, !bOutputVisible);
     }
 
-    
+
     function handleActionButtonClick(e)
     {
         var barName = this.getAttribute("sidebar");
@@ -218,7 +218,7 @@ function Shell()
 
     function isScreenSmall()
     {
-        return window.innerWidth < minWidth;
+        return window.innerWidth <= minWidth;
     }
 
 
