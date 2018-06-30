@@ -141,7 +141,6 @@ a:hover, a:active {
 .sidebar {
 	background-color: pink;
 	width: 500px;
-	transition: 0.5s;
 	overflow: hidden;
 	display: none;
 	flex-direction: column;
@@ -149,14 +148,44 @@ a:hover, a:active {
 
 
 .sidebarbar {
-	background-color: green;
+	background-color: White;
+	line-height: 31px;
 	height: 32px;
+	padding-right: 10px;
+	padding-left: 2px;
+}
+
+.sidebarbar > .sidebarbar-item {
+	display: inline-block;
+	height: 100%;
+}
+
+.sidebarbar > .sidebarbar-item.left {
+	float: left;
+}
+
+.sidebarbar > .sidebarbar-item.right {
+	float: right;
+}
+
+.sidebarbar i {
+	color: brown;
+	font-size: 12px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.sidebarbar i:hover {
+	font-size: 14px;
+}
+
+.sidebarbar i:active {
+	color: black;
 }
 
 
 .sidebararea {
-	background-color: lightyellow;
-	/*width: 500px;*/
+	background-color: White;
 	flex-grow: 1;
 }
 

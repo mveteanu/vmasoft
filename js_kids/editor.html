@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
     <title>CodeBeanz Playground</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -36,36 +36,51 @@
     <div id="workspace" class="workspace">
         <div class="editor vertically_divided">
             <div class="actionbar ">
-                <a href="#" class="actionbarbutton" title="Home"><i class="fa fa-home"></i></a> 
-                <a sidebar="barDocumentation" id="" href="#" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></a> 
-                <a sidebar="barBackgrounds" href="#" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></a> 
-                <a sidebar="barSprites" href="#" class="actionbarbutton" title="Sprites"><i class="fas fa-robot"></i></a>
-                <a sidebar="barSounds" href="#" class="actionbarbutton" title="Sounds"><i class="fas fa-volume-up"></i></a> 
-                <a sidebar="barMusic" href="#" class="actionbarbutton" title="Music"><i class="fas fa-music"></i></a> 
+                <span href="#" class="actionbarbutton" title="Home"><i class="fa fa-home"></i></span> 
+                <span sidebar="barDocumentation" id="" href="#" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></span> 
+                <span sidebar="barBackgrounds" href="#" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></span> 
+                <span sidebar="barSprites" href="#" class="actionbarbutton" title="Sprites"><i class="fas fa-robot"></i></span>
+                <span sidebar="barSounds" href="#" class="actionbarbutton" title="Sounds"><i class="fas fa-volume-up"></i></span> 
+                <span sidebar="barMusic" href="#" class="actionbarbutton" title="Music"><i class="fas fa-music"></i></span> 
             </div>
             
             <div id="barDocumentation" class="sidebar">
-                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
+                <div class="sidebarbar">
+                    <div class="sidebarbar-item left"><i class="fas fa-book"></i> Documentation</div>
+                    <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                </div>
                 <div class="sidebararea">Documentation</div>
             </div>
             
             <div id="barBackgrounds" class="sidebar">
-                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
-                <div class="sidebararea">Backgrounds</div>
+                    <div class="sidebarbar">
+                        <div class="sidebarbar-item left"><i class="far fa-image"></i> Backgrounds</div>
+                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                    </div>
+                    <div class="sidebararea">Backgrounds</div>
             </div>
 
             <div id="barSprites" class="sidebar">
-                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
-                <div class="sidebararea">Sprites</div>
+                    <div class="sidebarbar">
+                        <div class="sidebarbar-item left"><i class="fas fa-robot"></i> Sprites</div>
+                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                    </div>
+                    <div class="sidebararea">Sprites</div>
             </div>
 
             <div id="barSounds" class="sidebar"> 
-                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
-                <div class="sidebararea">Sounds</div>
+                    <div class="sidebarbar">
+                        <div class="sidebarbar-item left"><i class="fas fa-volume-up"></i> Sounds</div>
+                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                    </div>
+                    <div class="sidebararea">Sounds</div>
             </div>
 
             <div id="barMusic" class="sidebar"> 
-                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
+                    <div class="sidebarbar">
+                        <div class="sidebarbar-item left"><i class="fas fa-music"></i> Music</div>
+                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                    </div>
                 <div class="sidebararea">Music</div>
             </div>
 
