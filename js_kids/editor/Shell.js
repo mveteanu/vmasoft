@@ -11,7 +11,8 @@ function Shell()
     var editor;
     var actionBar;
     var output;
-    var btnCodeFullScreen;        
+    var btnCodeFullScreen;
+    var codeBar;
 
     var minWidth = 1024;
 
@@ -26,6 +27,7 @@ function Shell()
         actionBar = findFirstElement("actionbar");
         output = findFirstElement("output");
         btnCodeFullScreen = findElement("btnCodeFullScreen");
+        codeBar = findFirstElement("codebar");
 
         addActionBarEventListers(actionBar);
         addButtonEventHandler("btnOutputFullScreen", handleOutputFullScreenButtonClick);
@@ -39,6 +41,8 @@ function Shell()
     function onresize()
     {
         reconfigureShell();
+
+        alert(window.innerWidth);
     }
 
     function reconfigureShell()
@@ -50,7 +54,8 @@ function Shell()
         showElement(editor, bShowCode);
         showElement(output, bShowOutput);
 
-        showElement(btnCodeFullScreen, bIsBigScreen);
+        //showElement(btnCodeFullScreen, bIsBigScreen);
+        showElement(codeBar, bIsBigScreen);
     }
 
 

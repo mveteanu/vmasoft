@@ -7,7 +7,7 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
     <title>CodeBeanz Playground</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="css/editor.css">
 
     <script src="lib/p5.js"></script>
@@ -29,10 +29,8 @@
 <div class="shell">
 
     <div id="navbar" class="navbar">
-    <div class="col-12">
         <div class="navbar-item left">CodeBeanz</div>
-        <div class="navbar-item right">Exit</div>
-    </div>
+        <div class="navbar-item right"><span class="navbarbutton"><i class="fas fa-cloud"></i> Save</span></div>
     </div>
 
     <div id="workspace" class="workspace">
@@ -77,7 +75,7 @@
                 <div class="codebar"><i id="btnCodeFullScreen" class="fas fa-expand" title="Expand"></i></div>
                 <div class="codearea">
                     <i id="btnPlay" class="playbutton fas fa-play" title="Run code"></i>
-                    <textarea style='background-color:white;width:100%;flex:1;'>code</textarea>
+                    <textarea style='background-color:white;width:100%;flex:1;border:0px;'>code</textarea>
                 </div>
             </div>
         </div>

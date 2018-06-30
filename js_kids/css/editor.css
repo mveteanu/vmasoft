@@ -33,7 +33,7 @@ a:hover, a:active {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	font-family: "Segoe WPC", "Segoe UI", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-family: "Roboto", "Segoe WPC", "Segoe UI", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
 	font-size: 11px;
 	user-select: none;
 
@@ -54,11 +54,13 @@ a:hover, a:active {
 	color: #fff;
 	user-select: none;
 	min-height: 32px;
+	font-family: inherit;
 }
 
 .navbar > .navbar-item {
 	display: inline-block;
 	height: 100%;
+	font-family: inherit;
 }
 
 .navbar > .navbar-item.left {
@@ -67,6 +69,22 @@ a:hover, a:active {
 
 .navbar > .navbar-item.right {
 	float: right;
+}
+
+.navbarbutton {
+	cursor: pointer;
+	color: White;
+	padding: 3px;
+	border: 1px solid white;
+	border-radius: 4px;
+}
+
+.navbarbutton:hover {
+	color: whitesmoke;
+}
+
+.navbarbutton:active {
+	color: lightblue;
 }
 
 
@@ -169,7 +187,7 @@ a:hover, a:active {
 }
 
 .codebar {
-	background-color: green;
+	background-color: White;
 	height: 32px;
 	display: flex;
 	justify-content: flex-end;
@@ -232,20 +250,19 @@ a:hover, a:active {
 }
 
 .outputbar {
-	background-color: red;
+	background-color: White;
 	height: 32px;
+	min-height: 32px;
+	padding: 10px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	min-height: 32px;
-	padding: 10px;
 }
 
 .outputbar > i {
 	color:brown;
 	font-size: 12px;
 	text-decoration: none;
-
 	cursor: pointer;
 }
 
@@ -286,7 +303,7 @@ a:hover, a:active {
 */
 
 .splitter {
-	background-color: maroon;
+	background-color: whitesmoke;
 	width : 10px;
 	min-width: 10px;
 }
@@ -295,4 +312,5 @@ a:hover, a:active {
 .statusbar {
 	height : 16px;
 	background-color: green;
+	display:none;
 }
