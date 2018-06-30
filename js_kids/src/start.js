@@ -33,7 +33,7 @@ function setup()
 
 function parentCanvas(canvas)
 {
-    var div = document.getElementById("output");
+    var div = document.getElementById("outputarea");
     if (!div)
         return;
 

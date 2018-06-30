@@ -7,10 +7,11 @@ var ShellMode = {
 
 function Shell()
 {
+    var shell;
     var editor;
     var actionBar;
-    var codeArea;
-    var outputArea;
+    var output;
+    var btnCodeFullScreen;        
 
     var minWidth = 1024;
 
@@ -20,10 +21,11 @@ function Shell()
 
     function _init()
     {
-        editor = findFirstObject("editor");
-        actionBar = findFirstObject("actionbar");
-        codeArea = findFirstObject("codearea");
-        outputArea = findFirstObject("outputarea");
+        shell = findFirstElement("shell");
+        editor = findFirstElement("editor");
+        actionBar = findFirstElement("actionbar");
+        output = findFirstElement("output");
+        btnCodeFullScreen = findElement("btnCodeFullScreen");
 
         addActionBarEventListers(actionBar);
         addButtonEventHandler("btnOutputFullScreen", handleOutputFullScreenButtonClick);
@@ -37,27 +39,20 @@ function Shell()
     function onresize()
     {
         reconfigureShell();
-
-        alert("Small screen: " + isScreenSmall() + " - " + window.innerWidth);
     }
 
     function reconfigureShell()
     {
+        var bIsBigScreen = !isScreenSmall();
         var bShowCode = mode == ShellMode.Code || mode == ShellMode.Both;
-        var bShowOutput = mode == ShellMode.Output || (!isScreenSmall() && mode == ShellMode.Both);
+        var bShowOutput = mode == ShellMode.Output || (bIsBigScreen && mode == ShellMode.Both);
 
-        showDiv(editor, bShowCode);
-        showDiv(outputArea, bShowOutput);
+        showElement(editor, bShowCode);
+        showElement(output, bShowOutput);
+
+        showElement(btnCodeFullScreen, bIsBigScreen);
     }
 
-    function findFirstObject(className)
-    {
-        var ar = document.getElementsByClassName(className);
-        if (!ar || ar.length == 0)
-            return null;
-
-        return ar[0];
-    }
 
     function addActionBarEventListers(actionBar)
     {
@@ -72,7 +67,7 @@ function Shell()
 
     function addButtonEventHandler(btnId, fnHandler)
     {
-        var btn = document.getElementById(btnId);
+        var btn = findElement(btnId);
         if (!btn)
             return;
 
@@ -99,16 +94,16 @@ function Shell()
 
     function showOutput()
     {
-        var bOutputVisible = isDivVisible(outputArea);
+        var bOutputVisible = isDivVisible(output);
 
         if (!bOutputVisible)
         {
-            showDiv(outputArea, true);
+            showElement(output, true);
         }
 
         if (isScreenSmall())
         {
-            showDiv(editor, false);
+            showElement(editor, false);
             mode = ShellMode.Output;
         }
     }
@@ -126,14 +121,14 @@ function Shell()
 
         if (isScreenSmall())
         {
-            showDiv(editor, true);
-            showDiv(outputArea, false);
+            showElement(editor, true);
+            showElement(output, false);
             mode = ShellMode.Code;
         }
         else
         {
             mode = bEditorVisible ? ShellMode.Output : ShellMode.Both;
-            showDiv(editor, !bEditorVisible);
+            showElement(editor, !bEditorVisible);
         }
     }
 
@@ -144,11 +139,11 @@ function Shell()
         if (isScreenSmall())
             return;
         
-        var bOutputVisible = isDivVisible(outputArea);
+        var bOutputVisible = isDivVisible(output);
 
         mode = bOutputVisible ? ShellMode.Code : ShellMode.Both;
 
-        showDiv(outputArea, !bOutputVisible);
+        showElement(output, !bOutputVisible);
     }
 
 
@@ -157,7 +152,9 @@ function Shell()
         var barName = this.getAttribute("sidebar");
         if (!barName)
         {
-            console.log("Return to home page...");
+            console.log("Return to home page..." + shell);
+            shell.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+
             return;
         }
         
@@ -173,7 +170,7 @@ function Shell()
 
     function findSideBar(barName)
     {
-        var bar = document.getElementById(barName);
+        var bar = findElement(barName);
         return bar;
     }
 
@@ -194,17 +191,33 @@ function Shell()
         for(var i = 0; i < allBars.length; i++)
         {
             var currBar = allBars[i];
-            showDiv(currBar, currBar == oBar ? bShow : false);
+            showElement(currBar, currBar == oBar ? bShow : false);
         }
     }
 
 
-    function showDiv(oDiv, bShow)
+    function findFirstElement(className)
     {
-        if (!oDiv)
+        var ar = document.getElementsByClassName(className);
+        if (!ar || ar.length == 0)
+            return null;
+
+        return ar[0];
+    }
+
+
+    function findElement(id)
+    {
+        return document.getElementById(id);
+    }
+
+
+    function showElement(oElement, bShow)
+    {
+        if (!oElement)
             return;
 
-        oDiv.style.display = bShow ? "inherit" : "none";
+        oElement.style.display = bShow ? "inherit" : "none";
     }
     
 

@@ -36,7 +36,7 @@
     </div>
 
     <div id="workspace" class="workspace">
-        <div class="editor">
+        <div class="editor vertically_divided">
             <div class="actionbar ">
                 <a href="#" class="actionbarbutton" title="Home"><i class="fa fa-home"></i></a> 
                 <a sidebar="barDocumentation" id="" href="#" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></a> 
@@ -74,16 +74,19 @@
             <div class="splitter"></div>
 
             <div class="codewithbararea">
-                <div class="codebar"><a href=# id="btnPlay">Play</a>&nbsp; | &nbsp;<a href=# id="btnCodeFullScreen">Full Screen</a></div>
-                <div class="codearea"><textarea style='background-color:white;width:100%;flex:1;'>code</textarea></div>
+                <div class="codebar"><i id="btnCodeFullScreen" class="fas fa-expand" title="Expand"></i></div>
+                <div class="codearea">
+                    <i id="btnPlay" class="playbutton fas fa-play" title="Run code"></i>
+                    <textarea style='background-color:white;width:100%;flex:1;'>code</textarea>
+                </div>
             </div>
         </div>
 
         <div class="splitter"></div>
 
-        <div class="outputarea">
-            <div class="outputbar"><a href=# id="btnOutputFullScreen">Full Screen</a></div>
-            <div id="output" class="output"></div>
+        <div class="output">
+            <div class="outputbar"><i id="btnOutputFullScreen" class="fas fa-expand" title="Expand"></i></div>
+            <div id="outputarea" class="outputarea"></div>
         </div>
 
     </div>

@@ -1,0 +1,3 @@
+- implement layered backgrounds ... which are basically a static background plus an animated "sketch"
+  the user will use background("static,animated");
+  
