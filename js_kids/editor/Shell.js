@@ -42,7 +42,7 @@ function Shell()
     function reconfigureShell()
     {
         var bShowCode = mode == ShellMode.Code || mode == ShellMode.Both;
-        var bShowOutput = mode == ShellMode.Output || (window.innerWidth > minWidth && mode == ShellMode.Both);
+        var bShowOutput = mode == ShellMode.Output || (!isScreenSmall() && mode == ShellMode.Both);
 
         showDiv(editor, bShowCode);
         showDiv(outputArea, bShowOutput);
@@ -104,7 +104,7 @@ function Shell()
             showDiv(outputArea, true);
         }
 
-        if (window.innerWidth < minWidth)
+        if (isScreenSmall())
         {
             showDiv(editor, false);
             mode = ShellMode.Output;
@@ -122,10 +122,11 @@ function Shell()
 
         var bEditorVisible = isDivVisible(editor);
 
-        if (window.innerWidth < minWidth)
+        if (isScreenSmall())
         {
             showDiv(editor, true);
             showDiv(outputArea, false);
+            mode = ShellMode.Code;
         }
         else
         {
@@ -138,7 +139,7 @@ function Shell()
     {
         e.cancelBubble = true;
 
-        if (window.innerWidth < minWidth)
+        if (isScreenSmall())
             return;
         
         var bOutputVisible = isDivVisible(outputArea);
@@ -148,6 +149,7 @@ function Shell()
         showDiv(outputArea, !bOutputVisible);
     }
 
+    
     function handleActionButtonClick(e)
     {
         var barName = this.getAttribute("sidebar");
@@ -211,6 +213,12 @@ function Shell()
 
         //return oDiv.style.display == "block";
         return oDiv.offsetHeight > 0;
+    }
+
+
+    function isScreenSmall()
+    {
+        return window.innerWidth < minWidth;
     }
 
 
