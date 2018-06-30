@@ -134,7 +134,7 @@ a:hover, a:active {
 
 .actionbarbutton:hover{
 	color: black;
-	background-color: lightgray;*/
+	background-color: lightgray;
 }
 
 
@@ -167,7 +167,7 @@ a:hover, a:active {
 
 .codewithbararea {
 	flex-grow: 1;
-	background-color: pink;
+	background-color: white; /*pink;*/
 	margin: 0;
 
 	display: flex;
@@ -175,7 +175,7 @@ a:hover, a:active {
 }
 
 .codearea {
-	background-color: white; /*magenta*;
+	background-color: white; /*magenta*/;
 	flex-grow: 1;
 
 	display: flex;
