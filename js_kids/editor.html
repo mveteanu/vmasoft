@@ -7,12 +7,13 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
     <title>CodeBeanz Playground</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
-    <link rel="stylesheet" href="css/editor.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+    <script src="lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="lib/p5.js"></script>
     <script src="lib/p5.sound.js"></script>
     <script src="lib/p5.play_.js"></script>
+
     <script src="src/EasyFunctions.js"></script>
     <script src="src/Sketch.js"></script>
     <script src="src/CodeUtils.js"></script>
@@ -22,68 +23,110 @@
     <script src="src/SpriteBuilder.js"></script>
     <script src="src/start.js"></script>
 
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/tc.css">
+    <script src="editor/HtmlUtils.js"></script>
+    <script src="editor/TabControl.js"></script>
+    <script src="editor/TabEditor.js"></script>
     <script src="editor/Shell.js"></script>
+    <script src="editor/start.js"></script>
+    
 </head>
 <body>
 
 <div class="shell">
 
     <div id="navbar" class="navbar">
-    <div class="col-12">
         <div class="navbar-item left">CodeBeanz</div>
-        <div class="navbar-item right">Exit</div>
-    </div>
+        <div class="navbar-item right"><span class="navbarbutton"><i class="fas fa-cloud"></i> Save</span></div>
     </div>
 
     <div id="workspace" class="workspace">
         <div class="editor">
             <div class="actionbar ">
-                <a href="#" class="actionbarbutton" title="Home"><i class="fa fa-home"></i></a> 
-                <a sidebar="barDocumentation" id="" href="#" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></a> 
-                <a sidebar="barBackgrounds" href="#" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></a> 
-                <a sidebar="barSprites" href="#" class="actionbarbutton" title="Sprites"><i class="fas fa-robot"></i></a>
-                <a sidebar="barSounds" href="#" class="actionbarbutton" title="Sounds"><i class="fas fa-volume-up"></i></a> 
-                <a sidebar="barMusic" href="#" class="actionbarbutton" title="Music"><i class="fas fa-music"></i></a> 
+                <span href="#" class="actionbarbutton" title="Home"><i class="fa fa-home"></i></span> 
+                <span sidebar="barDocumentation" id="" href="#" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></span> 
+                <span sidebar="barBackgrounds" href="#" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></span> 
+                <span sidebar="barSprites" href="#" class="actionbarbutton" title="Sprites"><i class="fas fa-robot"></i></span>
+                <span sidebar="barSounds" href="#" class="actionbarbutton" title="Sounds"><i class="fas fa-volume-up"></i></span> 
+                <span sidebar="barMusic" href="#" class="actionbarbutton" title="Music"><i class="fas fa-music"></i></span> 
             </div>
             
             <div id="barDocumentation" class="sidebar">
-                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
+                <div class="sidebarbar">
+                    <div class="sidebarbar-item left"><i class="fas fa-book"></i> Documentation</div>
+                    <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                </div>
                 <div class="sidebararea">Documentation</div>
             </div>
             
             <div id="barBackgrounds" class="sidebar">
-                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
-                <div class="sidebararea">Backgrounds</div>
+                    <div class="sidebarbar">
+                        <div class="sidebarbar-item left"><i class="far fa-image"></i> Backgrounds</div>
+                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                    </div>
+                    <div class="sidebararea">Backgrounds</div>
             </div>
 
             <div id="barSprites" class="sidebar">
-                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
-                <div class="sidebararea">Sprites</div>
+                    <div class="sidebarbar">
+                        <div class="sidebarbar-item left"><i class="fas fa-robot"></i> Sprites</div>
+                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                    </div>
+                    <div class="sidebararea">Sprites</div>
             </div>
 
             <div id="barSounds" class="sidebar"> 
-                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
-                <div class="sidebararea">Sounds</div>
+                    <div class="sidebarbar">
+                        <div class="sidebarbar-item left"><i class="fas fa-volume-up"></i> Sounds</div>
+                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                    </div>
+                    <div class="sidebararea">Sounds</div>
             </div>
 
             <div id="barMusic" class="sidebar"> 
-                <div class="sidebarbar"><a href=# class="closesidebar">Close</a></div>
+                    <div class="sidebarbar">
+                        <div class="sidebarbar-item left"><i class="fas fa-music"></i> Music</div>
+                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                    </div>
                 <div class="sidebararea">Music</div>
             </div>
 
             <div class="splitter"></div>
 
             <div class="codewithbararea">
-                <div class="codebar"><a href=# id="btnPlay">Play</a>&nbsp; | &nbsp;<a href=# id="btnCodeFullScreen">Full Screen</a></div>
-                <div class="codearea"><textarea style='background-color:white;width:100%;flex:1;'>code</textarea></div>
+                <div class="codebar">
+                    <div id="tabcontrol" class="tabcontrol">
+                        <div class="tabheaders">
+                        </div>
+                    
+                        <div class="tabcommands">
+                            <div class="tabcommand"><i class="fas fa-plus"></i></div>
+                        </div>
+                    
+                        <div class="tabheadermenu">
+                            <div action="rename"><i class="fas fa-pen"></i></div>
+                            <div action="remove"><i class="far fa-trash-alt"></i></div>
+                        </div>
+                    </div>
+                            
+                    <i id="btnPlay" class="playbutton fas fa-play" title="Run code"></i>
+                    <i id="btnCodeFullScreen" class="fas fa-expand" title="Expand"></i>
+                </div>
+                <div class="codearea">
+                        
+                    <div id="pages" class="codeareapages">
+                    </div>
+
+                </div>
             </div>
         </div>
 
         <div class="splitter"></div>
 
-        <div class="outputarea">
-            <div class="outputbar"><a href=# id="btnOutputFullScreen">Full Screen</a></div>
-            <div id="output" class="output"></div>
+        <div class="output">
+            <div class="outputbar"><i id="btnOutputFullScreen" class="fas fa-expand" title="Expand"></i></div>
+            <div id="outputarea" class="outputarea"></div>
         </div>
 
     </div>
@@ -91,24 +134,6 @@
     <div id="statusbar" class="statusbar">Status...</div>
 
 </div>
-
-
-<script>
-
-    var oShell;
-
-    window.onload = function() 
-    {
-        oShell = Shell();
-    }
-
-    window.onresize = function()
-    {
-        oShell.onresize();
-    }
-
-</script>
-
 
 <script id="Game" language="sketch">
 
@@ -139,7 +164,7 @@
             }
         }
 </script>
-        
+       
 
 </body>
 </html>
