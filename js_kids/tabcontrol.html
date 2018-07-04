@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+    <title>Tab Control</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/tc.css">
+    <script src="editor/HtmlUtils.js"></script>
+    <script src="editor/TabControl.js"></script>
+</head>
+<body>
+
+<h1>This is a test for TabControl</h1>
+
+<div class="shell">
+
+    <div id="tabcontrol" class="tabcontrol">
+
+        <div class="tabheaders">
+            <div class="tabheader selected" page="tabIntro" ><span>Intro</span><i class="fas fa-cog"></i></div>
+            <div class="tabheader" page="tabGame"><span>Game</span><i class="fas fa-cog"></i></div>
+            <div class="tabheader" page="tabCredits"><span>Credits</span><i class="fas fa-cog"></i></div>
+        </div>
+
+        <div class="tabcommands">
+            <div class="tabcommand"><i class="fas fa-plus"></i></div>
+        </div>
+
+        <div class="tabheadermenu">
+            <div action="rename"><i class="fas fa-pen"></i></div>
+            <div action="remove"><i class="far fa-trash-alt"></i></div>
+        </div>
+
+    </div>
+
+    <div id="pages" style='background-color:grey;height:300px;'>
+        <div page="tabIntro" style="display: inherit">
+            Intro
+        </div>
+
+        <div page="tabGame" style="display: none">
+            Game
+        </div>
+        
+        <div page="tabCredits" style="display: none">
+            Credits
+        </div>
+    </div>
+    
+</div>
+
+<script>
+var html = HtmlUtils();
+
+
+window.onload = function() 
+{
+    var tc = TabControl("tabcontrol", "pages");
+    tc.addEventListener(TabControlEvents.OnPageChanged, handlePageChanged);
+    tc.addEventListener(TabControlEvents.OnBeforeAdd, handlePageNew);
+    tc.addEventListener(TabControlEvents.OnAfterAdd, handlePageAfterAdd);
+    tc.addEventListener(TabControlEvents.OnBeforeRename, handlePageRename);
+    tc.addEventListener(TabControlEvents.OnBeforeRemove, handlePageRemove);
+
+    // var o = tc.addPage("x");
+    // console.log(o.Page.innerHTML += "Test page");
+    // tc.selectPage(o.Header);
+}
+
+window.onresize = function()
+{
+}
+
+function handlePageChanged(sender, eventArgs)
+{
+    console.log("page changed: " + eventArgs.PageName);
+}
+
+function handlePageNew(sender, eventArgs)
+{
+    //eventArgs.Cancel = true;
+    //return;
+
+    console.log("New page: " + eventArgs.PageName);
+}
+
+function handlePageAfterAdd(sender, eventArgs)
+{
+    var o = eventArgs.Page;
+    o.innerHTML += "This is a new page";
+
+    console.log( eventArgs );
+}
+
+function handlePageRename(sender, eventArgs)
+{
+    var pageName = eventArgs.PageName;
+    eventArgs.Cancel = pageName.length >= 30;
+
+    console.log("Page rename: " + pageName);
+}
+
+function handlePageRemove(sender, eventArgs)
+{
+    console.log("Page remove: " + eventArgs.PageName);
+}
+
+</script>
+    
+
+</body>
+</html>

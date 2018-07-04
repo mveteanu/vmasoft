@@ -1,0 +1,130 @@
+.tabcontrol {
+    background-color: White;
+    flex-grow: 1;
+    max-height: 36px;
+    overflow: hidden;
+}
+
+.tabcontrol::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.tabheaders {
+    display: block;
+    height: 100%;
+    float: left;
+    background-color: White;
+}
+
+.tabheader {
+    display: block;
+    background-color: White;
+    border-top: 2px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    padding: 4px;
+    width: 100px;
+    cursor: pointer;
+    height: 100%;
+    float: left;
+    margin-right: 4px;
+    background-color: whitesmoke;
+}
+
+.tabheader.selected {
+    border-top: 3px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: white;
+}
+
+.tabheader span {
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:clip;
+    width:71px;
+    display:inline-block;
+    padding: 2px;
+    user-select: none;
+}
+
+.tabheader span br {
+    display: none;
+}
+
+.tabheader span[contenteditable="true"] {
+    background-color: White;
+    color: darkblue;
+}
+
+.tabheader i {
+    display: none;
+    float: right;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+.tabheader i:hover {
+    color: maroon;
+}
+
+
+/*
+.tabheader:hover {
+}
+*/
+
+/* If hover above a selected tab display the settings image */
+.tabheader.selected:hover i {
+    display: block;
+}
+
+.tabheadermenu {
+    display: none;
+    width: 24px;
+    position: absolute;
+    border:1px solid lightgray;
+    padding: 1px;
+    background-color: white;
+    z-index: 100;
+}
+
+.tabheadermenu > div {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    background-color: white;
+    padding: 4px;
+}
+
+.tabheadermenu > div:hover {
+    background-color: whitesmoke;
+}
+
+.tabcommands {
+    display: block;
+    height: 100%;
+    margin: 10px;
+    float: left;
+}
+
+.tabcommand {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.tabcommand:hover {
+    color: maroon;
+}
+
+.tabpage {
+    background-color: pink;
+    flex-grow: 1;
+
+    font-size: 16px;
+
+    /* display: flex;
+    flex-direction: column; */
+}
