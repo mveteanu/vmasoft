@@ -1,4 +1,0 @@
-- implement layered backgrounds ... which are basically a static background plus an animated "sketch"
-  the user will use background("static,animated");
-
-- investigate splitter from https://github.com/nathancahill/Split.js
