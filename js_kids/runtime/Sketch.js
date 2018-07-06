@@ -259,6 +259,13 @@ function Sketch()
             return;                 // most likely there are no scene in the sketch...
         }
 
+        if (currScene.errorMessage)
+        {
+            background("White");
+            text("Error: " + currScene.errorMessage, width / 2, height / 2);
+            return;
+        }
+
         if ( !currScene.sceneExecuted )
         {
             _executeScene(currScene);
@@ -306,8 +313,15 @@ function Sketch()
 
     function _executeScene(currScene)
     {
-        currScene.oScene = currScene.fnScene( currScene.oSceneData );
-        currScene.sceneExecuted = true;
+        try
+        {
+            currScene.oScene = currScene.fnScene( currScene.oSceneData );
+            currScene.sceneExecuted = true;
+        }
+        catch(e)
+        {
+            currScene.errorMessage = e.message;
+        }
     }
     
 
@@ -347,9 +361,21 @@ function Sketch()
 
         // Evaluates the code of the scene using Function()
         // and returns an anonymous function representing the scene code
-        var fnScene = oCodeUtils.getSceneFunction();
-        if (!fnScene)
-            return;
+        var fnScene;
+        var fnSceneError = "";
+        try
+        {
+            fnScene = oCodeUtils.getSceneFunction();
+        }
+        catch(e)
+        {
+            fnSceneError = e.message;
+        }
+
+        // if (!fnScene)
+        // {
+        //     fnSceneError = "No code.";
+        // }
 
         // This structure will be visible to the code running inside a scene
         var oSceneData = { 
@@ -367,6 +393,7 @@ function Sketch()
                    hasEnter : hasEnter,
                    sceneExecuted : false,
                    enterExecuted : false,
+                   errorMessage : fnSceneError,
                    spritesGroup : new Group()
                 };
     }  
@@ -398,8 +425,16 @@ function Sketch()
             g.keyCode = keyCode;
             g.keyIsPressed = keyIsPressed;
         }
-            
-        fnSceneEvent();
+        
+        try
+        {
+            fnSceneEvent();
+        }
+        catch(e)
+        {
+            scene.errorMessage = sEvent + "()\n" + e.message;
+        }
+    
     }
 
 

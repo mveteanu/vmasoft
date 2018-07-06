@@ -2,3 +2,15 @@
   the user will use background("static,animated");
 
 - investigate splitter from https://github.com/nathancahill/Split.js
+
+- see why sketch doesn't recover if errors
+
+- call camera.off() at the beginning of draw()
+
+- need to make sure it runs in minimum resolution 1024x768 (check vertical resolution as well)
+
+- maybe sketches should autorun upon opening (e.g. uncomment the run() line in Shell.js)
+
+- also ... maybe if there is no code in the sketch / scene, then the draw() should display a nice message / animation
+  instructing how to write code... e.g. in Sketch.js -> getSceneWrapper() and CodeUtils.js -> getSceneFunction()
+  

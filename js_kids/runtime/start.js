@@ -25,11 +25,11 @@ function setup()
     oSketch = Sketch();
     oSketch.wire();
 
-    // TODO: ... maybe remove the next lines... or add a <script language="sketch"> script
-    // in the main code.html ?!
+    // TODO: ... maybe use the next lines and add a <script language="sketch"> script
+    // in the main code.html ?! ... or use the empty code mechanism from Sketch.js -> getSceneWrapper()
 
-    oSketch.addScenesFromHtml("sketch");
-    oSketch.run();
+    // oSketch.addScenesFromHtml("sketch");
+    // oSketch.run();
 }
 
 function parentCanvas(canvas)

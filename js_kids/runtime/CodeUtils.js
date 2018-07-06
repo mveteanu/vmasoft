@@ -48,8 +48,8 @@ function CodeUtils(code)
     // Converts the scene code to a function
     function getSceneFunction()
     {
-        if (!sCode)
-            return null;
+        // if (!sCode)
+        //     return null;
         
         var sPrefixCode = getScenePrefixCodeAsText();
         var sReturnLine = getSceneReturnAsText();
