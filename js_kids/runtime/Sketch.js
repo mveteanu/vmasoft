@@ -246,6 +246,10 @@ function Sketch()
         // it gets changed by the user code in the events such as enter()...
         var currScene = scene;
 
+        // Disable p5.play camera since it appears to cause some issues with persistance of attributes after the draw() cycle...
+        // ... for a different workaround with camera.on please check backup v8
+        camera.off();
+
         if (displayLoadingScreen)
         {
             background("White");
@@ -269,6 +273,17 @@ function Sketch()
         if ( !currScene.sceneExecuted )
         {
             _executeScene(currScene);
+
+            if (OFFSCREEN_RENDERING)
+            {
+                // If the loose code draw something in the initial buffer...
+                if (!_bufferEmpty(currScene.oSceneData.ScreenBuffer))
+                {
+                    currScene.oSceneData.ScreenBuffer_init = createGraphics(width, height);
+                    currScene.oSceneData.ScreenBuffer_init.pixelDensity(1);
+                    currScene.oSceneData.ScreenBuffer_init.image(currScene.oSceneData.ScreenBuffer, 0, 0);
+                }
+            }
         }
 
         if ( currScene.hasEnter && !currScene.enterExecuted  )
@@ -280,16 +295,40 @@ function Sketch()
         _applySceneBackground(currScene);
         _drawSprites(currScene.spritesGroup, (o) => o.depth <= 0);
 
-        if ( currScene.hasLoop )
+        if (OFFSCREEN_RENDERING)
         {
-            currScene.oScene.loop();
+           if ( currScene.hasLoop )
+           {
+               currScene.oSceneData.ScreenBuffer.clear();
+
+               // If there is content in the initial buffer apply it then execute loop() on top...
+               if (currScene.oSceneData.ScreenBuffer_init)
+                   currScene.oSceneData.ScreenBuffer.image(currScene.oSceneData.ScreenBuffer_init, 0, 0);
+
+               _setScreenBufferP5Variables(currScene.oSceneData.ScreenBuffer);
+               currScene.oScene.loop();
+
+               image(currScene.oSceneData.ScreenBuffer, 0, 0);
+           }
+           else
+           {
+                if (currScene.oSceneData.ScreenBuffer_init)
+                    image(currScene.oSceneData.ScreenBuffer_init, 0, 0);
+           }
         }
         else
         {
-            image(currScene.oSceneData.ScreenBuffer, 0, 0);
+            if ( currScene.hasLoop )
+            {
+                currScene.oScene.loop();
+            }
+            else
+            {
+                image(currScene.oSceneData.ScreenBuffer, 0, 0);
+            }
         }
 
-        _drawSprites(currScene.spritesGroup, (o) => o.depth > 0);
+       _drawSprites(currScene.spritesGroup, (o) => o.depth > 0);
     }
 
 
@@ -310,6 +349,20 @@ function Sketch()
         }
     }
 
+    // Returns true if an offscreen buffer is totally empty
+    function _bufferEmpty(buff)
+    {
+        buff.loadPixels();
+    
+        for(var i = 0; i < buff.pixels.length; i++)
+        {
+            if (buff.pixels[i] != 0)
+                return false;
+        }
+    
+        return true;
+    }
+        
 
     function _executeScene(currScene)
     {
@@ -337,10 +390,28 @@ function Sketch()
     }
 
 
+    function _setScreenBufferP5Variables(g)
+    {
+        if (!g)
+            return;
+
+        g.mouseX = mouseX;
+        g.mouseY = mouseY;
+        g.pmouseX = pmouseX;
+        g.pmouseY = pmouseY;
+        g.mouseButton = mouseButton;
+        g.mouseIsPressed = mouseIsPressed;
+        g.key = key;
+        g.keyCode = keyCode;
+        g.keyIsPressed = keyIsPressed;
+    }
+
+
     // Returns an object that wrapps the scene function and it's attributes
     function getSceneWrapper(sceneName, sceneCode)
     {
         var oScreenBuffer = null;
+        var oScreenBuffer_init = null;
         
         var oCodeUtils = CodeUtils(sceneCode);
         oCodeUtils.addP5Events(P5Events);
@@ -349,8 +420,7 @@ function Sketch()
         var hasLoop = oCodeUtils.hasLoop();
         var hasEnter = oCodeUtils.hasEnter();
         
-        // Static scenes will receive an off-screen buffer
-        if (!hasLoop)
+        if (!hasLoop || OFFSCREEN_RENDERING)
         {
             oScreenBuffer = createGraphics(width, height);
             oScreenBuffer.pixelDensity(1);
@@ -381,7 +451,8 @@ function Sketch()
         var oSceneData = { 
                             PublicVars: {},
                             SceneBackground : ["White"],
-                            ScreenBuffer : oScreenBuffer
+                            ScreenBuffer : oScreenBuffer,
+                            ScreenBuffer_init : oScreenBuffer_init
                         };
 
         return {   sceneName : sceneName,
@@ -412,20 +483,13 @@ function Sketch()
 
         // If an off-screen buffer is used (like in the case of static scenes)
         // ... then sync a few common variables with the off-screen buffer
-        var g = scene.oSceneData.ScreenBuffer;
-        if (g)
-        {
-            g.mouseX = mouseX;
-            g.mouseY = mouseY;
-            g.pmouseX = pmouseX;
-            g.pmouseY = pmouseY;
-            g.mouseButton = mouseButton;
-            g.mouseIsPressed = mouseIsPressed;
-            g.key = key;
-            g.keyCode = keyCode;
-            g.keyIsPressed = keyIsPressed;
-        }
+        _setScreenBufferP5Variables(scene.oSceneData.ScreenBuffer);
         
+        if (OFFSCREEN_RENDERING)
+        {
+            scene.oSceneData.ScreenBuffer.clear();
+        }
+
         try
         {
             fnSceneEvent();
@@ -434,8 +498,23 @@ function Sketch()
         {
             scene.errorMessage = sEvent + "()\n" + e.message;
         }
-    
+
+        if (OFFSCREEN_RENDERING)
+        {
+
+            if (!_bufferEmpty(scene.oSceneData.ScreenBuffer))
+            {
+                if (!scene.oSceneData.ScreenBuffer_init)
+                {
+                    scene.oSceneData.ScreenBuffer_init = createGraphics(width, height);
+                    scene.oSceneData.ScreenBuffer_init.pixelDensity(1);
+                }
+                scene.oSceneData.ScreenBuffer_init.image(scene.oSceneData.ScreenBuffer, 0, 0);
+            }
+            
+        }
     }
+
 
 
     // Detects images and sounds assets in the code of all scenes 
@@ -459,6 +538,7 @@ function Sketch()
 
 
     return { wire : wire, 
+            draw : draw,
             addScene : addScene, 
             addScenes : addScenes,
             addScenesFromHtml : addScenesFromHtml,

@@ -71,7 +71,12 @@ function SketchProvider()
         if (!p || p.length <= 1)
             return p;
 
-        return p.substr(1);
+        var pNext = p.indexOf("&");
+
+        if (pNext == -1)
+            return p.substr(1);
+
+        return p.substr(1, pNext - 1);
     }
 
     return {

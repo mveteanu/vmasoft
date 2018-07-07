@@ -8,6 +8,11 @@ var _oMusicAssets;
 
 // p5.disableFriendlyErrors = true;
 
+// If OFFSCREEN_RENDERING variable is "false" (by default "false") then offscreen_rendering is used only for static scenes (e.g. without loop())
+// ... but if this is true, all scenes will be rendered offscreen! -- potentially slower but will capture the static scene...
+// Note: Another option to capture static scenes is to redirect p5.js functions to offscreen buffer before running the static scene (... and not use 'with' as of now)
+var OFFSCREEN_RENDERING = window.location.href.indexOf("buffer") !== -1;
+
 function preload()
 {
     _oBackgroundsAssets = loadJSON("assets/backgrounds.json");
@@ -31,6 +36,7 @@ function setup()
     // oSketch.addScenesFromHtml("sketch");
     // oSketch.run();
 }
+
 
 function parentCanvas(canvas)
 {

@@ -27,7 +27,6 @@ p5.prototype.circle = function(x, y, r)
     this.ellipse(x, y, r * 2);
 }
 
-
 // Overwrite the document.write function
 document.write = function(sText)
 {

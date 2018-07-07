@@ -142,9 +142,9 @@ function CodeUtils(code)
             function background()
             {
                 sceneFunctionArgs.SceneBackground = arguments;
-            }`;
+            }
+            `;
     }
-
 
 
     return { addP5Events : addP5Events,
