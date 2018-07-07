@@ -170,6 +170,15 @@ function Sketch()
         return (sceneIndex >= 0 && sceneIndex < scenes.length) ? scenes[sceneIndex] : null;
     }
 
+    // Returns the number of scenes in the sketch
+    function getSceneCount()
+    {
+        if (!scenes)
+            return 0;
+
+        return scenes.length;
+    }
+
 
     function getCurrentScene()
     {
@@ -266,13 +275,15 @@ function Sketch()
         if (currScene.errorMessage)
         {
             background("White");
-            text("Error: " + currScene.errorMessage, width / 2, height / 2);
+            text(currScene.errorMessage, width / 2, height / 2);
             return;
         }
 
         if ( !currScene.sceneExecuted )
         {
             _executeScene(currScene);
+            if (currScene.errorMessage)
+                return;
 
             if (OFFSCREEN_RENDERING)
             {
@@ -288,8 +299,9 @@ function Sketch()
 
         if ( currScene.hasEnter && !currScene.enterExecuted  )
         {
-            currScene.oScene.enter();
-            currScene.enterExecuted = true;
+            _executeSceneEnter(currScene);
+            if (currScene.errorMessage)
+                return;
         }
 
         _applySceneBackground(currScene);
@@ -299,16 +311,18 @@ function Sketch()
         {
            if ( currScene.hasLoop )
            {
-               currScene.oSceneData.ScreenBuffer.clear();
+                currScene.oSceneData.ScreenBuffer.clear();
 
-               // If there is content in the initial buffer apply it then execute loop() on top...
-               if (currScene.oSceneData.ScreenBuffer_init)
-                   currScene.oSceneData.ScreenBuffer.image(currScene.oSceneData.ScreenBuffer_init, 0, 0);
+                // If there is content in the initial buffer apply it then execute loop() on top...
+                if (currScene.oSceneData.ScreenBuffer_init)
+                    currScene.oSceneData.ScreenBuffer.image(currScene.oSceneData.ScreenBuffer_init, 0, 0);
 
-               _setScreenBufferP5Variables(currScene.oSceneData.ScreenBuffer);
-               currScene.oScene.loop();
+                _setScreenBufferP5Variables(currScene.oSceneData.ScreenBuffer);
+                _executeSceneLoop(currScene);
+               if (currScene.errorMessage)
+                    return;
 
-               image(currScene.oSceneData.ScreenBuffer, 0, 0);
+                image(currScene.oSceneData.ScreenBuffer, 0, 0);
            }
            else
            {
@@ -320,7 +334,9 @@ function Sketch()
         {
             if ( currScene.hasLoop )
             {
-                currScene.oScene.loop();
+                _executeSceneLoop(currScene);
+                if (currScene.errorMessage)
+                    return;
             }
             else
             {
@@ -329,6 +345,61 @@ function Sketch()
         }
 
        _drawSprites(currScene.spritesGroup, (o) => o.depth > 0);
+    }
+
+
+
+    function _executeScene(currScene)
+    {
+        if (currScene.errorMessage)
+            return;
+
+        try
+        {
+            currScene.oScene = currScene.fnScene( currScene.oSceneData );
+            currScene.sceneExecuted = true;
+        }
+        catch(e)
+        {
+            currScene.errorMessage = "Runtime error\n" + e.message;
+        }
+    }
+
+
+    function _executeSceneEnter(currScene)
+    {
+        if (currScene.errorMessage)
+            return;
+
+        try
+        {
+            currScene.oScene.enter();
+            currScene.enterExecuted = true;
+        }
+        catch(e)
+        {
+            currScene.errorMessage = "Runtime error in enter()\n" + e.message;
+        }
+
+        return currScene.errorMessage;
+    }
+
+
+    function _executeSceneLoop(currScene)
+    {
+        if (currScene.errorMessage)
+            return;
+
+        try
+        {
+            currScene.oScene.loop();
+        }
+        catch(e)
+        {
+            currScene.errorMessage = "Runtime error in loop()\n" + e.message;
+        }
+
+        return currScene.errorMessage;
     }
 
 
@@ -364,32 +435,45 @@ function Sketch()
     }
         
 
-    function _executeScene(currScene)
-    {
-        try
-        {
-            currScene.oScene = currScene.fnScene( currScene.oSceneData );
-            currScene.sceneExecuted = true;
-        }
-        catch(e)
-        {
-            currScene.errorMessage = e.message;
-        }
-    }
-    
-
     function _applySceneBackground(toScene)
     {
         var currScene = toScene != null ? toScene : scene; // if no argument is transmited... use current scene
         
         var bkArgs = currScene.oSceneData.SceneBackground;
-        if (bkArgs == null)
-            bkArgs = ["White"]; // ... assume "White" if the scene didn't set any background
 
-        p5.prototype.background.apply(window, bkArgs);
+        bkArgs = _checkBackgroundArguments(bkArgs);
+
+        if (bkArgs instanceof p5.Image)
+        {
+            image(bkArgs, 0, 0);
+        }
+        else
+        {
+            p5.prototype.background.apply(window, bkArgs);
+        }
     }
 
+    function _checkBackgroundArguments(bkArgs)
+    {
+        if (bkArgs == null || bkArgs.length == 0)
+            return ["White"]; // ... assume "White" if the scene didn't set any background
 
+        var bk = oAssetsData.getBackground( bkArgs[0] );
+        if (!bk)
+            return bkArgs;
+
+        var arImages = bk.Images;
+        if (arImages == null || !Array.isArray(arImages) )
+            return ["White"];
+
+        var arImageObjects = oAssetsCache.getImages(arImages);
+        if (!arImageObjects || arImageObjects.length == 0)
+            return ["White"];
+
+        return arImageObjects[0];
+    }
+
+    
     function _setScreenBufferP5Variables(g)
     {
         if (!g)
@@ -439,7 +523,7 @@ function Sketch()
         }
         catch(e)
         {
-            fnSceneError = e.message;
+            fnSceneError = "Invalid code\n" + e.message;
         }
 
         // if (!fnScene)
@@ -477,6 +561,9 @@ function Sketch()
         if ( scene == null || scene.oScene == null )
             return;
 
+        if (scene.errorMessage)
+            return;
+
         var fnSceneEvent = scene.oScene[sEvent];
         if (!fnSceneEvent)
             return;
@@ -496,7 +583,7 @@ function Sketch()
         }
         catch(e)
         {
-            scene.errorMessage = sEvent + "()\n" + e.message;
+            scene.errorMessage = "Runtime error in " + sEvent + "()\n" + e.message;
         }
 
         if (OFFSCREEN_RENDERING)
@@ -543,6 +630,7 @@ function Sketch()
             addScenes : addScenes,
             addScenesFromHtml : addScenesFromHtml,
             findScene : findScene,
+            getSceneCount : getSceneCount,
             getCurrentScene : getCurrentScene,
             run : run,
             reset : reset,

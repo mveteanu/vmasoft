@@ -136,6 +136,7 @@ function TabEditor(tabControlName, pagesContainerName)
         var editor = ace.edit(oEditorDiv);
         editor.setTheme("ace/theme/chrome");
         editor.session.setMode("ace/mode/javascript");
+        //editor.session.$worker.send("changeOptions", [{asi: true}]); ??? 
         //editor.setHighlightActiveLine(false);
 
         return editor;

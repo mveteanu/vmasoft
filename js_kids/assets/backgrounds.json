@@ -4,7 +4,7 @@
         { 
             "Name" : "clouds",
             "Tags" : ["nature", "summer"],
-            "Images" : ["assets/backgrounds/clouds.png"]
+            "Images" : ["assets/backgrounds/scene.jpg"]
         }
     ]
 }

@@ -92,18 +92,21 @@ a:hover, a:active {
    containing the editor and output */
 .workspace {
 	background-color: lightgray;
-	flex-grow: 1;
+	flex: 1 1 0%;
+	overflow: hidden;	
+	user-select: text;
 	display: flex;
 	flex-direction: row;
 }
 
 
 .editor {
-	flex-grow: 1;
+	flex: 1 1 auto;
 	background-color: lime;	
-	display: flex;
 	/*min-width: 50%;*/
 	flex-basis: 50%;
+
+	display: flex;
 }
 
 
@@ -197,7 +200,7 @@ a:hover, a:active {
 
 .codewithbararea {
 	flex-grow: 1;
-	background-color: white; /*pink;*/
+	background-color: white;
 	margin: 0;
 
 	display: flex;
@@ -205,7 +208,7 @@ a:hover, a:active {
 }
 
 .codearea {
-	background-color: white; /*magenta*/;
+	background-color: white;
 	flex-grow: 1;
 
 	display: flex;
@@ -272,9 +275,31 @@ a:hover, a:active {
 	right: 8px;
 }
 
+.stopbutton {
+	background-color: white;
+	color: red;
+	font-size: 20px;
+	padding: 8px;
+	border: 1px solid red;
+	border-radius: 8px;
+	width: 50px;
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden;
+	margin-right: 10px;
+}
+
+.stopbutton:hover {
+	color: darkred;
+}
+
+.stopbutton:active {
+	box-shadow: 0px 0px;
+	right: 8px;
+}
 
 .output {
-	flex-grow: 1;
+	flex: 1 1 auto;
 	background-color: pink;
 	margin: 0;
 

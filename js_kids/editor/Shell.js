@@ -87,23 +87,17 @@ function Shell()
 
     function run()
     {
-        showOutput();
-
         var arCode = tcEditor.getAllCode();
+        if (!arCode || arCode.length == 0 || !arCode[0].Code )
+            return false;
+        
+        showOutput();
         runCode(arCode);
+
+        return true;
     }
 
-
-    function runCode(arCode)
-    {
-        if (!oSketch)
-            return;
-
-        oSketch.reset();
-        oSketch.addScenes(arCode);
-        oSketch.run();
-    }
-
+    
     // -------- Begin private methods -------------
 
     function _init()
@@ -125,7 +119,7 @@ function Shell()
 
         onresize();
     }
-
+    
     function reconfigureShell()
     {
         var bIsBigScreen = !html.isScreenSmall();
@@ -144,6 +138,32 @@ function Shell()
         }
     }
 
+
+    function runCode(arCode)
+    {
+        if (!oSketch)
+            return;
+
+        oSketch.reset();
+        oSketch.addScenes(arCode);
+        oSketch.run();
+    }
+
+    function resetSketch()
+    {
+        if (!oSketch)
+            return;
+
+        oSketch.reset();
+    }
+
+    function isSketchRunning()
+    {
+        if (!oSketch)
+            return false;
+
+        return oSketch.getSceneCount() > 0;
+    }
 
     function addActionBarEventListers(actionBar)
     {
@@ -180,7 +200,16 @@ function Shell()
 
     function handlePlayButtonClick(e)
     {
-        run();
+        if (!isSketchRunning())
+        {
+            if( run() )
+                btnPlay.className = "stopbutton fas fa-stop";
+        }
+        else
+        {
+            resetSketch();
+            btnPlay.className = "playbutton fas fa-play";
+        }
     }
 
 
