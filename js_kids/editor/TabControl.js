@@ -81,7 +81,7 @@ function TabControl(tabControlName, pagesContainerName)
                 selectedPage = oPageHeader;
             }
 
-            oCurrHeader.className = oPageHeader == oCurrHeader ? "tabheader selected" : "tabheader"
+            oCurrHeader.classList.toggle("selected", oPageHeader == oCurrHeader);
             html.showElement(oContainer, oPageHeader == oCurrHeader);
         }
 
@@ -179,8 +179,9 @@ function TabControl(tabControlName, pagesContainerName)
         oMenu = html.findFirstElement("tabheadermenu", oTabControl);
         document.addEventListener("click", handleDocumentClick);
 
-        var btnNewPage = html.findFirstElement("tabcommand");
-        btnNewPage.addEventListener("click", handlePageNewClick);
+        var btnNewPage = html.findFirstElement("tabcommand", oTabControl);
+        if (btnNewPage)
+            btnNewPage.addEventListener("click", handlePageNewClick);
 
         initTabPages();
     }
@@ -200,14 +201,18 @@ function TabControl(tabControlName, pagesContainerName)
 
     function initPage(oPageHeader)
     {
-        var oSetting = html.findFirstTag("i", oPageHeader);
-        var oSpan = html.findFirstTag("span", oPageHeader);
-
         oPageHeader.addEventListener('click', handlePageClick, false);
-        oSetting.addEventListener('click', handlePageSettingsClick, false);
-        oSpan.addEventListener('blur', handlePageEditExit, false);
-        oSpan.addEventListener('dblclick', handlePageHeaderDoubleClick, false);
-        oSpan.addEventListener('keypress', handlePageHeaderKeyPress, false);
+
+        var oSetting = html.findFirstTag("i", oPageHeader);
+        if (oSetting)
+        {
+            oSetting.addEventListener('click', handlePageSettingsClick, false);
+
+            var oSpan = html.findFirstTag("span", oPageHeader);
+            oSpan.addEventListener('blur', handlePageEditExit, false);
+            oSpan.addEventListener('dblclick', handlePageHeaderDoubleClick, false);
+            oSpan.addEventListener('keypress', handlePageHeaderKeyPress, false);
+        }
 
         var containerName = oPageHeader.getAttribute("page");
         var oContainer = html.findFirstElementByAttrib(oPagesContainer, "page", containerName);

@@ -4,13 +4,17 @@ var html;
 
 html = HtmlUtils();
 
-window.onload = function() 
+window.OnSketchReady = function()
 {
     oShell = Shell();
     oShell.addFromUrl();
+    oShell.loadAssets();
 }
 
 window.onresize = function()
 {
-    oShell.onresize();
+    if (oShell)
+    {
+        oShell.onresize();
+    }
 }

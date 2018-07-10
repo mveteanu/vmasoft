@@ -133,7 +133,7 @@ a:hover, a:active {
 	background-color:inherit;
 	text-align:center;
 	cursor:pointer;
-	white-space:nowrap
+	white-space:nowrap;
 }
 
 .actionbarbutton:hover{
@@ -148,6 +148,7 @@ a:hover, a:active {
 	overflow: hidden;
 	display: none;
 	flex-direction: column;
+	min-width: 500px;
 }
 
 
@@ -157,6 +158,7 @@ a:hover, a:active {
 	height: 32px;
 	padding-right: 10px;
 	padding-left: 2px;
+	font-size: 20px;
 }
 
 .sidebarbar > .sidebarbar-item {
@@ -172,31 +174,49 @@ a:hover, a:active {
 	float: right;
 }
 
-.sidebarbar i {
+.sidebarbar > .sidebarbar-item.right i {
 	color: brown;
 	font-size: 12px;
 	text-decoration: none;
 	cursor: pointer;
 }
 
-.sidebarbar i:hover {
+.sidebarbar > .sidebarbar-item.right i:hover {
 	font-size: 14px;
 }
 
-.sidebarbar i:active {
+.sidebarbar > .sidebarbar-item.right i:active {
 	color: black;
 }
 
-
 .sidebararea {
-	background-color: White;
+	background-color: white;
 	flex-grow: 1;
+	display:flex;
+	flex-direction: column;
+}
+
+.sidebararea.padding {
+	padding: 10px;
+}
+
+
+.sidebarusage {
+	min-height:50px;
+	height:50px; 
+	background-color:whitesmoke;
+	text-align: center;
+	padding-top: 20px;
+	font-size: 16px;
+}
+
+.examplevalue {
+	color: blue;
 }
 
 .closesidebar {
 	color: red;
 }
-
 
 .codewithbararea {
 	flex-grow: 1;

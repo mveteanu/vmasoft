@@ -19,6 +19,8 @@ background(0, 128);
 
 function loop() 
 {
+	clear();
+	
 	stroke(64, 255, 255);
 
 	velocityX[0] = velocityX[0] * 0.5 + (mouseX - positionX[0]) * 0.1;

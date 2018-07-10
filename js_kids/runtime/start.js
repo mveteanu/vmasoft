@@ -11,7 +11,9 @@ var _oMusicAssets;
 // If OFFSCREEN_RENDERING variable is "false" (by default "false") then offscreen_rendering is used only for static scenes (e.g. without loop())
 // ... but if this is true, all scenes will be rendered offscreen! -- potentially slower but will capture the static scene...
 // Note: Another option to capture static scenes is to redirect p5.js functions to offscreen buffer before running the static scene (... and not use 'with' as of now)
-var OFFSCREEN_RENDERING = window.location.href.indexOf("buffer") !== -1;
+var OFFSCREEN_RENDERING = window.location.href.indexOf("nobuffer") == -1;
+
+var sketchCanvas;
 
 function preload()
 {
@@ -23,12 +25,15 @@ function preload()
 
 function setup()
 {
-    var canvas = createCanvas(800, 600);
-    parentCanvas(canvas);
+    sketchCanvas = createCanvas(800, 600);
+    parentCanvas(sketchCanvas);
     pixelDensity(1);
 
     oSketch = Sketch();
     oSketch.wire();
+
+    if (window.OnSketchReady && typeof window.OnSketchReady === 'function')
+        window.OnSketchReady(oSketch);
 
     // TODO: ... maybe use the next lines and add a <script language="sketch"> script
     // in the main code.html ?! ... or use the empty code mechanism from Sketch.js -> getSceneWrapper()

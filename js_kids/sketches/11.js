@@ -9,6 +9,8 @@ var dy = 1;
 
 function loop()
 {
+    clear();
+    
     line(0, y, width, y);
     y+= dy;
     if (y > height || y < 0)

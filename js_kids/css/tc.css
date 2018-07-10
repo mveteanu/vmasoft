@@ -13,14 +13,32 @@
 
 .tabheaders {
     display: block;
-    height: 100%;
     float: left;
     background-color: White;
 }
 
+
+.tabheader.style2 {
+    display: block;
+    padding: 4px;
+    cursor: pointer;
+    height: 100%;
+    float: left;
+    margin:0px;
+    text-align: center;
+    border: none;
+    border-bottom: 3px solid white;
+    background-color: white;
+}
+
+.tabheader.style2.selected {
+    border: none;
+    border-bottom: 3px solid #0058AC;
+}
+
+
 .tabheader {
     display: block;
-    background-color: White;
     border-top: 2px solid lightgray;
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;

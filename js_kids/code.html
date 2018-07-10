@@ -29,9 +29,12 @@
 
     <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="css/tc.css">
+    <link rel="stylesheet" href="css/filterlist.css">
     <script src="editor/HtmlUtils.js"></script>
     <script src="editor/TabControl.js"></script>
     <script src="editor/TabEditor.js"></script>
+    <script src="editor/FilterList.js"></script>
+    <script src="editor/BackgroundsBar.js"></script>
     <script src="editor/Shell.js"></script>
     <script src="editor/start.js"></script>
     
@@ -49,7 +52,7 @@
         <div id="editor" class="editor">
             <div class="actionbar ">
                 <span href="#" class="actionbarbutton" title="Home"><i class="fa fa-home"></i></span> 
-                <span sidebar="barDocumentation" id="" href="#" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></span> 
+                <span sidebar="barDocumentation" href="#" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></span> 
                 <span sidebar="barBackgrounds" href="#" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></span> 
                 <span sidebar="barSprites" href="#" class="actionbarbutton" title="Sprites"><i class="fas fa-robot"></i></span>
                 <span sidebar="barSounds" href="#" class="actionbarbutton" title="Sounds"><i class="fas fa-volume-up"></i></span> 
@@ -69,7 +72,53 @@
                         <div class="sidebarbar-item left"><i class="far fa-image"></i> Backgrounds</div>
                         <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
                     </div>
-                    <div class="sidebararea">Backgrounds</div>
+                    <div class="sidebararea">
+                        <div class="tabheaders">
+                            <div class="tabheader style2 selected" page="tabBkColors" ><span>Colors</span></div>
+                            <div class="tabheader style2" page="tabBkImages"><span>Images</span></div>
+                            <div class="tabheader style2" page="tabBkAnimations"><span>Animations</span></div>
+                        </div>
+                        <div id="barBackgroundsPages" class="sidebararea">
+                            <div page="tabBkColors" class="sidebararea" style="display: inherit;">
+                                <div id="lstColors" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div page="tabBkImages" class="sidebararea" style="display: none">
+                                <div id="lstImages" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div page="tabBkAnimations" class="sidebararea" style="display: none">
+                                <div id="lstAnimations" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebarusage">
+                            <span>background('</span><span class="examplevalue">...</span><span>')</span>
+                        </div>
+                    </div>
             </div>
 
             <div id="barSprites" class="sidebar">

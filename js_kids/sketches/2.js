@@ -18,6 +18,8 @@ GlobalVars.MyName = "VMASOFT";
 
 function loop()
 {
+    clear();
+
     line(0, x, width, x);
     x = x + 1;
 
@@ -80,6 +82,7 @@ function enter_()
 
 function loop_()
 {
+    clear();
     line(x, 0, x, height);
     x = x + 1;
 

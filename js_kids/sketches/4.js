@@ -14,6 +14,8 @@ var yd = 1;
 
 function loop()
 {
+  clear();
+
   circle(x, y, 30);  
   x+=xd;
   y+=yd;

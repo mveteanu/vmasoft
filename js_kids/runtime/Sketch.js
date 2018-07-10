@@ -137,6 +137,7 @@ function Sketch()
         scene = null;
         scenes = [];
         GlobalVars = {};
+        resetAttributes();
 
         if (bClearAssetsCache)
         {
@@ -204,6 +205,9 @@ function Sketch()
         o.oSceneData.PublicVars.Arguments = sceneArgs;
         o.oSceneData.PublicVars.PreviousScene = scene != null ? scene.sceneName : "";
 
+        //if (!OFFSCREEN_RENDERING) /// If not offscreen rendering... I should save scenes attributes...
+        //var currAttributes = p5.Renderer.prototype.push.apply(sketchCanvas);
+
         scene = o;
     }
 
@@ -245,6 +249,7 @@ function Sketch()
         return oSceneData.PublicVars;
     }
 
+
     // --------- Begin Private Functions ------------
         
 
@@ -284,17 +289,6 @@ function Sketch()
             _executeScene(currScene);
             if (currScene.errorMessage)
                 return;
-
-            if (OFFSCREEN_RENDERING)
-            {
-                // If the loose code draw something in the initial buffer...
-                if (!_bufferEmpty(currScene.oSceneData.ScreenBuffer))
-                {
-                    currScene.oSceneData.ScreenBuffer_init = createGraphics(width, height);
-                    currScene.oSceneData.ScreenBuffer_init.pixelDensity(1);
-                    currScene.oSceneData.ScreenBuffer_init.image(currScene.oSceneData.ScreenBuffer, 0, 0);
-                }
-            }
         }
 
         if ( currScene.hasEnter && !currScene.enterExecuted  )
@@ -307,44 +301,19 @@ function Sketch()
         _applySceneBackground(currScene);
         _drawSprites(currScene.spritesGroup, (o) => o.depth <= 0);
 
-        if (OFFSCREEN_RENDERING)
+        if ( currScene.hasLoop )
         {
-           if ( currScene.hasLoop )
-           {
-                currScene.oSceneData.ScreenBuffer.clear();
-
-                // If there is content in the initial buffer apply it then execute loop() on top...
-                if (currScene.oSceneData.ScreenBuffer_init)
-                    currScene.oSceneData.ScreenBuffer.image(currScene.oSceneData.ScreenBuffer_init, 0, 0);
-
-                _setScreenBufferP5Variables(currScene.oSceneData.ScreenBuffer);
-                _executeSceneLoop(currScene);
-               if (currScene.errorMessage)
-                    return;
-
-                image(currScene.oSceneData.ScreenBuffer, 0, 0);
-           }
-           else
-           {
-                if (currScene.oSceneData.ScreenBuffer_init)
-                    image(currScene.oSceneData.ScreenBuffer_init, 0, 0);
-           }
-        }
-        else
-        {
-            if ( currScene.hasLoop )
-            {
-                _executeSceneLoop(currScene);
-                if (currScene.errorMessage)
-                    return;
-            }
-            else
-            {
-                image(currScene.oSceneData.ScreenBuffer, 0, 0);
-            }
+            _executeSceneLoop(currScene);
+            if (currScene.errorMessage)
+                return;
         }
 
-       _drawSprites(currScene.spritesGroup, (o) => o.depth > 0);
+        if ( !currScene.hasLoop || OFFSCREEN_RENDERING)
+        {
+            image(currScene.oSceneData.ScreenBuffer, 0, 0);
+        }
+
+        _drawSprites(currScene.spritesGroup, (o) => o.depth > 0);
     }
 
 
@@ -353,6 +322,8 @@ function Sketch()
     {
         if (currScene.errorMessage)
             return;
+
+        _setScreenBufferP5Variables(currScene.oSceneData.ScreenBuffer);
 
         try
         {
@@ -370,6 +341,8 @@ function Sketch()
     {
         if (currScene.errorMessage)
             return;
+
+        _setScreenBufferP5Variables(currScene.oSceneData.ScreenBuffer);
 
         try
         {
@@ -389,6 +362,8 @@ function Sketch()
     {
         if (currScene.errorMessage)
             return;
+
+        _setScreenBufferP5Variables(currScene.oSceneData.ScreenBuffer);
 
         try
         {
@@ -420,6 +395,15 @@ function Sketch()
         }
     }
 
+    function resetAttributes(p5Graphics)
+    {
+        var buff = p5Graphics ? p5Graphics : window;
+
+        buff.noFill();
+        buff.strokeWeight(1);
+        buff.stroke(0);
+    }
+    
     // Returns true if an offscreen buffer is totally empty
     function _bufferEmpty(buff)
     {
@@ -508,6 +492,7 @@ function Sketch()
         {
             oScreenBuffer = createGraphics(width, height);
             oScreenBuffer.pixelDensity(1);
+            resetAttributes(oScreenBuffer);
 
             // ... the scene code will be wrapped with a "with" statement (... obsolete technique !)
             oCodeUtils.setWith("ScreenBuffer");
@@ -572,11 +557,6 @@ function Sketch()
         // ... then sync a few common variables with the off-screen buffer
         _setScreenBufferP5Variables(scene.oSceneData.ScreenBuffer);
         
-        if (OFFSCREEN_RENDERING)
-        {
-            scene.oSceneData.ScreenBuffer.clear();
-        }
-
         try
         {
             fnSceneEvent();
@@ -584,21 +564,6 @@ function Sketch()
         catch(e)
         {
             scene.errorMessage = "Runtime error in " + sEvent + "()\n" + e.message;
-        }
-
-        if (OFFSCREEN_RENDERING)
-        {
-
-            if (!_bufferEmpty(scene.oSceneData.ScreenBuffer))
-            {
-                if (!scene.oSceneData.ScreenBuffer_init)
-                {
-                    scene.oSceneData.ScreenBuffer_init = createGraphics(width, height);
-                    scene.oSceneData.ScreenBuffer_init.pixelDensity(1);
-                }
-                scene.oSceneData.ScreenBuffer_init.image(scene.oSceneData.ScreenBuffer, 0, 0);
-            }
-            
         }
     }
 

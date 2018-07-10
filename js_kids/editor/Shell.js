@@ -17,6 +17,7 @@ function Shell()
     var codeBar;
     var btnCodeFullScreen;
     var tcEditor;
+    var barBackgrounds;
 
     var mode = ShellMode.Both;
 
@@ -97,7 +98,11 @@ function Shell()
         return true;
     }
 
-    
+    function loadAssets()
+    {
+        barBackgrounds.load();
+    }
+
     // -------- Begin private methods -------------
 
     function _init()
@@ -110,6 +115,7 @@ function Shell()
         btnCodeFullScreen = html.findElement("btnCodeFullScreen")
         tcEditor = TabEditor("tabcontrol", "pages");
         sketchProvider = SketchProvider();
+        barBackgrounds = BackgroundsBar("barBackgrounds", "barBackgroundsPages");
 
         addActionBarEventListers(actionBar);
         addButtonEventHandler("btnOutputFullScreen", handleOutputFullScreenButtonClick);
@@ -330,7 +336,8 @@ function Shell()
         getSketch : getSketch,
         run : run,
         runCode : runCode,
-        showScene : showScene
+        showScene : showScene,
+        loadAssets : loadAssets
     };
 
 }

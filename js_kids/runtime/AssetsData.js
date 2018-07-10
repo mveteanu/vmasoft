@@ -6,6 +6,11 @@ function AssetsData()
 
     _init();
     
+    function getBackgrounds()
+    {
+        return Assets.Backgrounds;
+    }
+
     // Get DTO of specified background
     function getBackground(sName)
     {
@@ -133,7 +138,8 @@ function AssetsData()
         return map;
     }
 
-    return { getBackground : getBackground,
+    return { getBackgrounds : getBackgrounds,
+            getBackground : getBackground,
             getSprite : getSprite,
             getMusic : getMusic,
             getSound : getSound, 
