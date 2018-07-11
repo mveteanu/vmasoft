@@ -17,16 +17,31 @@ function AssetsData()
         return Assets.Backgrounds.get(sName);
     }
 
+    function getSprites()
+    {
+        return Assets.Sprites;
+    }
+
     // Get DTO of specified sprite
     function getSprite(sName)
     {
         return Assets.Sprites.get(sName);
     }
 
+    function getMusics()
+    {
+        return Assets.Music;
+    }
+
     // Get DTO of specified music
     function getMusic(sName)
     {
         return Assets.Music.get(sName);
+    }
+
+    function getSounds()
+    {
+        return Assets.Sounds;
     }
 
     // Get DTO of specified sound
@@ -140,8 +155,11 @@ function AssetsData()
 
     return { getBackgrounds : getBackgrounds,
             getBackground : getBackground,
+            getSprites : getSprites,
             getSprite : getSprite,
+            getMusics : getMusics,
             getMusic : getMusic,
+            getSounds : getSounds,
             getSound : getSound, 
             getBackgroundImages : getBackgroundImages,
             getSpriteImages : getSpriteImages,

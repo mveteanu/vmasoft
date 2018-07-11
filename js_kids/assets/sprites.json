@@ -9,8 +9,13 @@
                 {
                     "Name" : "stretch",
                     "Images" : ["assets/sprites/asterisk_stretching0001.png", "assets/sprites/asterisk_stretching0002.png", "assets/sprites/asterisk_stretching0003.png", "assets/sprites/asterisk_stretching0004.png", "assets/sprites/asterisk_stretching0005.png", "assets/sprites/asterisk_stretching0006.png", "assets/sprites/asterisk_stretching0007.png", "assets/sprites/asterisk_stretching0008.png"]
+                },
+                {
+                    "Name" : "explode",
+                    "Images" : ["assets/sprites/asterisk_explode0001.png", "assets/sprites/asterisk_explode0002.png", "assets/sprites/asterisk_explode0003.png", "assets/sprites/asterisk_explode0004.png", "assets/sprites/asterisk_explode0005.png", "assets/sprites/asterisk_explode0006.png", "assets/sprites/asterisk_explode0007.png", "assets/sprites/asterisk_explode0008.png", "assets/sprites/asterisk_explode0009.png", "assets/sprites/asterisk_explode0010.png", "assets/sprites/asterisk_explode0011.png"]
                 }
-            ]
+            ],
+            "Thumb" : "assets/sprites/asterisk_stretching0001.png"
         },
         {
             "Name" : "daffy",
@@ -21,7 +26,8 @@
                     "Name" : "normal",
                     "Images" : ["assets/sprites/daffy_duck.png"]
                 }
-            ]
+            ],
+            "Thumb" : "assets/sprites/daffy_duck.png"
         },
         {
             "Name" : "robot",
@@ -32,7 +38,8 @@
                     "Name" : "normal",
                     "Images" : ["assets/sprites/robot.png"]
                 }
-            ]
+            ],
+            "Thumb" : "assets/sprites/robot.png"
         },
         {
             "Name" : "player",
@@ -63,7 +70,8 @@
                         {"name":"player_stand", "frame":{"x":284, "y": 95, "width": 70, "height": 94}} 
                     ]
                 }
-            ]
+            ],
+            "Thumb" : "assets/sprites/player_spritesheet.png"
         },
         {
             "Name" : "asterisk_explode",
@@ -75,7 +83,8 @@
                     "Images" : ["assets/sprites/explode_sprite_sheet.png"],
                     "InferFrames" : { "count" : 11, "width" : 171, "height" : 158 }
                 }
-            ]
+            ],
+            "Thumb" : "assets/sprites/explode_sprite_sheet.png"
         }
     ]
 }

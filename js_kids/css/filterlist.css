@@ -33,6 +33,7 @@
     display: inline-block;
     cursor: pointer;
     text-align: center;
+    overflow: hidden;
 }
 
 .filterlistitem:hover {
@@ -51,6 +52,11 @@
     text-align: center;
 }
 
+.filterlistitem.sound {
+    width: 100px;
+    height: 55px;
+    text-align: center;
+}
 
 .filterlisttags {
     margin-top: 5px;

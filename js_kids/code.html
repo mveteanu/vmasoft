@@ -35,6 +35,8 @@
     <script src="editor/TabEditor.js"></script>
     <script src="editor/FilterList.js"></script>
     <script src="editor/BackgroundsBar.js"></script>
+    <script src="editor/SpritesBar.js"></script>
+    <script src="editor/SoundsBar.js"></script>
     <script src="editor/Shell.js"></script>
     <script src="editor/start.js"></script>
     
@@ -55,8 +57,7 @@
                 <span sidebar="barDocumentation" href="#" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></span> 
                 <span sidebar="barBackgrounds" href="#" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></span> 
                 <span sidebar="barSprites" href="#" class="actionbarbutton" title="Sprites"><i class="fas fa-robot"></i></span>
-                <span sidebar="barSounds" href="#" class="actionbarbutton" title="Sounds"><i class="fas fa-volume-up"></i></span> 
-                <span sidebar="barMusic" href="#" class="actionbarbutton" title="Music"><i class="fas fa-music"></i></span> 
+                <span sidebar="barSounds" href="#" class="actionbarbutton" title="Sounds"><i class="fas fa-music"></i></span> 
             </div>
             
             <div id="barDocumentation" class="sidebar">
@@ -76,7 +77,9 @@
                         <div class="tabheaders">
                             <div class="tabheader style2 selected" page="tabBkColors" ><span>Colors</span></div>
                             <div class="tabheader style2" page="tabBkImages"><span>Images</span></div>
-                            <div class="tabheader style2" page="tabBkAnimations"><span>Animations</span></div>
+                            <div class="tabheader style2" page="tabBkAnimated"><span>Animated</span></div>
+                            <div class="tabheader style2" page="tabBkScrolling"><span>Scrolling</span></div>
+                            <div class="tabheader style2" page="tabBkEffects"><span>Effects</span></div>
                         </div>
                         <div id="barBackgroundsPages" class="sidebararea">
                             <div page="tabBkColors" class="sidebararea" style="display: inherit;">
@@ -91,7 +94,7 @@
                                 </div>
                             </div>
                     
-                            <div page="tabBkImages" class="sidebararea" style="display: none">
+                            <div page="tabBkImages" class="sidebararea" style="display: none;">
                                 <div id="lstImages" class="filterlist">
                                     <div class="filterlistheader">
                                         <input type="search">
@@ -102,9 +105,33 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div page="tabBkAnimations" class="sidebararea" style="display: none">
-                                <div id="lstAnimations" class="filterlist">
+
+                            <div page="tabBkAnimated" class="sidebararea" style="display: none">
+                                <div id="lstAnimatedImages" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div page="tabBkScrolling" class="sidebararea" style="display: none">
+                                <div id="lstScrollingImages" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div page="tabBkEffects" class="sidebararea" style="display: none">
+                                <div id="lstEffects" class="filterlist">
                                     <div class="filterlistheader">
                                         <input type="search">
                                         <div class="filterlisttags">
@@ -116,7 +143,7 @@
                             </div>
                         </div>
                         <div class="sidebarusage">
-                            <span>background('</span><span class="examplevalue">...</span><span>')</span>
+                            <span class="examplevalue">Select item to see usage...</span>
                         </div>
                     </div>
             </div>
@@ -126,24 +153,84 @@
                         <div class="sidebarbar-item left"><i class="fas fa-robot"></i> Sprites</div>
                         <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
                     </div>
-                    <div class="sidebararea">Sprites</div>
+                    <div class="sidebararea">
+                        <div class="tabheaders">
+                            <div class="tabheader style2 selected" page="tabSpriteStatic" ><span>Static</span></div>
+                            <div class="tabheader style2" page="tabSpriteAnimated"><span>Animated</span></div>
+                        </div>
+                        <div id="barSpritesPages" class="sidebararea">
+                            <div page="tabSpriteStatic" class="sidebararea" style="display: inherit;">
+                                <div id="lstSpriteStatic" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div page="tabSpriteAnimated" class="sidebararea" style="display: none">
+                                <div id="lstSpriteAnimated" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        </div>
+                        <div class="sidebarusage">
+                            <span class="examplevalue">Select item to see usage...</span>
+                        </div>
+                    </div>
             </div>
 
-            <div id="barSounds" class="sidebar"> 
-                    <div class="sidebarbar">
-                        <div class="sidebarbar-item left"><i class="fas fa-volume-up"></i> Sounds</div>
-                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
-                    </div>
-                    <div class="sidebararea">Sounds</div>
-            </div>
 
-            <div id="barMusic" class="sidebar"> 
-                    <div class="sidebarbar">
-                        <div class="sidebarbar-item left"><i class="fas fa-music"></i> Music</div>
-                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+            <div id="barSounds" class="sidebar">
+                <div class="sidebarbar">
+                    <div class="sidebarbar-item left"><i class="fas fa-music"></i> Music and Sounds</div>
+                    <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                </div>
+                <div class="sidebararea">
+                    <div class="tabheaders">
+                        <div class="tabheader style2 selected" page="tabSoundsMusic"><span>Music</span></div>
+                        <div class="tabheader style2" page="tabSoundsEffects" ><span>Sounds</span></div>
                     </div>
-                <div class="sidebararea">Music</div>
+                    <div id="barSoundsPages" class="sidebararea">
+                        <div page="tabSoundsMusic" class="sidebararea" style="display: none">
+                            <div id="lstSoundsMusic" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+                        <div page="tabSoundsEffects" class="sidebararea" style="display: inherit;">
+                            <div id="lstSoundsEffects" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebarusage">
+                        <span class="examplevalue">Select item to see usage...</span>
+                    </div>
+                </div>
             </div>
+        
 
             <div class="splitter"></div>
 

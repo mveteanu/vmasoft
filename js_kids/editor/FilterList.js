@@ -24,6 +24,7 @@ function FilterList(idList)
         itemTemplate = _itemTemplate;
     }
 
+
     function addItem(name, tags, data)
     {
         var txt = buildItemHtml(data);

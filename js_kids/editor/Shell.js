@@ -18,6 +18,8 @@ function Shell()
     var btnCodeFullScreen;
     var tcEditor;
     var barBackgrounds;
+    var barSprites;
+    var barSounds;
 
     var mode = ShellMode.Both;
 
@@ -101,6 +103,8 @@ function Shell()
     function loadAssets()
     {
         barBackgrounds.load();
+        barSprites.load();
+        barSounds.load();
     }
 
     // -------- Begin private methods -------------
@@ -116,6 +120,8 @@ function Shell()
         tcEditor = TabEditor("tabcontrol", "pages");
         sketchProvider = SketchProvider();
         barBackgrounds = BackgroundsBar("barBackgrounds", "barBackgroundsPages");
+        barSprites = SpritesBar("barSprites", "barSpritesPages");
+        barSounds = SoundsBar("barSounds", "barSoundsPages");
 
         addActionBarEventListers(actionBar);
         addButtonEventHandler("btnOutputFullScreen", handleOutputFullScreenButtonClick);

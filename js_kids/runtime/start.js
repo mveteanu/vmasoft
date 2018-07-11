@@ -14,6 +14,7 @@ var _oMusicAssets;
 var OFFSCREEN_RENDERING = window.location.href.indexOf("nobuffer") == -1;
 
 var sketchCanvas;
+var sketchMusic;
 
 function preload()
 {

@@ -5,17 +5,15 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
     var oUsageArea;
     var oExampleValue;
 
-    var oDivColors;
-    var oDivImages;
-    var oDivAnimations;
-
     _init();
 
     function load()
     {
         initColors();
         initImages();
-        initAnimations();
+        initAnimatedImages();
+        initScrollingImages();
+        initEffects();
     }
 
     function _init()
@@ -23,9 +21,6 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
         var tc = TabControl(tcBackgrounds, tcBackgroundsPages)
         
         var tcPages = html.findElement(tcBackgroundsPages);
-        oDivColors = html.findFirstElementByAttrib(tcPages, "page", "tabBkColors");
-        oDivImages = html.findFirstElementByAttrib(tcPages, "page", "tabBkImages");
-        oDivAnimations = html.findFirstElementByAttrib(tcPages, "page", "tabBkAnimations")
 
         oDivBackgrounds = html.findElement(tcBackgrounds);
         oUsageArea = html.findFirstElement("sidebarusage", oDivBackgrounds);
@@ -107,9 +102,26 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
         } );
     }
 
-    function initAnimations()
+    function initAnimatedImages()
     {
-        var lst = FilterList("lstAnimations");
+        var lst = FilterList("lstEffects");
+        lst.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
+
+        lst.setItemTemplate(`<div class="filterlistitem"><div>$data0</div></div>`);
+    }
+
+    function initScrollingImages()
+    {
+        var lst = FilterList("lstEffects");
+        lst.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
+
+        lst.setItemTemplate(`<div class="filterlistitem"><div>$data0</div></div>`);
+    }
+
+
+    function initEffects()
+    {
+        var lst = FilterList("lstEffects");
         lst.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
 
         lst.setItemTemplate(`<div class="filterlistitem"><div>$data0</div></div>`);
@@ -120,7 +132,7 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
         if (!eventArgs || !eventArgs.Item)
             return;
 
-        oExampleValue.innerText = eventArgs.Item.Name;
+        oExampleValue.innerText = "background( '" + eventArgs.Item.Name + "' )";
     }
 
     

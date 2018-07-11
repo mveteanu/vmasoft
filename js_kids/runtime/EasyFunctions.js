@@ -33,11 +33,10 @@ document.write = function(sText)
     console.log(sText);
 }
 
-// Dummy function discovered by code parsing...
-function assets()
-{
-
-}
+// // Dummy function discovered by code parsing...
+// function assets()
+// {
+// }
 
 // Draw sprite specified by name at specified positions (or middle of the screen if x and y are not specified)
 function sprite(spriteName, x, y)
@@ -62,18 +61,45 @@ function sprite(spriteName, x, y)
     return oSprite;
 }
 
+// Plays the specified sound file
 function sound(soundName)
 {
     var oSoundData = oSketch._AssetsData.getSound(soundName);
     if (oSoundData == null)
-        return;
+        return null;
 
     var path = oSoundData.File;
     if (path == null)
-        return;
+        return null;
 
     var snd = oSketch._AssetsCache.getSound(path);
     snd.play();
 
     return snd;
+}
+
+
+// Plays the specified sound file in a loop
+// A new invokation of the function, will stop the current music and start the new one
+function music(soundName)
+{
+    var oSoundData = oSketch._AssetsData.getMusic(soundName);
+    if (oSoundData == null)
+        return null;
+
+    var path = oSoundData.File;
+    if (path == null)
+        return null;
+
+    if (sketchMusic != null)  // global variable
+        sketchMusic.stop();
+
+    sketchMusic = oSketch._AssetsCache.getSound(path);
+    if (sketchMusic)
+    {
+        sketchMusic.setLoop(true);
+        sketchMusic.play();
+    }
+
+    return sketchMusic;
 }

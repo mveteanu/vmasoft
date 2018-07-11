@@ -149,6 +149,7 @@ a:hover, a:active {
 	display: none;
 	flex-direction: column;
 	min-width: 500px;
+	user-select: none;
 }
 
 
@@ -194,6 +195,7 @@ a:hover, a:active {
 	flex-grow: 1;
 	display:flex;
 	flex-direction: column;
+	min-height: 100px;
 }
 
 .sidebararea.padding {
@@ -207,11 +209,11 @@ a:hover, a:active {
 	background-color:whitesmoke;
 	text-align: center;
 	padding-top: 20px;
-	font-size: 16px;
+	/* font-size: 16px; */
 }
 
 .examplevalue {
-	color: blue;
+	/* color: blue; */
 }
 
 .closesidebar {

@@ -138,6 +138,12 @@ function Sketch()
         scenes = [];
         GlobalVars = {};
         resetAttributes();
+        
+        if (sketchMusic != null)
+        {
+            sketchMusic.stop();
+            sketchMusic = null;
+        }
 
         if (bClearAssetsCache)
         {

@@ -1,5 +1,60 @@
 {
     "Music" : 
     [
+        { 
+            "Name" : "A simple way", 
+            "Tags" : ["soft", "piano"],
+            "File" : "assets/music/a-simple-way.mp3"
+        },
+        { 
+            "Name" : "A sweet feeling", 
+            "Tags" : ["soft", "piano"],
+            "File" : "assets/music/a-sweet-feeling.mp3"
+        },
+        { 
+            "Name" : "At the top", 
+            "Tags" : ["soft", "piano"],
+            "File" : "assets/music/at-the-top.mp3"
+        },
+        { 
+            "Name" : "Firefly", 
+            "Tags" : ["soft", "piano"],
+            "File" : "assets/music/firefly.mp3"
+        },
+        { 
+            "Name" : "Gears of steel", 
+            "Tags" : ["soft", "piano"],
+            "File" : "assets/music/gears-of-steel.mp3"
+        },
+        { 
+            "Name" : "Get your ticket", 
+            "Tags" : ["soft", "piano"],
+            "File" : "assets/music/get-your-ticket.mp3"
+        },
+        { 
+            "Name" : "Morning cafe", 
+            "Tags" : ["soft", "piano"],
+            "File" : "assets/music/morning-cafe.mp3"
+        },
+        { 
+            "Name" : "Party in the hills", 
+            "Tags" : ["loud", "guitarr"],
+            "File" : "assets/music/party-in-the-hills.mp3"
+        },
+        { 
+            "Name" : "Sayonara", 
+            "Tags" : ["soft", "piano"],
+            "File" : "assets/music/sayonara.mp3"
+        },
+        { 
+            "Name" : "Technicolor dreams", 
+            "Tags" : ["soft", "piano"],
+            "File" : "assets/music/technicolor-dreams.mp3"
+        },
+        { 
+            "Name" : "Video-game music", 
+            "Tags" : ["soft", "instrumental"],
+            "File" : "assets/music/video-game-music.mp3"
+        }
     ]
 }
