@@ -1,17 +1,13 @@
 
 function SketchProvider()
 {
+    var web = WebFile();
+    var db = null; // should instatiate the firebase provider...
+    var pk = TextPacker();
+
     // ----------- Begin public functions --------------------
 
-    var web;
-    var db;
-    var pk;
-
-    var sketchId = "";
-
-    _init();
-
-    function loadFromUrl(onLoad)
+    function get(sketchId, onLoad)
     {
         if(!sketchId)
         {
@@ -27,36 +23,44 @@ function SketchProvider()
                     function(data) {
                         
                         var o = pk.unpack(data);
-
-                        if (!o)
-                            sketchId = "";
+                        o.Id = sketchId;
 
                         if (onLoad)
                             onLoad(o);
                     }, 
                     function() {
-                        sketchId = "";
-                        
                         if (onLoad)
                             onLoad(null);
                     });
     }
 
-    function getSketchId()
+
+    function getByUrl(sketchUrl, onLoad)
     {
-        return sketchId;
+        if(!sketchUrl)
+        {
+            if (onLoad)
+                onLoad(null);
+
+                return;
+        }
+
+        web.getFromUrl(sketchUrl,
+                    function(data) {
+                        
+                        var o = pk.unpack(data);
+
+                        if (onLoad)
+                            onLoad(o);
+                    }, 
+                    function() {
+                        if (onLoad)
+                            onLoad(null);
+                    });
     }
+
 
     // ----------- Begin private functions ----------------------
-
-    function _init()
-    {
-        web = WebFile();
-        db = null; // should instatiate the firebase provider...
-        pk = TextPacker();
-
-        sketchId = getUrlParameter();
-    }
 
     // Function verifies id format and returns if the sketch is a web file or should be loaded from web db...
     function isWebSketch(id)
@@ -64,23 +68,8 @@ function SketchProvider()
         return true;
     }
 
-    // Returns the parameter after the ? in Url
-    function getUrlParameter()
-    {
-        var p = window.location.search;
-        if (!p || p.length <= 1)
-            return p;
-
-        var pNext = p.indexOf("&");
-
-        if (pNext == -1)
-            return p.substr(1);
-
-        return p.substr(1, pNext - 1);
-    }
-
     return {
-        loadFromUrl : loadFromUrl,
-        getSketchId : getSketchId
+        get : get,
+        getByUrl : getByUrl
     }
 }

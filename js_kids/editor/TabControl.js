@@ -112,6 +112,15 @@ function TabControl(tabControlName, pagesContainerName)
         return { Header : oPage, Page : oPageContainer } ;
     }
     
+    function clear()
+    {
+        while( oHeadersContainer.firstChild )
+            oHeadersContainer.removeChild(oHeadersContainer.firstChild);
+
+        while (oPagesContainer.firstChild )
+            oPagesContainer.removeChild(oPagesContainer.firstChild);
+    }
+
     // Removes specified page
     function removePage(pageHeaderObjOrName)
     {
@@ -431,6 +440,7 @@ function TabControl(tabControlName, pagesContainerName)
         selectPage : selectPage,
         addPage : addPage,
         removePage : removePage,
+        clear : clear,
         renamePage : renamePage,
         getPageCount : getPageCount,
         findPage : findPage,

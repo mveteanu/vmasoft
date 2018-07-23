@@ -30,13 +30,16 @@
     <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="css/tc.css">
     <link rel="stylesheet" href="css/filterlist.css">
+    <script src="editor/Parameters.js"></script>
     <script src="editor/HtmlUtils.js"></script>
     <script src="editor/TabControl.js"></script>
     <script src="editor/TabEditor.js"></script>
+    <script src="editor/Tutorial.js"></script>
     <script src="editor/FilterList.js"></script>
     <script src="editor/BackgroundsBar.js"></script>
     <script src="editor/SpritesBar.js"></script>
     <script src="editor/SoundsBar.js"></script>
+    <script src="store/TutorialProvider.js"></script>
     <script src="editor/Shell.js"></script>
     <script src="editor/start.js"></script>
     
@@ -53,21 +56,44 @@
     <div id="workspace" class="workspace">
         <div id="editor" class="editor">
             <div class="actionbar ">
-                <span href="#" class="actionbarbutton" title="Home"><i class="fa fa-home"></i></span> 
-                <span sidebar="barDocumentation" href="#" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></span> 
-                <span sidebar="barBackgrounds" href="#" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></span> 
-                <span sidebar="barSprites" href="#" class="actionbarbutton" title="Sprites"><i class="fas fa-robot"></i></span>
-                <span sidebar="barSounds" href="#" class="actionbarbutton" title="Sounds"><i class="fas fa-music"></i></span> 
+                <span class="actionbarbutton" title="Home"><i class="fa fa-home"></i></span> 
+                <span id='tutorialButton' sidebar="barTutorial" class="actionbarbutton" title="Tutorial"><i class="fab fa-readme"></i></span> 
+                <span sidebar="barDocumentation" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></span> 
+                <span sidebar="barBackgrounds" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></span> 
+                <span sidebar="barSprites" class="actionbarbutton" title="Sprites"><i class="fas fa-robot"></i></span>
+                <span sidebar="barSounds" class="actionbarbutton" title="Sounds"><i class="fas fa-music"></i></span> 
             </div>
             
+            <div id="barTutorial" class="sidebar">
+                <div class="sidebarbar">
+                    <div class="sidebarbar-item left"><i class="fab fa-readme"></i> <span id='tutorialTitle'>Tutorial</span></div>
+                    <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                </div>
+                <div class="sidebarbar subtitle">
+                    <span id='tutorialSubtitle'>Subtitle</span>
+                </div>
+                <div class="sidebararea">
+                    <iframe id='tutorialIframe' style='flex: 1;border:0px;'></iframe>
+                    <div class="sidebarnavigationarea">
+                        <div>
+                            <button id='tutorialBack' class='sidebarnavigationareabutton'><i class='fas fa-arrow-left'></i> Prev</button>
+                            <div id='tutorialPage' class='sidebarnavigationareatext'>1 / 10</div>
+                            <button id='tutorialNext' class='sidebarnavigationareabutton'>Next <i class='fas fa-arrow-right'></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="barDocumentation" class="sidebar">
                 <div class="sidebarbar">
                     <div class="sidebarbar-item left"><i class="fas fa-book"></i> Documentation</div>
                     <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
                 </div>
-                <div class="sidebararea">Documentation</div>
+                <div class="sidebararea">
+                    Documentation...
+                </div>
             </div>
-            
+
             <div id="barBackgrounds" class="sidebar">
                     <div class="sidebarbar">
                         <div class="sidebarbar-item left"><i class="far fa-image"></i> Backgrounds</div>

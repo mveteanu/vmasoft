@@ -16,12 +16,18 @@ function Shell()
     var output;
     var codeBar;
     var btnCodeFullScreen;
+    var btnTutorial;
     var tcEditor;
     var barBackgrounds;
     var barSprites;
     var barSounds;
+    var tutorial;
 
     var mode = ShellMode.Both;
+
+    var oParams = Parameters();
+
+    var sketchId = "";
 
     _init();
 
@@ -32,43 +38,101 @@ function Shell()
         reconfigureShell();
     }
 
-    function addFromUrl(onLoad)
+    function addFromUrl()
     {
-        sketchProvider.loadFromUrl( function(data) {
-            if (!data)
-            {
-                data = {
-                    Name : "",
-                    Files : [ { Name : "Code", Code : "" } ]
-                }
-            }
+        if (oParams.isTutorial())
+        {
+            html.showElement(btnTutorial, true);
+            tutorial.load( oParams.getTutorialId() );
+        }        
+        else
+        {
+            html.showElement(btnTutorial, false);
+            addSketchById( oParams.getSketchId() );
+        }
+    }
 
-            addSketch(data);
-            showScene(0);
-            //run();
+    function addSketchById(id, onLoad)
+    {
+        sketchProvider.get( id, function(data) {
+            var o = addOrInitSketch(data);
 
             if (onLoad)
-                onLoad(data);
+                onLoad(o);
         } );
     }
+
+
+    function addSketchByUrl(sketchUrl, onLoad)
+    {
+        sketchProvider.getByUrl( sketchUrl, function(data) {
+            var o = addOrInitSketch(data);
+
+            if (onLoad)
+                onLoad(o);
+        } );
+    }
+
+
+    function addSketchFromString(sketchText)
+    {
+        var pk = TextPacker();
+        
+        var o = pk.unpack(sketchText);
+        return addOrInitSketch(o);
+    }
+
+
+    function addOrInitSketch(o)
+    {
+        if (!o)
+        {
+            o = {
+                Id : "",
+                Name : "",
+                Files : [ { Name : "Code", Code : "" } ]
+            }
+        }
+
+        addSketch(o);
+        showScene(0);
+        //run();
+
+        return o;
+    }
+
 
     function addSketch(o)
     {
         if (!o)
             return;
 
+        tcEditor.clear();
+        resetSketch();
+
+        sketchId = o.Id;
         setName(o.Name);
         tcEditor.addAllCode(o.Files);
     }
 
+
     function getSketch()
     {
         var o = {
+            Id : sketchId,
             Name : getName(),
             Files : tcEditor.getAllCode()
         }
 
         return o;
+    }
+
+    function getSketchAsString()
+    {
+        var o = getSketch();
+
+        var pk = TextPacker();
+        return pk.pack(o);
     }
 
     function setName(name)
@@ -97,6 +161,8 @@ function Shell()
         showOutput();
         runCode(arCode);
 
+        btnPlay.className = "stopbutton fas fa-stop";
+
         return true;
     }
 
@@ -116,12 +182,14 @@ function Shell()
         actionBar = html.findFirstElement("actionbar");
         output = html.findFirstElement("output");
         codeBar = html.findFirstElement("codebar");
-        btnCodeFullScreen = html.findElement("btnCodeFullScreen")
+        btnCodeFullScreen = html.findElement("btnCodeFullScreen");
+        btnTutorial = html.findElement("tutorialButton");
         tcEditor = TabEditor("tabcontrol", "pages");
         sketchProvider = SketchProvider();
         barBackgrounds = BackgroundsBar("barBackgrounds", "barBackgroundsPages");
         barSprites = SpritesBar("barSprites", "barSpritesPages");
         barSounds = SoundsBar("barSounds", "barSoundsPages");
+        tutorial = Tutorial();
 
         addActionBarEventListers(actionBar);
         addButtonEventHandler("btnOutputFullScreen", handleOutputFullScreenButtonClick);
@@ -167,6 +235,8 @@ function Shell()
             return;
 
         oSketch.reset();
+
+        btnPlay.className = "playbutton fas fa-play";
     }
 
     function isSketchRunning()
@@ -214,13 +284,11 @@ function Shell()
     {
         if (!isSketchRunning())
         {
-            if( run() )
-                btnPlay.className = "stopbutton fas fa-stop";
+            run();
         }
         else
         {
             resetSketch();
-            btnPlay.className = "playbutton fas fa-play";
         }
     }
 
@@ -257,6 +325,8 @@ function Shell()
             html.showElement(editor, true);
             html.showElement(output, false);
             mode = ShellMode.Code;
+
+            resetSketch();
         }
         else
         {
@@ -337,9 +407,13 @@ function Shell()
 
     return {
         onresize : onresize,
-        addSketch : addSketch,
         addFromUrl : addFromUrl,
+        addSketch : addSketch,
+        addSketchById : addSketchById,
+        addSketchByUrl : addSketchByUrl,
+        addSketchFromString : addSketchFromString,
         getSketch : getSketch,
+        getSketchAsString : getSketchAsString,
         run : run,
         runCode : runCode,
         showScene : showScene,

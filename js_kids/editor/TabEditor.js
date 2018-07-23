@@ -93,6 +93,11 @@ function TabEditor(tabControlName, pagesContainerName)
         return tc.getPageCount();
     }
 
+    function clear()
+    {
+        return tc.clear();
+    }
+
     // ---------- Begin private functions --------------------
 
     function _init()
@@ -154,7 +159,8 @@ function TabEditor(tabControlName, pagesContainerName)
         addCode : addCode,
         getCode : getCode,
         selectPage : selectPage,
-        getPageCount : getPageCount
+        getPageCount : getPageCount,
+        clear : clear
     }
         
 }

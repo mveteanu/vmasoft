@@ -5,30 +5,28 @@ function WebFile()
     
     function get(id, onSuccess, onError)
     {
-        var url = getUrl(id);
-        
-        fetch(url)
-            .then(function(response) { 
-                    return response.text();
-                } )
-            .then(function(text) { 
-                if (onSuccess) 
-                    onSuccess(text); 
-                } )
-            .catch(function(error) {
-                if (onError)
-                    onError(error)
-            });
+        var url = getSketchUrl(id);
+
+        getFromUrl(url, onSuccess, onError);
     }
+
+    function getFromUrl(url, onSuccess, onError)
+    {
+        // use the 'Easy Function' loadText
+        loadText(url, onSuccess, onError);
+    }
+
 
     // --------------- Begin private functions ------------------
 
-    function getUrl(id)
+    function getSketchUrl(id)
     {
         return "sketches/" + id + ".js";
     }
 
+
     return {
-        get : get
+        get : get,
+        getFromUrl : getFromUrl
     }
 }

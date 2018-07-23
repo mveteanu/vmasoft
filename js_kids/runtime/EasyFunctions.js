@@ -33,11 +33,6 @@ document.write = function(sText)
     console.log(sText);
 }
 
-// // Dummy function discovered by code parsing...
-// function assets()
-// {
-// }
-
 // Draw sprite specified by name at specified positions (or middle of the screen if x and y are not specified)
 function sprite(spriteName, x, y)
 {
@@ -102,4 +97,21 @@ function music(soundName)
     }
 
     return sketchMusic;
+}
+
+// Load a text from specified url...
+function loadText(url, onSuccess, onError)
+{
+    fetch(url)
+        .then(function(response) { 
+                return response.text();
+            } )
+        .then(function(text) { 
+            if (onSuccess) 
+                onSuccess(text); 
+            } )
+        .catch(function(error) {
+            if (onError)
+                onError(error)
+        });
 }

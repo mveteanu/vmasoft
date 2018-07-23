@@ -27,7 +27,10 @@ function TextPacker()
         for(var o of oProgram.Files)
         {
             var name = "// " + fileDelimiter + " " + o.Name + "\n";
-            var file = name + o.Code + "\n";
+            var file = name + o.Code;
+
+            if (!file.endsWith("\n"))
+                file += "\n";
 
             txt += file;
         }

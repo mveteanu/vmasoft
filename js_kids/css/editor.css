@@ -162,6 +162,11 @@ a:hover, a:active {
 	font-size: 20px;
 }
 
+.sidebarbar.subtitle {
+	font-size: 18px;
+}
+
+
 .sidebarbar > .sidebarbar-item {
 	display: inline-block;
 	height: 100%;
@@ -214,6 +219,35 @@ a:hover, a:active {
 
 .examplevalue {
 	/* color: blue; */
+}
+
+.sidebarnavigationarea {
+	min-height:50px;
+	height:50px; 
+	background-color:whitesmoke;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sidebarnavigationareatext {
+	display: inline-block;
+	width: 300px;
+	text-align: center;
+}
+
+.sidebarnavigationareabutton {
+	height: 30px;
+	background-color: navy;
+	color: white;
+	border: 1px solid navy; */
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.sidebarnavigationareabutton:disabled {
+	cursor: default;
+	color: lightgray;
 }
 
 .closesidebar {

@@ -19,3 +19,26 @@
 - consider adding also event draw() to be used in advanced sketches in place of loop()
   If user will use draw() then the engine won't clear the screen automatically ... and no buffering will be used! - Like in p5.js
   
+TUTORIALS
+=========
+
+- make a folder on the website called "tutorials" ... this folder will contain 1 subfolder for each tutorial (each tutorial will be self contained to this folder)
+- in the subfolder will be a file start.json which will contain information about tutorial (a tutorial is basically a list of pages each of them with an associated multi-scene sketch):
+    Page: [ {
+              Title: "Introducing graphics",
+              Sketch: "sketches/sketch1.js",
+              DocPage : "html/page1.html"
+          },
+          ...
+        ]
+- in the code.html will have in the actionbar a new button, that will be visible *only* if code.html has been opened with a tutorial in querystring. E.g. code.html?tut9045
+- the tutorial button will basically open a "sidebar" with 3 parts: a title on top, a medium part listing the html page, a bottom part with navigation buttons: E.g. "<"  1/100 ">"
+- a navigation button will load *both* an html page as well as the corresponding sketch file
+- users will be able to play with the code at any step... and if they want, they can hit the *Fork* button to make the sketch their own
+- the main page on the site will list all these various tutorial with nice thumbnails
+
+TUTORIAL VIDEOS
+===============
+
+- use fiverr to record a small video intro for each tutorial. The main page with thumbnails will offer the posibility to "watch video" and / or "see tutorial".
+- some tutorials will be available to paid members only. In that case only the "watch video" will be available to server as a teaser

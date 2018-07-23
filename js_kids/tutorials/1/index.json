@@ -1,0 +1,30 @@
+{
+    "Name" : "Introduction to CodeBeanz",
+    "Pages" : [
+        {
+            "Name" : "Introduction",
+            "Page" : "html/p1.html",
+            "Sketch" : "sketches/p1.js"
+        },
+        {
+            "Name" : "Background",
+            "Page" : "html/p2.html",
+            "Sketch" : "sketches/p2.js"
+        },
+        {
+            "Name" : "Declaring events",
+            "Page" : "html/p3.html",
+            "Sketch" : "sketches/p3.js"
+        },
+        {
+            "Name" : "The main loop",
+            "Page" : "html/p4.html",
+            "Sketch" : "sketches/p4.js"
+        },
+        {
+            "Name" : "Final project",
+            "Page" : "html/p5.html",
+            "Sketch" : "sketches/p5.js"
+        }
+    ]
+}
