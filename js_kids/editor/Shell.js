@@ -5,7 +5,6 @@ var ShellMode = {
     Both : 3
 }
 
-
 var minWidth = 1024;
 
 function Shell()
@@ -38,18 +37,24 @@ function Shell()
         reconfigureShell();
     }
 
+
     function addFromUrl()
     {
         if (oParams.isTutorial())
         {
             html.showElement(btnTutorial, true);
-            tutorial.load( oParams.getTutorialId() );
+            loadTutorial( oParams.getTutorialId() );
         }        
         else
         {
             html.showElement(btnTutorial, false);
             addSketchById( oParams.getSketchId() );
         }
+    }
+
+    function loadTutorial(id)
+    {
+        tutorial.load(id);
     }
 
     function addSketchById(id, onLoad)
@@ -200,9 +205,18 @@ function Shell()
         onresize();
     }
     
+    function isScreenSmall()
+    {
+        if (sideBarVisible() && window.innerWidth < 1600) 
+            return true;
+
+        return html.isScreenSmall();
+    }
+
     function reconfigureShell()
     {
-        var bIsBigScreen = !html.isScreenSmall();
+        var bIsBigScreen = !isScreenSmall();
+
         var bShowCode = mode == ShellMode.Code || mode == ShellMode.Both;
         var bShowOutput = mode == ShellMode.Output || (bIsBigScreen && mode == ShellMode.Both);
 
@@ -302,10 +316,14 @@ function Shell()
             html.showElement(output, true);
         }
 
-        if (html.isScreenSmall())
+        if (isScreenSmall())
         {
             html.showElement(editor, false);
             mode = ShellMode.Output;
+        }
+        else
+        {
+            mode = ShellMode.Both;
         }
     }
 
@@ -320,7 +338,10 @@ function Shell()
 
         var bEditorVisible = html.isDivVisible(editor);
 
-        if (html.isScreenSmall())
+        // ... hack... show editor temporary just for the small screen detection ...
+        html.showElement(editor, true);
+
+        if (isScreenSmall() )
         {
             html.showElement(editor, true);
             html.showElement(output, false);
@@ -339,7 +360,7 @@ function Shell()
     {
         e.cancelBubble = true;
 
-        if (html.isScreenSmall())
+        if (isScreenSmall())
             return;
         
         var bOutputVisible = html.isDivVisible(output);
@@ -384,6 +405,19 @@ function Shell()
         return allBars;
     }
 
+    function sideBarVisible()
+    {
+        var allBars = findSideBars();
+        
+        for(var i = 0; i < allBars.length; i++)
+        {
+            var bar = allBars[i];
+            if (html.isDivVisible(bar))
+                return true;
+        }
+
+        return false;
+    }
 
     // Show or Hide the specified sidebar
     // If no parameter is sent, the function will hide all sidebars
@@ -402,6 +436,8 @@ function Shell()
         {
             oBar.style.width = (window.innerWidth < 500 ? window.innerWidth : 500) + "px";
         }
+
+        reconfigureShell();
     }
 
 
@@ -417,7 +453,9 @@ function Shell()
         run : run,
         runCode : runCode,
         showScene : showScene,
-        loadAssets : loadAssets
+        loadAssets : loadAssets,
+        showSidebar : showSidebar,
+        loadTutorial : loadTutorial
     };
 
 }

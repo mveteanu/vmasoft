@@ -1,0 +1,10 @@
+{
+    "Name" : "Other tutorial",
+    "Pages" : [
+        {
+            "Name" : "Introduction",
+            "Page" : "html/p1.html",
+            "Sketch" : "sketches/p1.js"
+        }
+    ]
+}

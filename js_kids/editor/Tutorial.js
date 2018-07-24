@@ -35,7 +35,8 @@ function Tutorial()
 
         oTutorial = data;
 
-        html.showElement(barTutorial, true);
+        //html.showElement(barTutorial, true);
+        oShell.showSidebar(barTutorial, true)
         
         tutorialTitle.innerText = oTutorial.Name ? oTutorial.Name : "Tutorial";
         displayPage(0, oTutorial);
@@ -91,7 +92,8 @@ function Tutorial()
         });
     }
   
-
+    // Persist the changes done by the user to the sketch presented by the tutorial...
+    // ... changes are persisted at the level of each page.
     function storeUserSketch(pageIndex, oTutorial)
     {
         if (!oTutorial || !oTutorial.Pages || oTutorial.Pages.length == 0)
@@ -119,6 +121,39 @@ function Tutorial()
 
         tutorialNext = html.findElement("tutorialNext");
         tutorialNext.addEventListener('click', handleNextButtonClick, false);
+
+        tutorialIframe.onload = processTutorialLinks;
+    }
+
+    function processTutorialLinks()
+    {
+        if (!tutorialIframe.contentWindow || !tutorialIframe.contentWindow.document)
+            return;
+        
+        var allLinks = tutorialIframe.contentWindow.document.links;
+        if (!allLinks || allLinks.length == 0)
+            return;
+
+        var protocol = "tutorial://";
+
+        for(var i = 0; i < allLinks.length; i++)
+        {
+            var o = allLinks[i];
+
+            if (o && o.href && o.href.startsWith(protocol))
+            {
+                var tutorialId = o.href.substr(protocol.length)
+                if (!tutorialId)
+                    continue;
+
+                o.href="#";
+
+                o.addEventListener('click', function(e) {
+                    e.cancelBubble = true;
+                    parent.oShell.loadTutorial(tutorialId);
+                });
+            }
+        }
     }
 
     function handleBackButtonClick(e)
