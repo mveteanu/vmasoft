@@ -158,12 +158,12 @@ function FilterList(idList)
             var currItem = arAddedItems[i];
             if (bShowAll)
             {
-                html.showInlineElement(currItem.Element, true);
+                html.showInlineBlockElement(currItem.Element, true);
                 continue;
             }
 
             var bShow = hasAnyTag(currItem, arTags) && matchItem(currItem, name);
-            html.showInlineElement(currItem.Element, bShow);
+            html.showInlineBlockElement(currItem.Element, bShow);
         }
     }
 

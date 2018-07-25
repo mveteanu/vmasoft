@@ -22,6 +22,7 @@ a:hover, a:active {
 	text-decoration: underline;
 }
 
+
 /* This is the main shell.
    It contains the navbar, workspace and statusbar.
 */
@@ -77,6 +78,7 @@ a:hover, a:active {
 	padding: 3px;
 	border: 1px solid white;
 	border-radius: 4px;
+	display: none;
 }
 
 .navbarbutton:hover {
@@ -87,6 +89,27 @@ a:hover, a:active {
 	color: lightblue;
 }
 
+.sitelogo {
+	padding-right: 8px;	
+}
+
+.sketchTitle {
+	font-style: italic;
+}
+
+.sketchTitlePen {
+	padding-left: 8px;
+	cursor: pointer;
+}
+
+.sketchTitlePen > i {
+	display: none;
+}
+
+
+.sketchTitlePen:hover {
+	color: lightblue;
+}
 
 /* Workspace is the main area of the shell
    containing the editor and output */
@@ -221,6 +244,12 @@ a:hover, a:active {
 	/* color: blue; */
 }
 
+.sidebarframe {
+	flex: 1;
+	border:0px;
+	min-height: 100px;
+}
+
 .sidebarnavigationarea {
 	min-height:50px;
 	height:50px; 
@@ -240,7 +269,7 @@ a:hover, a:active {
 	height: 30px;
 	background-color: navy;
 	color: white;
-	border: 1px solid navy; */
+	border: 1px solid navy;
 	border-radius: 4px;
 	cursor: pointer;
 }

@@ -10,7 +10,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <script src="lib/polyfills.js"></script>
+
     <script src="lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="lib/alertifyjs/alertify.min.js"></script>
+    <link rel="stylesheet" href="lib/alertifyjs/css/alertify.min.css" />
+    <link rel="stylesheet" href="lib/alertifyjs/css/themes/default.min.css" />    
+
     <script src="lib/p5.js"></script>
     <script src="lib/p5.sound.js"></script>
     <script src="lib/p5.play_.js"></script>
@@ -32,6 +38,7 @@
     <link rel="stylesheet" href="css/filterlist.css">
     <script src="editor/Parameters.js"></script>
     <script src="editor/HtmlUtils.js"></script>
+    <script src="editor/Dialogs.js"></script>
     <script src="editor/TabControl.js"></script>
     <script src="editor/TabEditor.js"></script>
     <script src="editor/Tutorial.js"></script>
@@ -49,8 +56,13 @@
 <div class="shell">
 
     <div id="navbar" class="navbar">
-        <div class="navbar-item left">CodeBeanz</div>
-        <div class="navbar-item right"><span class="navbarbutton"><i class="fas fa-cloud"></i> Save</span></div>
+        <div class="navbar-item left"><span class="sitelogo">CodeBeanz</span></div>
+        <div class="navbar-item left">
+            <span id="lblSketchTitle" class="sketchTitle">Untitled</span>
+            <span class="sketchTitlePen"><i id="btnEditTitle" class="fas fa-pen"></i></span>
+        </div>
+        <div class="navbar-item right"><span id="btnFork" class="navbarbutton"><i class="fas fa-code-branch"></i> Save a copy</span></div>
+        <div class="navbar-item right"><span id="btnSave" class="navbarbutton"><i class="fas fa-cloud"></i> Save</span></div>
     </div>
 
     <div id="workspace" class="workspace">
@@ -73,7 +85,7 @@
                     <span id='tutorialSubtitle'>Subtitle</span>
                 </div>
                 <div class="sidebararea">
-                    <iframe id='tutorialIframe' style='flex: 1;border:0px;'></iframe>
+                    <iframe id='tutorialIframe' class='sidebarframe'></iframe>
                     <div class="sidebarnavigationarea">
                         <div>
                             <button id='tutorialBack' class='sidebarnavigationareabutton'><i class='fas fa-arrow-left'></i> Prev</button>

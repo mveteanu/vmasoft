@@ -75,6 +75,7 @@ function Tutorial()
         if (oPage.UserSketch)
         {
             var o = oShell.addSketchFromString(oPage.UserSketch);
+            oShell.setReadOnly(true);
 
             if (onLoad)
                 onLoad(o);

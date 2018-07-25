@@ -99,9 +99,9 @@ function TabControl(tabControlName, pagesContainerName)
     // Add a new page using specified name
     function addPage(pageName)
     {
-        var pageId = "page" + oHeadersContainer.children.length;
+        var pageId = getNewPageId();
         
-        var txt = `<div class="tabheader" page="${pageId}" ><span>${pageName}</span><i class="fas fa-cog"></i></div>\n`;
+        var txt = `<div class="tabheader" draggable="true" page="${pageId}" ><span>${pageName}</span><i class="fas fa-cog"></i></div>\n`;
         var oPage = html.appendElement(txt, oHeadersContainer)
 
         var txt = `<div class="tabpage" page="${pageId}" style="display: none"></div>\n`;
@@ -110,6 +110,14 @@ function TabControl(tabControlName, pagesContainerName)
         initPage(oPage);
 
         return { Header : oPage, Page : oPageContainer } ;
+    }
+    
+    function getNewPageId()
+    {
+        var d = new Date();
+        var n = d.getTime(); 
+
+        return "page" + (n + oHeadersContainer.children.length);
     }
     
     function clear()

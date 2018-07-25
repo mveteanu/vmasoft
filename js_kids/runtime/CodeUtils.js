@@ -143,6 +143,11 @@ function CodeUtils(code)
             {
                 sceneFunctionArgs.SceneBackground = arguments;
             }
+
+            function frameRate()
+            {
+                p5.prototype.frameRate.apply(window, arguments);
+            }
             `;
     }
 

@@ -8,29 +8,21 @@
     <title>CodeBeanz Playground</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <script src="lib/alertifyjs/alertify.min.js"></script>
+    <link rel="stylesheet" href="lib/alertifyjs/css/alertify.min.css" />
+    <link rel="stylesheet" href="lib/alertifyjs/css/themes/default.min.css" />    
 </head>
 <body>
 
-<h1>New</h1>
-<ul>
-    <li><a href="code.html">New Playground</a></li>
-</ul>
+<button onclick="dostuff()">Do stuff</button>
 
-<h1>Code</h1>
-<ul>
-    <li><a href="code.html?1">Example 1</a></li>
-    <br>
-    <li><a href="code.html?2">Example 2</a></li>
-    <br>
-    <li><a href="code.html?3">Example 3</a></li>
-</ul>
-
-<h1>Tutorials</h1>
-
-<li><a href="code.html?t=1">Tutorial 1</a></li>
-<br>
-<li><a href="code.html?t=2">Tutorial 2</a></li>
-
+<script>
+function dostuff()
+{
+    alertify.alert('Ready!');
+}
+</script>
 
 </body>
 

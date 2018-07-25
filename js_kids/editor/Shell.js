@@ -21,12 +21,18 @@ function Shell()
     var barSprites;
     var barSounds;
     var tutorial;
+    var lblSketchTitle;
+    var btnEditTitle;
+    var btnSave;
+    var btnFork;
 
     var mode = ShellMode.Both;
 
     var oParams = Parameters();
 
     var sketchId = "";
+    
+    var isReadOnly = false;
 
     _init();
 
@@ -72,6 +78,7 @@ function Shell()
     {
         sketchProvider.getByUrl( sketchUrl, function(data) {
             var o = addOrInitSketch(data);
+            setReadOnly(true);
 
             if (onLoad)
                 onLoad(o);
@@ -106,7 +113,6 @@ function Shell()
         return o;
     }
 
-
     function addSketch(o)
     {
         if (!o)
@@ -118,6 +124,19 @@ function Shell()
         sketchId = o.Id;
         setName(o.Name);
         tcEditor.addAllCode(o.Files);
+
+        setReadOnly(o.ReadOnly ? true : false);
+    }
+
+
+    function setReadOnly(readOnly)
+    {
+        isReadOnly = readOnly;
+
+        html.showInlineElement( btnEditTitle, !readOnly );
+        
+        html.showInlineElement( btnFork, readOnly );
+        html.showInlineElement( btnSave, !readOnly );
     }
 
 
@@ -144,11 +163,13 @@ function Shell()
     {
         if (!name)
             name = "Untitled";
+
+        lblSketchTitle.innerText = name;
     }
 
     function getName()
     {
-        return "Untitled";
+        return lblSketchTitle.innerText;
     }
 
 
@@ -189,6 +210,10 @@ function Shell()
         codeBar = html.findFirstElement("codebar");
         btnCodeFullScreen = html.findElement("btnCodeFullScreen");
         btnTutorial = html.findElement("tutorialButton");
+        lblSketchTitle = html.findElement("lblSketchTitle");
+        btnEditTitle = html.findElement("btnEditTitle");
+        btnSave = html.findElement("btnSave");
+        btnFork = html.findElement("btnFork");
         tcEditor = TabEditor("tabcontrol", "pages");
         sketchProvider = SketchProvider();
         barBackgrounds = BackgroundsBar("barBackgrounds", "barBackgroundsPages");
@@ -201,6 +226,12 @@ function Shell()
         addButtonEventHandler("btnCodeFullScreen", handleCodeFullScreenButtonClick);
         addButtonsEventHandlers("closesidebar", handleSidebarCloseButtonClick);
         addButtonEventHandler("btnPlay", handlePlayButtonClick);
+
+        lblSketchTitle.addEventListener('blur', handleEditTitleExit, false);
+        lblSketchTitle.addEventListener('dblclick', handleEditTitleButtonClick, false);
+        lblSketchTitle.addEventListener('keypress', handleEditTitleKeyPress, false);
+
+        addButtonEventHandler("btnEditTitle", handleEditTitleButtonClick);
 
         onresize();
     }
@@ -306,6 +337,31 @@ function Shell()
         }
     }
 
+    function handleEditTitleExit(e)
+    {
+        var sketchName = this.innerText.trim();
+
+        // Don't allow empty sketch names...
+        if (!sketchName)
+            this.innerText = "Untitled";
+        
+        this.setAttribute("contenteditable", false);
+    }
+
+    function handleEditTitleKeyPress(e)
+    {
+        if (e.keyCode == 13)
+            this.blur();
+    }
+
+    function handleEditTitleButtonClick()
+    {
+        if (isReadOnly)
+            return;
+
+        lblSketchTitle.setAttribute("contenteditable", true);
+        lblSketchTitle.focus();
+    }
 
     function showOutput()
     {
@@ -376,8 +432,12 @@ function Shell()
         var barName = this.getAttribute("sidebar");
         if (!barName)
         {
-            console.log("Return to home page..." + shell);
-            shell.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            //shell.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+
+            dialogs.confirm("<b>Return to home page ?</b><br><br>Please make sure you saved all your changes before exiting this editor editor.", ["Yes", "No"],
+                function(){
+                    window.location.href = "index.html";
+                });
 
             return;
         }
@@ -450,6 +510,7 @@ function Shell()
         addSketchFromString : addSketchFromString,
         getSketch : getSketch,
         getSketchAsString : getSketchAsString,
+        setReadOnly : setReadOnly,
         run : run,
         runCode : runCode,
         showScene : showScene,

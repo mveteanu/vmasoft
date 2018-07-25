@@ -132,6 +132,19 @@ function TabEditor(tabControlName, pagesContainerName)
 
     function handlePageRemove(sender, eventArgs)
     {
+        var pageName = eventArgs.PageName;
+        if (!pageName)
+            return;
+
+        var o = getCode(pageName)
+        if (!o)
+            return;
+
+        if (o.Code && o.Code.trim().length > 0)
+        {
+            dialogs.warning("<b>" + pageName + " has code!</b><br><br>If you want to remove the scene, delete all the code in the scene first!");
+            eventArgs.Cancel = true;
+        }
     }
 
     function addPageEditor(oPageContent)

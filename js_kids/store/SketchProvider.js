@@ -24,6 +24,8 @@ function SketchProvider()
                         
                         var o = pk.unpack(data);
                         o.Id = sketchId;
+                        
+                        o.ReadOnly = true;  // I should set .ReadOnly = true for web sketches ... and DB sketches loaded from DB but from other users...
 
                         if (onLoad)
                             onLoad(o);
