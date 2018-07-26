@@ -34,6 +34,8 @@ function SpritesBar(tcSprites, tcSpritesPages)
         oDivSprites = html.findElement(tcSprites);
         oUsageArea = html.findFirstElement("sidebarusage", oDivSprites);
         oExampleValue = html.findFirstElement("examplevalue", oUsageArea);
+
+        oExampleValue.addEventListener("click", handleExampleClick, false);
     }
 
     function addSprite(value, lstStatic, lstAnimated)
@@ -74,9 +76,15 @@ function SpritesBar(tcSprites, tcSpritesPages)
         if (!eventArgs || !eventArgs.Item)
             return;
 
-        oExampleValue.innerText = "sprite( '" + eventArgs.Item.Name + "' )";
+        oExampleValue.innerHTML = "sprite( '" + eventArgs.Item.Name + "' ) <i class='far fa-copy'></i>";
     }
     
+    function handleExampleClick(e)
+    {
+        if ( html.copyElement(oExampleValue) )
+            dialogs.notify("Copied", 1);
+    }
+
     return {
         load : load
     }

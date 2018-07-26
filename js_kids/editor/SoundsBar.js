@@ -41,6 +41,8 @@ function SoundsBar(tcSounds, tcSoundsPages)
         oDivSounds = html.findElement(tcSounds);
         oUsageArea = html.findFirstElement("sidebarusage", oDivSounds);
         oExampleValue = html.findFirstElement("examplevalue", oUsageArea);
+
+        oExampleValue.addEventListener("click", handleExampleClick, false);
     }
 
     function handleSoundSelected(sender, eventArgs)
@@ -48,7 +50,7 @@ function SoundsBar(tcSounds, tcSoundsPages)
         if (!eventArgs || !eventArgs.Item)
             return;
 
-        oExampleValue.innerText = "sound( '" + eventArgs.Item.Name + "' )";
+        oExampleValue.innerHTML = "sound( '" + eventArgs.Item.Name + "' ) <i class='far fa-copy'></i>";
     }
 
     function handleMusicSelected(sender, eventArgs)
@@ -56,7 +58,13 @@ function SoundsBar(tcSounds, tcSoundsPages)
         if (!eventArgs || !eventArgs.Item)
             return;
 
-        oExampleValue.innerText = "music( '" + eventArgs.Item.Name + "' )";
+        oExampleValue.innerHTML = "music( '" + eventArgs.Item.Name + "' ) <i class='far fa-copy'></i>";
+    }
+
+    function handleExampleClick(e)
+    {
+        if ( html.copyElement(oExampleValue) )
+            dialogs.notify("Copied", 1);
     }
 
     return {

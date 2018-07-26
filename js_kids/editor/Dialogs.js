@@ -25,16 +25,27 @@ function Dialogs()
         }, null);
     }
 
-    function warning(message, )
+    function warning(message, delay)
     {
         var o = alertify.warning(message);
-        o.delay(5);
+        
+        var t = delay ? delay : 5;
+        o.delay(t);
+    }
+
+    function notify(message, delay)
+    {
+        var o = alertify.notify(message);
+        
+        var t = delay ? delay : 5;
+        o.delay(t);
     }
 
     return {
         alert : alert,
         confirm : confirm,
         prompt : prompt,
-        warning : warning
+        warning : warning,
+        notify : notify
     }
 }

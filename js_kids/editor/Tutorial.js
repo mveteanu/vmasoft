@@ -76,6 +76,7 @@ function Tutorial()
         {
             var o = oShell.addSketchFromString(oPage.UserSketch);
             oShell.setReadOnly(true);
+            setOriginalSketch(oPage.OriginalSketch);
 
             if (onLoad)
                 onLoad(o);
@@ -92,18 +93,46 @@ function Tutorial()
                 onLoad(data);
         });
     }
+
+
+    function setOriginalSketch(originalSketch)
+    {
+        var pk = TextPacker();
+        var o = pk.unpack(originalSketch);
+
+        oShell.setOriginalSketch(o);
+    }
+
+
+    function hasChanges()
+    {
+        if (!oTutorial || !oTutorial.Pages || oTutorial.Pages.length == 0)
+            return false;
+        
+        storeUserSketch();
+
+        for(var i = 0; i < oTutorial.Pages.length; i++)
+        {
+            var oPage = oTutorial.Pages[i];
+            if (oPage.UserSketch != oPage.OriginalSketch)
+                return true;
+        }
+
+        return false;
+    }
+
   
     // Persist the changes done by the user to the sketch presented by the tutorial...
     // ... changes are persisted at the level of each page.
-    function storeUserSketch(pageIndex, oTutorial)
+    function storeUserSketch()
     {
         if (!oTutorial || !oTutorial.Pages || oTutorial.Pages.length == 0)
             return;
 
-        if (pageIndex > oTutorial.Pages.length - 1 || pageIndex < 0 )
+        if (currPage > oTutorial.Pages.length - 1 || currPage < 0 )
             return;
 
-        var oPage = oTutorial.Pages[pageIndex];
+        var oPage = oTutorial.Pages[currPage];
         oPage.UserSketch = oShell.getSketchAsString();
     }
 
@@ -151,7 +180,18 @@ function Tutorial()
 
                 o.addEventListener('click', function(e) {
                     e.cancelBubble = true;
-                    parent.oShell.loadTutorial(tutorialId);
+
+                    if (hasChanges())
+                    {
+                        dialogs.confirm("<b>Discard changes ?</b><br><br>Note: You have unsaved changes in the current tutorial. Do you want to discard these changes and navigate to the new tutorial ?", ["Yes", "No"], 
+                        function() {
+                            parent.oShell.loadTutorial(tutorialId);        
+                        });
+                    }
+                    else
+                    {
+                        parent.oShell.loadTutorial(tutorialId);
+                    }
                 });
             }
         }
@@ -159,7 +199,7 @@ function Tutorial()
 
     function handleBackButtonClick(e)
     {
-        storeUserSketch(currPage, oTutorial);
+        storeUserSketch();
 
         currPage--;
         displayPage(currPage, oTutorial);
@@ -167,13 +207,14 @@ function Tutorial()
 
     function handleNextButtonClick(e)
     {
-        storeUserSketch(currPage, oTutorial);
+        storeUserSketch();
         
         currPage++;
         displayPage(currPage, oTutorial);
     }
 
     return {
-        load : load
+        load : load,
+        hasChanges : hasChanges
     }
 }

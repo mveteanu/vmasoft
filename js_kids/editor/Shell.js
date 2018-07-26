@@ -25,12 +25,13 @@ function Shell()
     var btnEditTitle;
     var btnSave;
     var btnFork;
+    var btnReload;
 
     var mode = ShellMode.Both;
 
     var oParams = Parameters();
 
-    var sketchId = "";
+    var addedSketch = null;
     
     var isReadOnly = false;
 
@@ -113,6 +114,7 @@ function Shell()
         return o;
     }
 
+
     function addSketch(o)
     {
         if (!o)
@@ -121,13 +123,20 @@ function Shell()
         tcEditor.clear();
         resetSketch();
 
-        sketchId = o.Id;
+        if (!o.Name)
+            o.Name = "Untitled";
+
+        addedSketch = o;
         setName(o.Name);
         tcEditor.addAllCode(o.Files);
 
         setReadOnly(o.ReadOnly ? true : false);
     }
 
+    function setOriginalSketch(o)
+    {
+        addedSketch = o;
+    }
 
     function setReadOnly(readOnly)
     {
@@ -137,13 +146,14 @@ function Shell()
         
         html.showInlineElement( btnFork, readOnly );
         html.showInlineElement( btnSave, !readOnly );
+        html.showInlineElement( btnReload, readOnly );
     }
 
 
     function getSketch()
     {
         var o = {
-            Id : sketchId,
+            Id : addedSketch ? addedSketch.Id : "",
             Name : getName(),
             Files : tcEditor.getAllCode()
         }
@@ -161,9 +171,6 @@ function Shell()
 
     function setName(name)
     {
-        if (!name)
-            name = "Untitled";
-
         lblSketchTitle.innerText = name;
     }
 
@@ -172,6 +179,15 @@ function Shell()
         return lblSketchTitle.innerText;
     }
 
+    function hasChanges()
+    {
+        var pk = TextPacker();
+        
+        var addedSketchText = pk.pack(addedSketch);
+        var currentSketchText = getSketchAsString();
+
+        return addedSketchText != currentSketchText;
+    }
 
     function showScene(sceneName)
     {
@@ -214,6 +230,7 @@ function Shell()
         btnEditTitle = html.findElement("btnEditTitle");
         btnSave = html.findElement("btnSave");
         btnFork = html.findElement("btnFork");
+        btnReload = html.findElement("btnReload");
         tcEditor = TabEditor("tabcontrol", "pages");
         sketchProvider = SketchProvider();
         barBackgrounds = BackgroundsBar("barBackgrounds", "barBackgroundsPages");
@@ -226,6 +243,7 @@ function Shell()
         addButtonEventHandler("btnCodeFullScreen", handleCodeFullScreenButtonClick);
         addButtonsEventHandlers("closesidebar", handleSidebarCloseButtonClick);
         addButtonEventHandler("btnPlay", handlePlayButtonClick);
+        addButtonEventHandler("btnReload", handleSketchReload);
 
         lblSketchTitle.addEventListener('blur', handleEditTitleExit, false);
         lblSketchTitle.addEventListener('dblclick', handleEditTitleButtonClick, false);
@@ -238,7 +256,7 @@ function Shell()
     
     function isScreenSmall()
     {
-        if (sideBarVisible() && window.innerWidth < 1600) 
+        if (findSideBarVisible() != null && window.innerWidth < 1600) 
             return true;
 
         return html.isScreenSmall();
@@ -256,10 +274,13 @@ function Shell()
 
         html.showElement(btnCodeFullScreen, bIsBigScreen);
 
-        // Usually on the phones...
-        if (window.innerWidth < 500)
+        // Re-size visible side-bar to accomodate phone type screen sizes
+        var oBar = findSideBarVisible();
+        if (oBar != null)
         {
-            showSidebar();
+            var w = (window.innerWidth < 550 ? window.innerWidth - 50 : 500) + "px";
+            oBar.style.width = w;
+            oBar.style.minWidth = w;
         }
     }
 
@@ -335,6 +356,24 @@ function Shell()
         {
             resetSketch();
         }
+    }
+
+    function handleSketchReload(e)
+    {
+        if (!addedSketch || !isReadOnly)
+            return;
+
+        if (!hasChanges())
+        {
+            dialogs.notify("No changes.", 1);
+            return;
+        }
+
+        dialogs.confirm("<b>Reload original sketch ?</b><br><br>Note: If you want to preserve the changes you did to this sketch, cancel this action and use 'Save a Copy' first.",
+                ["Yes", "No"], function() {
+                    addedSketch.ReadOnly = true;
+                    addOrInitSketch(addedSketch);
+                });
     }
 
     function handleEditTitleExit(e)
@@ -427,18 +466,31 @@ function Shell()
     }
 
 
+    function closeEditor()
+    {
+        var bHasChanges = oParams.isTutorial() ? tutorial.hasChanges() : hasChanges();
+        if (bHasChanges)
+        {
+            dialogs.confirm("<b>Return to home page ?</b><br><br>Note: It appears that you have unsaved changes. Are you sure you want to discard them ?", ["Yes", "No"], returnToIndex);
+        }
+        else
+        {
+            returnToIndex();
+        }
+    }
+
+    function returnToIndex()
+    {
+        window.location.href = "index.html";
+    }
+
     function handleActionButtonClick(e)
     {
         var barName = this.getAttribute("sidebar");
         if (!barName)
         {
             //shell.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-
-            dialogs.confirm("<b>Return to home page ?</b><br><br>Please make sure you saved all your changes before exiting this editor editor.", ["Yes", "No"],
-                function(){
-                    window.location.href = "index.html";
-                });
-
+            closeEditor();           
             return;
         }
         
@@ -465,7 +517,7 @@ function Shell()
         return allBars;
     }
 
-    function sideBarVisible()
+    function findSideBarVisible()
     {
         var allBars = findSideBars();
         
@@ -473,10 +525,10 @@ function Shell()
         {
             var bar = allBars[i];
             if (html.isDivVisible(bar))
-                return true;
+                return bar;
         }
 
-        return false;
+        return null;
     }
 
     // Show or Hide the specified sidebar
@@ -489,12 +541,6 @@ function Shell()
         {
             var currBar = allBars[i];
             html.showElement(currBar, currBar == oBar ? bShow : false);
-        }
-
-        // Usually on the phones...
-        if (oBar != null && html.isDivVisible(oBar))
-        {
-            oBar.style.width = (window.innerWidth < 500 ? window.innerWidth : 500) + "px";
         }
 
         reconfigureShell();
@@ -510,6 +556,7 @@ function Shell()
         addSketchFromString : addSketchFromString,
         getSketch : getSketch,
         getSketchAsString : getSketchAsString,
+        setOriginalSketch : setOriginalSketch,
         setReadOnly : setReadOnly,
         run : run,
         runCode : runCode,

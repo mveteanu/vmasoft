@@ -25,6 +25,8 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
         oDivBackgrounds = html.findElement(tcBackgrounds);
         oUsageArea = html.findFirstElement("sidebarusage", oDivBackgrounds);
         oExampleValue = html.findFirstElement("examplevalue", oUsageArea);
+
+        oExampleValue.addEventListener("click", handleExampleClick, false);
     }
 
     function initColors()
@@ -132,7 +134,13 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
         if (!eventArgs || !eventArgs.Item)
             return;
 
-        oExampleValue.innerText = "background( '" + eventArgs.Item.Name + "' )";
+        oExampleValue.innerHTML = "background( '" + eventArgs.Item.Name + "' ) <i class='far fa-copy'></i>";
+    }
+
+    function handleExampleClick(e)
+    {
+        if ( html.copyElement(oExampleValue) )
+            dialogs.notify("Copied", 1);
     }
 
     

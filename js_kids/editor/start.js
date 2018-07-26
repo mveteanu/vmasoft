@@ -19,3 +19,7 @@ window.onresize = function()
         oShell.onresize();
     }
 }
+
+window.onbeforeunload = function()
+{
+}

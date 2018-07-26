@@ -121,6 +121,29 @@ function HtmlUtils()
     }
     
 
+    function copyElement(element)
+    {
+        var range = document.createRange();
+
+        range.selectNode(element);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+
+        try 
+        {  
+            var successful = document.execCommand('copy');  
+        } 
+        catch(err) 
+        {  
+            successful = false;
+        }
+        
+        window.getSelection().removeAllRanges();
+
+        return successful;
+    }
+    
+
     function isScreenSmall()
     {
         return window.innerWidth <= minWidth;
@@ -139,6 +162,7 @@ function HtmlUtils()
         isDivVisible : isDivVisible,
         cumulativeOffset : cumulativeOffset,
         findAncestor : findAncestor,
+        copyElement : copyElement,
         isScreenSmall : isScreenSmall
     }
 }

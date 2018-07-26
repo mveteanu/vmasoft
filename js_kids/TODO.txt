@@ -18,7 +18,9 @@
 
 - consider adding also event draw() to be used in advanced sketches in place of loop()
   If user will use draw() then the engine won't clear the screen automatically ... and no buffering will be used! - Like in p5.js
-  
+
+- use * tippyjs for the buttons in the actionbar
+
 TUTORIALS
 =========
 

@@ -70,6 +70,7 @@ a:hover, a:active {
 
 .navbar > .navbar-item.right {
 	float: right;
+	margin-left: 4px;
 }
 
 .navbarbutton {
@@ -238,16 +239,34 @@ a:hover, a:active {
 	text-align: center;
 	padding-top: 20px;
 	/* font-size: 16px; */
+	user-select: text;
 }
 
 .examplevalue {
-	/* color: blue; */
+	cursor: pointer;
+	user-select: text;
+}
+
+.examplevalue:active {
+	color: blue;
+}
+
+
+.examplevalue > i {
+	visibility: hidden;
+}
+
+
+.examplevalue:hover > i {
+	visibility: visible;
 }
 
 .sidebarframe {
 	flex: 1;
 	border:0px;
 	min-height: 100px;
+	height: 100px; /* hack for ipad ?! */
+	overflow: scroll;
 }
 
 .sidebarnavigationarea {
