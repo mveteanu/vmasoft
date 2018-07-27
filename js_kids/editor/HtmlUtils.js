@@ -84,6 +84,14 @@ function HtmlUtils()
         oElement.style.display = bShow ? "inline" : "none";
     }
 
+    function showBlockElement(oElement, bShow)
+    {
+        if (!oElement)
+            return;
+
+        oElement.style.display = bShow ? "block" : "none";
+    }
+
     function isDivVisible(oDiv)
     {
         if(!oDiv)
@@ -159,6 +167,7 @@ function HtmlUtils()
         showElement : showElement,
         showInlineBlockElement : showInlineBlockElement,
         showInlineElement : showInlineElement,
+        showBlockElement : showBlockElement,
         isDivVisible : isDivVisible,
         cumulativeOffset : cumulativeOffset,
         findAncestor : findAncestor,

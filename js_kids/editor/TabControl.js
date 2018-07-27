@@ -196,9 +196,17 @@ function TabControl(tabControlName, pagesContainerName)
         oMenu = html.findFirstElement("tabheadermenu", oTabControl);
         document.addEventListener("click", handleDocumentClick);
 
-        var btnNewPage = html.findFirstElement("tabcommand", oTabControl);
+        var btnNewPage = html.findFirstElement("tabcommand add", oTabControl);
         if (btnNewPage)
             btnNewPage.addEventListener("click", handlePageNewClick);
+
+        var btnScrollLeft = html.findFirstElement("tabcommand left", oTabControl);
+        if (btnScrollLeft)
+            btnScrollLeft.addEventListener("click", handleScrollLeftClick);
+
+        var btnScrollRight = html.findFirstElement("tabcommand right", oTabControl);
+        if (btnScrollRight)
+            btnScrollRight.addEventListener("click", handleScrollRightClick);
 
         initTabPages();
     }
@@ -275,11 +283,15 @@ function TabControl(tabControlName, pagesContainerName)
 
         var o = html.cumulativeOffset(oPageHeader);
 
-        oMenu.style.left = o.left + oPageHeader.offsetWidth - 24 + "px";
-        oMenu.style.top = o.top + oPageHeader.offsetHeight + 2 + "px";
+        var rect = oPageHeader.getBoundingClientRect();
+        var oleft = rect.left + window.scrollX;
+        var otop = rect.top + window.scrollY;
+
+        oMenu.style.left = oleft + oPageHeader.offsetWidth - 24 + "px";
+        oMenu.style.top = otop + oPageHeader.offsetHeight + 2 + "px";
         oMenu.PageHeader = oPageHeader; // reference to the tabPage that opens the menu
 
-        html.showElement(oMenu, true);
+        html.showBlockElement(oMenu, true);
     }
 
 
@@ -308,7 +320,8 @@ function TabControl(tabControlName, pagesContainerName)
         if (action == "rename")
         {
             renamePage(oPageHeader);
-        } else if (action == "remove")
+        } 
+        else if (action == "remove") 
         {
             removePage(oPageHeader);
         }
@@ -417,7 +430,7 @@ function TabControl(tabControlName, pagesContainerName)
         if (p)
             return;
 
-        var eventArgs = { PageName : "Scene" + oHeadersContainer.children.length, Cancel : false };
+        var eventArgs = { PageName : "Scene" + (oHeadersContainer.children.length + 1), Cancel : false };
         fireEvent(TabControlEvents.OnBeforeAdd, eventArgs);
 
         if (eventArgs.Cancel)
@@ -433,6 +446,16 @@ function TabControl(tabControlName, pagesContainerName)
         
         selectPage(o.Header);
         renamePage(o.Header);
+    }
+
+    function handleScrollLeftClick(e)
+    {
+        oHeadersContainer.scrollLeft -= 100;
+    }
+
+    function handleScrollRightClick(e)
+    {
+        oHeadersContainer.scrollLeft += 100;
     }
 
     function fireEvent(eventName, eventArgs)

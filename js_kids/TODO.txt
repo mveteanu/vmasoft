@@ -21,6 +21,8 @@
 
 - use * tippyjs for the buttons in the actionbar
 
+
+
 TUTORIALS
 =========
 
@@ -39,8 +41,67 @@ TUTORIALS
 - users will be able to play with the code at any step... and if they want, they can hit the *Fork* button to make the sketch their own
 - the main page on the site will list all these various tutorial with nice thumbnails
 
+
 TUTORIAL VIDEOS
 ===============
 
 - use fiverr to record a small video intro for each tutorial. The main page with thumbnails will offer the posibility to "watch video" and / or "see tutorial".
 - some tutorials will be available to paid members only. In that case only the "watch video" will be available to server as a teaser
+
+
+
+MAIN PAGE and general features
+==============================
+
+
+Unauthenticated user
+
+---------------------------------------------------------------------------------------------------------------
+[LOGO]   [Tutorials]   [Sketches]  					                                        [Code]  [Log in] [Sign Up]
+---------------------------------------------------------------------------------------------------------------
+
+- display nicely the tutorial tiles
+	- message - create a member account to discover more tutorials...
+- display nicely:
+	- picked sketches (stored on web server)
+	- message - create a free account to create and share your own sketches
+
+
+Authenticated user
+
+---------------------------------------------------------------------------------------------------
+[LOGO]   [Tutorials]   [Sketches]                                          					[Code]  [User]
+---------------------------------------------------------------------------------------------------
+
+- display nicely the tutorial tiles
+- display nicely:
+	- picked sketches (stored on web server)
+	- "my" sketches <-- user sketches
+
+
+
+Code editor
+
+------------------------------------------------------------------------------------------------------
+[...]  [LOGO]  [Sketch Name]				                                    [Reload] [Save a copy] [Exit]
+------------------------------------------------------------------------------------------------------
+
+DECIDE: Do I need a burger menu in the code editor? ... and all the other pages?
+
+
+- Portfolio / Personal page
+- page showing public sketches of a user
+
+- Social system
+- follow users (e.g. good to follow sketches done by colleagues)
+
+- Extend sketches page to display:
+	- popular sketches
+	- picked sketches
+
+- Allow to "like" sketches
+
+- Keep track of sketch views (counter)
+
+	
+
