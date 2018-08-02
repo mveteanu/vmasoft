@@ -3,20 +3,19 @@ function WebFile()
 {
     // --------------- Begin public functions ------------------
     
-    function get(id, onSuccess, onError)
+    async function get(id)
     {
         var url = getSketchUrl(id);
-
-        getFromUrl(url, onSuccess, onError);
+        return getFromUrl(url);
     }
 
-    function getFromUrl(url, onSuccess, onError)
+    async function getFromUrl(url)
     {
-        // use the 'Easy Function' loadText
-        loadText(url, onSuccess, onError);
+        var response = await fetch(url);
+        return response.text();
     }
 
-
+    
     // --------------- Begin private functions ------------------
 
     function getSketchUrl(id)

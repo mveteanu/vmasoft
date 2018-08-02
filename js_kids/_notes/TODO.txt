@@ -42,6 +42,13 @@ TUTORIALS
 - the main page on the site will list all these various tutorial with nice thumbnails
 
 
+TUTORIAL FORMAT ALTERNATIVES
+============================
+
+- insted of HTML tutorials, use markdown tutorials rendered on the client-side from MD -> HTML using an open source component
+- also think about bundling *.md and *.js files in a single tutorial file that can be parsed on the client-side in the same way a multi-scene code is split and parsed
+
+
 TUTORIAL VIDEOS
 ===============
 

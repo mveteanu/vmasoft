@@ -29,11 +29,15 @@ function Shell()
 
     var mode = ShellMode.Both;
 
+    var oUser = null;
+
     var oParams = Parameters();
 
     var addedSketch = null;
     
     var isReadOnly = false;
+
+    var db = FirebaseDB(HandleAuthChanged);
 
     _init();
 
@@ -45,45 +49,41 @@ function Shell()
     }
 
 
-    function addFromUrl()
+    async function addFromUrl()
     {
         if (oParams.isTutorial())
         {
             html.showElement(btnTutorial, true);
-            loadTutorial( oParams.getTutorialId() );
+            await loadTutorial( oParams.getTutorialId() );
         }        
         else
         {
             html.showElement(btnTutorial, false);
-            addSketchById( oParams.getSketchId() );
+            await addSketchById( oParams.getSketchId() );
         }
     }
 
-    function loadTutorial(id)
+    async function loadTutorial(id)
     {
-        tutorial.load(id);
+        await tutorial.load(id);
     }
 
-    function addSketchById(id, onLoad)
+    async function addSketchById(id)
     {
-        sketchProvider.get( id, function(data) {
-            var o = addOrInitSketch(data);
+        var data = await sketchProvider.get(id)
+        var o = addOrInitSketch(data);
 
-            if (onLoad)
-                onLoad(o);
-        } );
+        return o;
     }
 
 
-    function addSketchByUrl(sketchUrl, onLoad)
+    async function addSketchByUrl(sketchUrl)
     {
-        sketchProvider.getByUrl( sketchUrl, function(data) {
-            var o = addOrInitSketch(data);
-            setReadOnly(true);
+        var data = await sketchProvider.getByUrl(sketchUrl);
+        var o = addOrInitSketch(data);
+        setReadOnly(true);
 
-            if (onLoad)
-                onLoad(o);
-        } );
+        return o;
     }
 
 
@@ -169,6 +169,18 @@ function Shell()
         return pk.pack(o);
     }
 
+    async function saveSketch()
+    {
+        var o = getSketch();
+        var id = !isReadOnly ? o.Id : "";
+
+        var r = await sketchProvider.save(o, id);
+        if (!r || r.state != "success" || !r.metadata)
+            return null;
+
+        return r.metadata.name;
+    }
+
     function setName(name)
     {
         lblSketchTitle.innerText = name;
@@ -232,7 +244,7 @@ function Shell()
         btnFork = html.findElement("btnFork");
         btnReload = html.findElement("btnReload");
         tcEditor = TabEditor("tabcontrol", "pages");
-        sketchProvider = SketchProvider();
+        sketchProvider = SketchProvider(db);
         barBackgrounds = BackgroundsBar("barBackgrounds", "barBackgroundsPages");
         barSprites = SpritesBar("barSprites", "barSpritesPages");
         barSounds = SoundsBar("barSounds", "barSoundsPages");
@@ -244,6 +256,8 @@ function Shell()
         addButtonsEventHandlers("closesidebar", handleSidebarCloseButtonClick);
         addButtonEventHandler("btnPlay", handlePlayButtonClick);
         addButtonEventHandler("btnReload", handleSketchReload);
+        addButtonEventHandler("btnSave", handleSketchSaveOrFork);
+        addButtonEventHandler("btnFork", handleSketchSaveOrFork);
 
         lblSketchTitle.addEventListener('blur', handleEditTitleExit, false);
         lblSketchTitle.addEventListener('dblclick', handleEditTitleButtonClick, false);
@@ -253,6 +267,59 @@ function Shell()
 
         onresize();
     }
+
+
+    function HandleAuthChanged(user)
+    {
+        if (!user)
+        {
+            oUser = null;
+            showAndGetAuthStatus(oUser);
+            return;
+        }
+        
+        oUser = user;
+
+        if (!db.isStudent(user))
+        {
+            oUser.active = true;
+        }
+        else
+        {
+            db.getStudentDetails()
+                .then(function(userData) {
+                    oUser.userData = userData;
+                    oUser.active = userData && userData.active;
+
+                    if (!oUser.active)
+                        showAndGetAuthStatus(oUser);
+                });
+        }
+    }
+
+
+    function showAndGetAuthStatus(user)
+    {
+        if (!user)
+        {
+            dialogs.warning("<b>Unauthenticated user.</b><br><br>You can still follow some tutorials and even write code but you'll not be able to save your changes!<br><br>Please create a free account to enjoy full benefits of CodeBeanz.", 100);
+            return UserStatus.Unauthenticated;
+        }
+
+        if (!user.active)
+        {
+            var instructions = user.userData.studentEmail 
+                                    ? "Please validate your account using the information we've sent you to " + user.userData.studentEmail
+                                    : "Please tell your mom or dad to validate your account using the information we sent them to " + user.userData.parentEmail;
+            
+            dialogs.warning("<b>Account not validated.</b><br><br>You can write code but you'll not be able to save your sketch!<br><br>" + instructions, 100);
+
+            return UserStatus.AuthenticatedNotValidated;
+        }
+
+        return UserStatus.Authenticated;
+    }
+
     
     function isScreenSmall()
     {
@@ -374,6 +441,26 @@ function Shell()
                     addedSketch.ReadOnly = true;
                     addOrInitSketch(addedSketch);
                 });
+    }
+
+    async function handleSketchSaveOrFork(e)
+    {
+        var userStatus = showAndGetAuthStatus(oUser);
+
+        if (userStatus != UserStatus.Authenticated)
+            return;
+
+        var currId = addedSketch != null ? addedSketch.Id : "";
+        var newId = await saveSketch();
+
+        if (!newId)
+        {
+            dialogs.warning("<b>Cannot save.</b><br><br>Cannot save sketch to server. Please make sure you have internet connection and try again.", 100);
+            return;
+        }
+
+        if (currId != newId)
+            window.location.href = "code.html?" + newId;
     }
 
     function handleEditTitleExit(e)

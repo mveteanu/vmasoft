@@ -1,77 +1,64 @@
 
-function SketchProvider()
+function SketchProvider(_db)
 {
     var web = WebFile();
-    var db = null; // should instatiate the firebase provider...
+    var db = DBFile(_db);
     var pk = TextPacker();
 
     // ----------- Begin public functions --------------------
 
-    function get(sketchId, onLoad)
+    async function get(sketchId)
     {
         if(!sketchId)
-        {
-            if (onLoad)
-                onLoad(null);
+            return null;
 
-                return;
-        }
+        var webSketch = isWebSketch(sketchId);
+        var loader = webSketch ? web : db;
 
-        var loader = isWebSketch(sketchId) ? web : db;
+        var data = await loader.get(sketchId);
+        var o = pk.unpack(data);
 
-        loader.get(sketchId,
-                    function(data) {
-                        
-                        var o = pk.unpack(data);
-                        o.Id = sketchId;
-                        
-                        o.ReadOnly = true;  // I should set .ReadOnly = true for web sketches ... and DB sketches loaded from DB but from other users...
+        if (!o)
+            return o;
 
-                        if (onLoad)
-                            onLoad(o);
-                    }, 
-                    function() {
-                        if (onLoad)
-                            onLoad(null);
-                    });
+        o.Id = sketchId;
+        o.ReadOnly = webSketch || !(await db.ownFile(sketchId));
+
+        return o;
     }
 
 
-    function getByUrl(sketchUrl, onLoad)
+    async function getByUrl(sketchUrl)
     {
         if(!sketchUrl)
-        {
-            if (onLoad)
-                onLoad(null);
+            return null;
 
-                return;
-        }
+        var data = await web.getFromUrl(sketchUrl);
+        var o = pk.unpack(data);
 
-        web.getFromUrl(sketchUrl,
-                    function(data) {
-                        
-                        var o = pk.unpack(data);
-
-                        if (onLoad)
-                            onLoad(o);
-                    }, 
-                    function() {
-                        if (onLoad)
-                            onLoad(null);
-                    });
+        return o;
     }
 
+    async function save(objSketch, id)
+    {
+        var txt = pk.pack(objSketch)
+        if (!txt)
+            return null;
+
+        return db.save(txt, id);
+    }
 
     // ----------- Begin private functions ----------------------
 
     // Function verifies id format and returns if the sketch is a web file or should be loaded from web db...
     function isWebSketch(id)
     {
-        return true;
+        return id && id.length <= 5;
     }
 
     return {
         get : get,
-        getByUrl : getByUrl
+        getByUrl : getByUrl,
+        save : save
     }
 }

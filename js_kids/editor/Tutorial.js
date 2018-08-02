@@ -18,14 +18,13 @@ function Tutorial()
 
     _init();
 
-    function load(id)
+    async function load(id)
     {
-        tutorialProvider.getTutorial(id, function(data) {
-            loadFromObject(data);
-        });
+        var data = await tutorialProvider.getTutorial(id);
+        await loadFromObject(data);
     }
 
-    function loadFromObject(data)
+    async function loadFromObject(data)
     {
         if (!data)
         {
@@ -39,11 +38,11 @@ function Tutorial()
         oShell.showSidebar(barTutorial, true)
         
         tutorialTitle.innerText = oTutorial.Name ? oTutorial.Name : "Tutorial";
-        displayPage(0, oTutorial);
+        await displayPage(0, oTutorial);
     }
 
 
-    function displayPage(pageIndex, oTutorial)
+    async function displayPage(pageIndex, oTutorial)
     {
         if (!oTutorial || !oTutorial.Pages || oTutorial.Pages.length == 0)
             return;
@@ -63,14 +62,13 @@ function Tutorial()
         tutorialBack.disabled = true;
         tutorialNext.disabled = true;
 
-        loadSketch(oPage, oTutorial, function (data){
-            tutorialBack.disabled = pageIndex == 0;
-            tutorialNext.disabled = pageIndex == oTutorial.Pages.length - 1;
-        });
+        var data = await loadSketch(oPage, oTutorial);
+        tutorialBack.disabled = pageIndex == 0;
+        tutorialNext.disabled = pageIndex == oTutorial.Pages.length - 1;
     }
 
     
-    function loadSketch(oPage, oTutorial, onLoad)
+    async function loadSketch(oPage, oTutorial)
     {
         if (oPage.UserSketch)
         {
@@ -78,20 +76,15 @@ function Tutorial()
             oShell.setReadOnly(true);
             setOriginalSketch(oPage.OriginalSketch);
 
-            if (onLoad)
-                onLoad(o);
-
-            return;
+            return o;
         }
         
         var sketchUrl = tutorialProvider.getSketchUrl(oPage, oTutorial);
 
-        oShell.addSketchByUrl(sketchUrl, function (data) {
-            oPage.OriginalSketch = oShell.getSketchAsString();  // reads back the sketch from shell and not 'data'...
+        var o = await oShell.addSketchByUrl(sketchUrl);
+        oPage.OriginalSketch = oShell.getSketchAsString();  // reads back the sketch from shell and not 'data'...
 
-            if (onLoad)
-                onLoad(data);
-        });
+        return o;
     }
 
 
@@ -155,7 +148,7 @@ function Tutorial()
         tutorialIframe.onload = processTutorialLinks;
     }
 
-    function processTutorialLinks()
+    async function processTutorialLinks()
     {
         if (!tutorialIframe.contentWindow || !tutorialIframe.contentWindow.document)
             return;
@@ -178,19 +171,19 @@ function Tutorial()
 
                 o.href="#";
 
-                o.addEventListener('click', function(e) {
+                o.addEventListener('click', async function(e) {
                     e.cancelBubble = true;
 
                     if (hasChanges())
                     {
                         dialogs.confirm("<b>Discard changes ?</b><br><br>Note: You have unsaved changes in the current tutorial. Do you want to discard these changes and navigate to the new tutorial ?", ["Yes", "No"], 
-                        function() {
-                            parent.oShell.loadTutorial(tutorialId);        
+                        async function() {
+                            await parent.oShell.loadTutorial(tutorialId);        
                         });
                     }
                     else
                     {
-                        parent.oShell.loadTutorial(tutorialId);
+                        await parent.oShell.loadTutorial(tutorialId);
                     }
                 });
             }

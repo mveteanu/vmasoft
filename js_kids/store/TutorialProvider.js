@@ -4,20 +4,16 @@ function TutorialProvider()
 
     // ----------- Begin public functions --------------------
 
-    function getTutorial(id, onLoad)
+    async function getTutorial(id)
     {
-        _getTutorial(id, 
-                        function(data){
-                            var o = JSON.parse(data);
-                            o.Id = id;
+        var data = await _getTutorial(id);
+        if (!data)
+            return null;
 
-                            if (onLoad)
-                                onLoad(o);
-                        },
-                        function(){
-                            if (onLoad)
-                                onLoad(null);
-                        });
+        var o = JSON.parse(data);
+        o.Id = id;
+
+        return o;
     }
 
 
@@ -42,11 +38,12 @@ function TutorialProvider()
     // ----------- Begin private functions ----------------------
 
 
-    function _getTutorial(id, onSuccess, onError)
+    async function _getTutorial(id)
     {
         var url = getTutorialUrl(id);
 
-        loadText(url, onSuccess, onError);
+        var response = await fetch(url);
+        return response.text();
     }
 
 
