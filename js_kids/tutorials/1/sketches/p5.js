@@ -3,7 +3,7 @@ This is a single file sketch
 with multiple scenes
 */
 
-// #SKETCHNAME Amazing sketch
+// #SKETCHNAME Amazing sketch - p5
 
 // #BEGINSCENE Intro
 

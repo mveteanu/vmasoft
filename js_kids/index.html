@@ -15,7 +15,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-storage.js"></script>
     
-
+    <script src="editor/HtmlUtils.js"></script>
     <script src="firebase/FirebaseDB.js"></script>
 </head>
 <body>
@@ -68,7 +68,7 @@
     <li><a href="code.html">New Playground</a></li>
 </ul>
 
-<h1>Code</h1>
+<h1>Code on Web</h1>
 <ul>
     <li><a href="code.html?1">Example 1</a></li>
     <br>
@@ -76,6 +76,20 @@
     <br>
     <li><a href="code.html?3">Example 3</a></li>
 </ul>
+
+
+<h1>My code</h1>
+<ul id="lstMyCode">
+</ul>
+
+
+<h1>Other code</h1>
+<ul>
+    <li><a href="code.html?UBhKw7J2QdoosC2IBwq4">myuserx: UBhKw7J2QdoosC2IBwq4</a></li>
+    <br>
+    <li><a href="code.html?Xgwig8rYc0gOHuYmd5cE">myuserx: Xgwig8rYc0gOHuYmd5cE</a></li>
+</ul>
+
 
 <h1>Tutorials</h1>
 
@@ -117,6 +131,8 @@ function HandleAuthChanged(user)
             userActive = userData && userData.active;
             lblUser.style.color = userActive ? "" : "red";
         });
+
+        generateMyCodeList("lstMyCode");
     }
     else
     {
@@ -190,9 +206,24 @@ async function HandleBtnSignUpOKClick(e)
     }
 }
 
-function HandleBtnLogOutClick(e)
+async function HandleBtnLogOutClick(e)
 {
-    db.signOut();
+    await db.signOut();
+}
+
+async function generateMyCodeList(lstName)
+{
+    var html = HtmlUtils();
+    var htmlLst = document.getElementById(lstName);
+
+    var lst = await db.getMyFiles();
+
+    for(var file of lst)
+    {
+        var d = new Date(file.creationDate);
+        var txt = "<li><a href='code.html?" + file.id + "'>" + file.name + " - " + d.toDateString() + " " + d.toLocaleTimeString() + "</a></li>"
+        html.appendElement(txt, htmlLst);
+    }
 }
 
 </script>

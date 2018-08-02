@@ -22,7 +22,8 @@ function SketchProvider(_db)
             return o;
 
         o.Id = sketchId;
-        o.ReadOnly = webSketch || !(await db.ownFile(sketchId));
+        //o.ReadOnly = webSketch || !(await _db.ownFile(sketchId));
+        o.ReadOnly = webSketch || !ownFile(data);
 
         return o;
     }
@@ -41,11 +42,30 @@ function SketchProvider(_db)
 
     async function save(objSketch, id)
     {
-        var txt = pk.pack(objSketch)
+        var user = _db.getCurrentUser();
+        if (!user)
+            return null;
+        
+        var txt = pk.pack(objSketch, user.uid)
         if (!txt)
             return null;
 
         return db.save(txt, id);
+    }
+
+    async function setPublic(sketchId, bPublic)
+    {
+        return _db.setPublic(sketchId, bPublic);
+    }
+
+    async function setName(sketchId, name)
+    {
+        return _db.setName(sketchId, name);
+    }
+
+    async function getMyFiles()
+    {
+        return _db.getMyFiles();
     }
 
     // ----------- Begin private functions ----------------------
@@ -56,9 +76,22 @@ function SketchProvider(_db)
         return id && id.length <= 5;
     }
 
+    // Note: Sketches contain user id in the comments section... therefore a brute search should find it...
+    function ownFile(txt)
+    {
+        var user = _db.getCurrentUser();
+        if (!user)
+            return false;
+
+        return txt.indexOf(user.uid) >= 0;
+    }
+
     return {
         get : get,
         getByUrl : getByUrl,
-        save : save
+        save : save,
+        setPublic : setPublic,
+        setName : setName,
+        getMyFiles : getMyFiles
     }
 }

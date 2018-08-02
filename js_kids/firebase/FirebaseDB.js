@@ -128,11 +128,13 @@ function FirebaseDB(onAuthenticateChanged)
         return db.collection("files").add({
             user : user.email,
             name : "Untitled",
-            public : false
+            public : false,
+            creationDate : Date.now()
         });
     }
     
     // [awaitable] Save the txt string using the fileName
+    // NOTE: Alternatively to saving in 'Storage' I can save the sketch in a second root collection in 'Firestore' named: "fileData"
     function saveFile(fileName, txt)
     {
         var filePath = "files/" + fileName;
@@ -185,6 +187,14 @@ function FirebaseDB(onAuthenticateChanged)
             public : bPublic
         }, { merge : true })
     }
+    
+    // [awaitable] Sets the name of a file
+    function setName(fileName, name)
+    {
+        return db.collection("files").doc(fileName).set({
+            name : name
+        }, { merge : true })
+    }
 
     async function ownFile(fileName)
     {
@@ -201,14 +211,14 @@ function FirebaseDB(onAuthenticateChanged)
     }
 
     // [awaitable] Returns array of documents
-    function getFiles()
+    function getMyFiles()
     {
         var user = firebase.auth().currentUser;
         
         if (!user || !user.email)
-            return null;
+            return [];
 
-        return db.collection("files").where("user", "==", user.email)
+        return db.collection("files").where("user", "==", user.email).orderBy("creationDate", "desc")
                 .get()
                 .then(function(snapshot) {
                     var ar = [];
@@ -258,7 +268,8 @@ function FirebaseDB(onAuthenticateChanged)
         saveFile : saveFile,
         deleteFile : deleteFile,
         setPublic : setPublic,
-        getFiles : getFiles,
+        setName : setName,
+        getMyFiles : getMyFiles,
         getFile : getFile,
         ownFile : ownFile
     }

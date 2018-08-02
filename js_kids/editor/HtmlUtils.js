@@ -8,7 +8,7 @@ function HtmlUtils()
         o.innerHTML = txt;
 
         var element = o.children[0];
-        container.append(element); // append is not available on Endge...
+        container.append(element); // append is not available on Edge...
 
         return element;
     }

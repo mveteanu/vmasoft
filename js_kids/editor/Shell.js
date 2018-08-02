@@ -171,6 +171,9 @@ function Shell()
 
     async function saveSketch()
     {
+        if ( getAuthStatus(oUser) != UserStatus.Authenticated )
+            return null;
+        
         var o = getSketch();
         var id = !isReadOnly ? o.Id : "";
 
@@ -178,7 +181,17 @@ function Shell()
         if (!r || r.state != "success" || !r.metadata)
             return null;
 
-        return r.metadata.name;
+        var newId = r.metadata.name;
+
+        if(o.Name != addedSketch.Name || isReadOnly)
+        {
+            await sketchProvider.setName(newId, o.Name);
+        }
+
+        if (id == newId || !id)
+            addedSketch = o;
+
+        return newId;
     }
 
     function setName(name)
@@ -295,6 +308,18 @@ function Shell()
                         showAndGetAuthStatus(oUser);
                 });
         }
+    }
+
+
+    function getAuthStatus(user)
+    {
+        if (!user)
+            return UserStatus.Unauthenticated;
+
+        if (!user.active)
+            return UserStatus.AuthenticatedNotValidated;
+
+        return UserStatus.Authenticated;
     }
 
 
@@ -443,12 +468,19 @@ function Shell()
                 });
     }
 
+
     async function handleSketchSaveOrFork(e)
     {
         var userStatus = showAndGetAuthStatus(oUser);
 
         if (userStatus != UserStatus.Authenticated)
             return;
+
+        if (!isReadOnly && !hasChanges())
+        {
+            dialogs.notify("No changes.", 1);
+            return;
+        }
 
         var currId = addedSketch != null ? addedSketch.Id : "";
         var newId = await saveSketch();
@@ -458,9 +490,25 @@ function Shell()
             dialogs.warning("<b>Cannot save.</b><br><br>Cannot save sketch to server. Please make sure you have internet connection and try again.", 100);
             return;
         }
+        else
+        {
+            dialogs.notify("Saved", 1);
+        }
 
         if (currId != newId)
-            window.location.href = "code.html?" + newId;
+        {
+            if (oParams.isTutorial())
+            {
+                dialogs.confirm("<b>Code saved as a new sketch</b><br><br>Do you want to leave the tutorial now and open your new sketch instead?<br><br>Note: Press 'No' to continue with the tutorial. You'll be able to find and open your saved sketch from your dashboard at any time.",
+                ["Yes", "No"], function() {
+                    window.location.href = "code.html?" + newId;
+                });
+            }
+            else
+            {
+                window.location.href = "code.html?" + newId;
+            }
+        }
     }
 
     function handleEditTitleExit(e)
@@ -553,12 +601,15 @@ function Shell()
     }
 
 
-    function closeEditor()
+    async function closeEditor()
     {
+        if (!oParams.isTutorial() && !isReadOnly && hasChanges())
+            await saveSketch();
+
         var bHasChanges = oParams.isTutorial() ? tutorial.hasChanges() : hasChanges();
         if (bHasChanges)
         {
-            dialogs.confirm("<b>Return to home page ?</b><br><br>Note: It appears that you have unsaved changes. Are you sure you want to discard them ?", ["Yes", "No"], returnToIndex);
+            dialogs.confirm("<b>Return to home page ?</b><br><br>Note: It appears that you have unsaved changes. If you want to keep them, cancel this dialog and then use the 'Save' button to save your code.", ["Yes", "No"], returnToIndex);
         }
         else
         {
@@ -571,13 +622,13 @@ function Shell()
         window.location.href = "index.html";
     }
 
-    function handleActionButtonClick(e)
+    async function handleActionButtonClick(e)
     {
         var barName = this.getAttribute("sidebar");
         if (!barName)
         {
             //shell.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-            closeEditor();           
+            await closeEditor();           
             return;
         }
         

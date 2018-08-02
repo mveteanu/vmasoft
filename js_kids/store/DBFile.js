@@ -22,16 +22,11 @@ function DBFile(db)
         return db.saveFile(id, txt);
     }
 
-    async function ownFile(id)
-    {
-        return db.ownFile(id);
-    }
 
     // --------------- Begin private functions ------------------
 
     return {
         get : get,
-        save : save,
-        ownFile : ownFile
+        save : save
     }
 }
