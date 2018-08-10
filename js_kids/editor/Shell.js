@@ -619,7 +619,12 @@ function Shell()
 
     function returnToIndex()
     {
-        window.location.href = "index.html";
+        var location = "index.html";
+
+        if (!oParams.isTutorial() && !isReadOnly)
+            location += "?what=code";
+
+        window.location.href = location;
     }
 
     async function handleActionButtonClick(e)
