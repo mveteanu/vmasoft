@@ -1,0 +1,12 @@
+.tutorial {
+    border:1px solid black;
+    width:500px;
+    height:90%;
+    overflow:auto;
+    padding: 5px;
+}
+
+ /* .tutorial H1 {
+    color: red;
+} */
+ 

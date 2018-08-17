@@ -1,0 +1,69 @@
+<!DOCTYPE HTML5>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="style.css"/>
+
+  <link rel="stylesheet" href="lib/showdown/github-markdown.css">
+  <link rel="stylesheet" href="lib/showdown/default.css">
+  <script src="lib/showdown/showdown.min.js"></script>
+  <script src="lib/showdown/highlight.pack.js"></script>
+
+</head>
+
+<body>
+
+<h1>Runtime Markdown to HTML</h1>
+
+<button id="btnShow">Show Tutorial</button>
+
+<br><br>
+
+<div id="divTutorial" class="tutorial"></div>
+
+
+<script>
+var btnShow = document.getElementById("btnShow");
+btnShow.addEventListener("click", HandleBtnShowClick)
+
+
+async function HandleBtnShowClick(e)
+{
+  var divTutorial = document.getElementById("divTutorial");
+  var text = await getText("p1.md");
+
+  renderMarkdown(text, divTutorial);
+}
+
+
+async function getText(url)
+{
+  var r = await fetch(url);
+  return await r.text();
+}
+
+function renderMarkdown(text, objDiv)
+{
+  var converter = new showdown.Converter({tables: true});
+  var html = converter.makeHtml(text);
+  objDiv.innerHTML = html;
+
+  highlightCodeBlocks(objDiv);
+}
+
+
+function highlightCodeBlocks(objDiv)
+{
+  var ar = objDiv.getElementsByTagName("code");
+
+  for(var i = 0; i < ar.length; i++)
+  {
+    var o = ar[i];
+    hljs.highlightBlock(o);
+  }
+}
+
+</script>
+
+</body>
+</html>
