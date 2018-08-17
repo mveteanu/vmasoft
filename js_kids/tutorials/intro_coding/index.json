@@ -3,50 +3,50 @@
     "Pages" : [
         {
             "Name" : "Know your environment",
-            "Page" : "doc/p1.md"
+            "Page" : "html/p1.html"
         },
         {
-            "Page" : "doc/p2.md",
+            "Page" : "html/p2.html",
             "Sketch" : "sketches/p2.js"
         },
         {
-            "Page" : "doc/p3.md",
+            "Page" : "html/p3.html",
             "Sketch" : "sketches/p2.js"
         },
         {
-            "Page" : "doc/p4.md",
+            "Page" : "html/p4.html",
             "Sketch" : "sketches/p2.js"
         },
         {
-            "Page" : "doc/p5.md",
+            "Page" : "html/p5.html",
             "Sketch" : "sketches/p5.js"
         },
         {
-            "Page" : "doc/p6.md",
+            "Page" : "html/p6.html",
             "Sketch" : "sketches/p5.js"
         },
         {
-            "Page" : "doc/p7.md",
+            "Page" : "html/p7.html",
             "Sketch" : "sketches/p2.js"
         },
         {
-            "Page" : "doc/p8.md",
+            "Page" : "html/p8.html",
             "Sketch" : "sketches/p8.js"
         },
         {
-            "Page" : "doc/p9.md",
+            "Page" : "html/p9.html",
             "Sketch" : "sketches/p9.js"
         },
         {
-            "Page" : "doc/p10.md",
+            "Page" : "html/p10.html",
             "Sketch" : "sketches/p10.js"
         },
         {
-            "Page" : "doc/p11.md",
+            "Page" : "html/p11.html",
             "Sketch" : "sketches/p11.js"
         },
         {
-            "Page" : "doc/p12.md",
+            "Page" : "html/p12.html",
             "Sketch" : "sketches/p11.js"
         }
     ]

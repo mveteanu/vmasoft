@@ -34,7 +34,6 @@ function Tutorial()
 
         oTutorial = data;
 
-        //html.showElement(barTutorial, true);
         oShell.showSidebar(barTutorial, true)
         
         tutorialTitle.innerText = oTutorial.Name ? oTutorial.Name : "Tutorial";
@@ -55,7 +54,7 @@ function Tutorial()
         var oPage = oTutorial.Pages[pageIndex];
         tutorialSubtitle.innerText = oPage.Name ? oPage.Name : "";
 
-        tutorialIframe.src = tutorialProvider.getPageUrl(oPage, oTutorial);
+        await loadPage(oPage, oTutorial);
         
         tutorialPage.innerText = (pageIndex + 1) + " / " + oTutorial.Pages.length;
 
@@ -68,6 +67,17 @@ function Tutorial()
     }
 
     
+    async function loadPage(oPage, oTutorial)
+    {
+        if (!oPage.Html)
+        {
+            var text = await tutorialProvider.getPage(oPage, oTutorial);
+            oPage.Html = markdownToHtml(text);
+        }
+        
+        renderHtml(oPage.Html, tutorialIframe);
+    }
+
     async function loadSketch(oPage, oTutorial)
     {
         if (oPage.UserSketch)
@@ -144,16 +154,49 @@ function Tutorial()
 
         tutorialNext = html.findElement("tutorialNext");
         tutorialNext.addEventListener('click', handleNextButtonClick, false);
-
-        tutorialIframe.onload = processTutorialLinks;
     }
 
-    async function processTutorialLinks()
+
+    function markdownToHtml(text)
     {
-        if (!tutorialIframe.contentWindow || !tutorialIframe.contentWindow.document)
+        var converter = new showdown.Converter({tables: true, emoji : true});
+        var html = converter.makeHtml(text);
+
+        return html;
+    }
+
+
+    function renderHtml(html, objDiv)
+    {
+        objDiv.innerHTML = html;
+
+        highlightCodeBlocks(objDiv);
+        processTutorialLinks(objDiv);
+    }
+    
+
+    function highlightCodeBlocks(objDiv)
+    {
+        if (!objDiv)
             return;
         
-        var allLinks = tutorialIframe.contentWindow.document.links;
+        var ar = objDiv.getElementsByTagName("code");
+
+        for(var i = 0; i < ar.length; i++)
+        {
+            var o = ar[i];
+
+            o.setAttribute("class", "javascript");
+            hljs.highlightBlock(o);
+        }
+    }
+
+    function processTutorialLinks(objDiv)
+    {
+        if (!objDiv)
+            return;
+        
+        var allLinks = objDiv.getElementsByTagName("a");
         if (!allLinks || allLinks.length == 0)
             return;
 
@@ -163,30 +206,40 @@ function Tutorial()
         {
             var o = allLinks[i];
 
-            if (o && o.href && o.href.startsWith(protocol))
+            if (!o || !o.href)
+                continue;
+
+            if (!o.href.startsWith(protocol))
             {
-                var tutorialId = o.href.substr(protocol.length)
-                if (!tutorialId)
-                    continue;
-
-                o.href="#";
-
-                o.addEventListener('click', async function(e) {
-                    e.cancelBubble = true;
-
-                    if (hasChanges())
-                    {
-                        dialogs.confirm("<b>Discard changes ?</b><br><br>Note: You have unsaved changes in the current tutorial. Do you want to discard these changes and navigate to the new tutorial ?", ["Yes", "No"], 
-                        async function() {
-                            await parent.oShell.loadTutorial(tutorialId);        
-                        });
-                    }
-                    else
-                    {
-                        await parent.oShell.loadTutorial(tutorialId);
-                    }
-                });
+                o.target = "_new";
+                continue;
             }
+
+            var tutorialId = o.href.substr(protocol.length)
+            if (!tutorialId)
+                continue;
+
+            o.href="code.html?t=" + tutorialId;
+
+            o.onclick = function(e) {
+                if (hasChanges())
+                {
+                    dialogs.confirm("<b>Discard changes ?</b><br><br>Note: You have unsaved changes in the current tutorial. Do you want to discard these changes and navigate to the new tutorial ?", ["Yes", "No"], 
+                    function() {
+                        parent.oShell.loadTutorial(tutorialId);
+                        
+                        //Navigate by changing the Url
+                        //window.location.href = o.href;
+                    });
+                }
+                else
+                {
+                    parent.oShell.loadTutorial(tutorialId);
+                    //window.location.href = o.href;
+                }
+
+                return false;
+            };
         }
     }
 

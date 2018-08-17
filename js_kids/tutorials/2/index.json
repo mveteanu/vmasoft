@@ -3,7 +3,7 @@
     "Pages" : [
         {
             "Name" : "Introduction",
-            "Page" : "html/p1.html",
+            "Page" : "doc/p1.md",
             "Sketch" : "sketches/p1.js"
         }
     ]

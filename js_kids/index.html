@@ -163,7 +163,7 @@
 
 		<section id="page-title" style="display:none;">
 			<div class="container ">
-				<h1>Welcome Marian Veteanu</h1>
+				<h1 id="lblUserWelcome">Welcome Marian Veteanu</h1>
 		
 				<br>
 
@@ -211,8 +211,7 @@
 			</div>
 
 
-
-			<div id="divMySketches" class="container clearfix" style="display:none">
+			<div id="divMySketches" class="container clearfix d-none">
 				<div class="heading-block topmargin bottommargin noborder">
 					<h2 class="center">My sketches</h2>
 				</div>
@@ -222,86 +221,148 @@
 			</div>
 
 
-			<div id="divTutorials" class="container clearfix">
+			<div id="divMyTutorials" class="container clearfix d-none">
 
-					<div class="page-section">
-						<div class="heading-block topmargin bottommargin noborder">
-							<h2 class="center">Tutorials</h2>
+				<div class="heading-block topmargin bottommargin noborder">
+					<h2 class="center">Tutorials</h2>
+				</div>
+
+				<ul id="divMyTutorialsCategories" class="portfolio-filter center divcenter style-4 clearfix" data-container="#divMyTutorialsList">
+					<li class="activeFilter"><a href="#" data-filter="*">All Tutorials</a></li>
+				</ul>
+
+				<div class="clear"></div>
+
+				<div id="divMyTutorialsList" class="post-grid grid-container grid-3 clearfix" data-layout="fitRows">
+				</div>
+
+			</div>
+
+
+			<div id="divStaticTutorials" class="container clearfix">
+
+				<div class="heading-block topmargin bottommargin noborder">
+					<h2 class="center">Tutorials</h2>
+				</div>
+
+				<ul class="portfolio-filter center divcenter style-4 clearfix" data-container="#posts">
+					<li class="activeFilter"><a href="#" data-filter="*">All Tutorials</a></li>
+					<li><a href="#" data-filter=".tutorial-editor">Editor picked</a></li>
+					<li><a href="#" data-filter=".tutorial-recent">Recent</a></li>
+					<li><a href="#" data-filter=".tutorial-intro">Intro to coding</a></li>
+					<li><a href="#" data-filter=".tutorial-math">Math</a></li>
+					<li><a href="#" data-filter=".tutorial-logic">Logic apps</a></li>
+					<li><a href="#" data-filter=".tutorial-games">Games</a></li>
+					<li><a href="#" data-filter=".tutorial-text">Text processing</a></li>
+					<li><a href="#" data-filter=".tutorial-web">Web scrapping</a></li>
+					<li><a href="#" data-filter=".tutorial-misc">Others</a></li>
+				</ul>
+
+				<div class="clear"></div>
+
+				<div id="posts" class="post-grid grid-container grid-3 clearfix" data-layout="fitRows">
+
+					<div class="entry tutorial-editor clearfix">
+						<div class="entry-image">
+							<img class="image_fade" src="tutorials/1/thumb.png" alt="Standard Post with Image">
+						</div>
+						<div class="entry-title">
+							<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
+						</div>
+						<ul class="entry-meta clearfix">
+							<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
+							<li><i class="icon-unlocked"></i> Free</li>
+						</ul>
+						<div class="entry-content">
+							<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
+							<a href="code.html?t=1" class="button">Start tutorial</a>
+						</div>
+					</div>
+
+					<div class="entry tutorial-editor clearfix">
+							<div class="entry-image">
+								<img class="image_fade" src="tutorials/2/thumb.png" alt="Standard Post with Image">
+							</div>
+							<div class="entry-title">
+								<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
+							</div>
+							<ul class="entry-meta clearfix">
+								<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
+								<li><i class="icon-lock"></i> Members</li>
+							</ul>
+							<div class="entry-content">
+								<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
+								<a href="code.html?t=1" class="button">Start tutorial</a>
+							</div>
+					</div>
+
+					<div class="entry tutorial-intro tutorial-recent clearfix">
+								<div class="entry-image">
+									<img class="image_fade" src="tutorials/3/thumb.png" alt="Standard Post with Image">
+								</div>
+								<div class="entry-title">
+									<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
+								</div>
+								<ul class="entry-meta clearfix">
+									<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
+								</ul>
+								<div class="entry-content">
+									<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
+									<a href="code.html?t=1" class="button">Start tutorial</a>
+								</div>
+					</div>
+						
+					<div class="entry clearfix">
+							<div class="entry-image">
+								<img class="image_fade" src="tutorials/4/thumb.png" alt="Standard Post with Image">
+							</div>
+							<div class="entry-title">
+								<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
+							</div>
+							<ul class="entry-meta clearfix">
+								<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
+							</ul>
+							<div class="entry-content">
+								<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
+								<a href="code.html?t=1" class="button">Start tutorial</a>
+							</div>
 						</div>
 
-						<ul class="portfolio-filter center divcenter style-4 clearfix" data-container="#posts">
+						<div class="entry clearfix">
+								<div class="entry-image">
+									<img class="image_fade" src="tutorials/5/thumb.png" alt="Standard Post with Image">
+								</div>
+								<div class="entry-title">
+									<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
+								</div>
+								<ul class="entry-meta clearfix">
+									<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
+								</ul>
+								<div class="entry-content">
+									<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
+									<a href="code.html?t=1" class="button">Start tutorial</a>
+								</div>
+							</div>
 
-								<li class="activeFilter"><a href="#" data-filter="*">All Tutorials</a></li>
-								<li><a href="#" data-filter=".tutorial-editor">Editor picked</a></li>
-								<li><a href="#" data-filter=".tutorial-recent">Recent</a></li>
-								<li><a href="#" data-filter=".tutorial-intro">Intro to coding</a></li>
-								<li><a href="#" data-filter=".tutorial-math">Math</a></li>
-								<li><a href="#" data-filter=".tutorial-logic">Logic apps</a></li>
-								<li><a href="#" data-filter=".tutorial-games">Games</a></li>
-								<li><a href="#" data-filter=".tutorial-text">Text processing</a></li>
-								<li><a href="#" data-filter=".tutorial-web">Web scrapping</a></li>
-								<li><a href="#" data-filter=".tutorial-misc">Others</a></li>
-	
-							</ul>
-	
-						<div class="clear"></div>
-	
-
-						<div id="posts" class="post-grid  grid-3 clearfix" data-layout="fitRows">
-
-								<div class="entry tutorial-editor clearfix">
+							<div class="entry clearfix">
 									<div class="entry-image">
-										<img class="image_fade" src="site/images/js/01.png" alt="Standard Post with Image">
+										<img class="image_fade" src="tutorials/6/thumb.png" alt="Standard Post with Image">
 									</div>
 									<div class="entry-title">
 										<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
 									</div>
 									<ul class="entry-meta clearfix">
 										<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
-										<li><i class="icon-unlocked"></i> Free</li>
 									</ul>
 									<div class="entry-content">
 										<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
 										<a href="code.html?t=1" class="button">Start tutorial</a>
 									</div>
 								</div>
-		
-								<div class="entry tutorial-editor clearfix">
-										<div class="entry-image">
-											<img class="image_fade" src="site/images/js/02.png" alt="Standard Post with Image">
-										</div>
-										<div class="entry-title">
-											<h2><a href="code.html?t=2">Whoopi cushion</a></h2>
-										</div>
-										<ul class="entry-meta clearfix">
-											<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
-											<li><i class="icon-lock"></i> Members</li>
-										</ul>
-										<div class="entry-content">
-											<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
-											<a href="code.html?t=2" class="button">Start tutorial</a>
-										</div>
-								</div>
 
-								<div class="entry tutorial-intro tutorial-recent clearfix">
-											<div class="entry-image">
-												<img class="image_fade" src="site/images/js/03.png" alt="Standard Post with Image">
-											</div>
-											<div class="entry-title">
-												<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
-											</div>
-											<ul class="entry-meta clearfix">
-												<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
-											</ul>
-											<div class="entry-content">
-												<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
-												<a href="code.html?t=1" class="button">Start tutorial</a>
-											</div>
-								</div>
-									
 								<div class="entry clearfix">
 										<div class="entry-image">
-											<img class="image_fade" src="site/images/js/04.png" alt="Standard Post with Image">
+											<img class="image_fade" src="tutorials/7/thumb.png" alt="Standard Post with Image">
 										</div>
 										<div class="entry-title">
 											<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
@@ -313,62 +374,10 @@
 											<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
 											<a href="code.html?t=1" class="button">Start tutorial</a>
 										</div>
-									</div>
-
-									<div class="entry clearfix">
-											<div class="entry-image">
-												<img class="image_fade" src="site/images/js/05.png" alt="Standard Post with Image">
-											</div>
-											<div class="entry-title">
-												<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
-											</div>
-											<ul class="entry-meta clearfix">
-												<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
-											</ul>
-											<div class="entry-content">
-												<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
-												<a href="code.html?t=1" class="button">Start tutorial</a>
-											</div>
-										</div>
-
-										<div class="entry clearfix">
-												<div class="entry-image">
-													<img class="image_fade" src="site/images/js/06.png" alt="Standard Post with Image">
-												</div>
-												<div class="entry-title">
-													<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
-												</div>
-												<ul class="entry-meta clearfix">
-													<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
-												</ul>
-												<div class="entry-content">
-													<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
-													<a href="code.html?t=1" class="button">Start tutorial</a>
-												</div>
-											</div>
-
-											<div class="entry clearfix">
-													<div class="entry-image">
-														<img class="image_fade" src="site/images/js/07.png" alt="Standard Post with Image">
-													</div>
-													<div class="entry-title">
-														<h2><a href="code.html?t=1">Whoopi cushion</a></h2>
-													</div>
-													<ul class="entry-meta clearfix">
-														<li><i class="icon-calendar3"></i> 10th Feb 2014</li>
-													</ul>
-													<div class="entry-content">
-														<p>Make a whoopee cushion powered by a Raspberry Pi to prank your pals</p>
-														<a href="code.html?t=1" class="button">Start tutorial</a>
-													</div>
-												</div>
+								</div>
 															
 								
 							</div><!-- #posts end -->
-		
-
-					</div>
-
 					
 			</div>
 		
@@ -387,7 +396,7 @@
 				<div class="container clearfix">
 
 					<div class="col_half">
-						&copy; CodeBeanz 2018<br>
+						Copyrights &copy; 2018 All Rights Reserved by CodeBeanz<br>
 						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
 					</div>
 
@@ -436,7 +445,7 @@
 
 						<div class="clear"></div>
 
-						<i class="icon-envelope2"></i> info@codebeanz.com
+						<i class="icon-envelope2"></i> info@codebeanz.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +91-11-6541-6369 <span class="middot">&middot;</span> <i class="icon-skype2"></i> CanvasOnSkype
 					</div>
 
 				</div>

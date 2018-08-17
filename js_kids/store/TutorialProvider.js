@@ -16,6 +16,13 @@ function TutorialProvider()
         return o;
     }
 
+    async function getPage(oPage, oTutorial)
+    {
+        var url = getPageUrl(oPage, oTutorial);
+        var r = await fetch(url);
+
+        return r.text();
+    }
 
     function getPageUrl(oPage, oTutorial)
     {
@@ -43,9 +50,8 @@ function TutorialProvider()
         var url = getTutorialUrl(id);
 
         var response = await fetch(url);
-        return response.text();
+        return response.ok ? response.text() : "";
     }
-
 
     function getTutorialUrl(id)
     {
@@ -56,6 +62,7 @@ function TutorialProvider()
     return {
         getTutorial : getTutorial,
         getPageUrl : getPageUrl,
+        getPage : getPage,
         getSketchUrl : getSketchUrl
     }
 

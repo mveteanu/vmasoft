@@ -19,6 +19,11 @@
 
     <script src="lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 
+    <link rel="stylesheet" href="lib/showdown/github-markdown.css">
+    <link rel="stylesheet" href="lib/showdown/default.css">
+    <script src="lib/showdown/showdown.min.js"></script>
+    <script src="lib/showdown/highlight.pack.js"></script>
+
     <script src="lib/alertifyjs/alertify.min.js"></script>
     <link rel="stylesheet" href="lib/alertifyjs/css/alertify.min.css" />
     <link rel="stylesheet" href="lib/alertifyjs/css/themes/default.min.css" />    
@@ -90,11 +95,12 @@
                     <div class="sidebarbar-item left"><i class="fab fa-readme"></i> <span id='tutorialTitle'>Tutorial</span></div>
                     <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
                 </div>
-                <div class="sidebarbar subtitle">
+                <div class="sidebarbar subtitle" style='display:none;'>
                     <span id='tutorialSubtitle'>Subtitle</span>
                 </div>
                 <div class="sidebararea">
-                    <iframe id='tutorialIframe' class='sidebarframe'></iframe>
+                    <!-- <iframe id='tutorialIframe' class='sidebarframe'></iframe> -->
+                    <div id='tutorialIframe' class='tutorial'></div>
                     <div class="sidebarnavigationarea">
                         <div>
                             <button id='tutorialBack' class='sidebarnavigationareabutton'><i class='fas fa-arrow-left'></i> Prev</button>

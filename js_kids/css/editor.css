@@ -261,12 +261,14 @@ a:hover, a:active {
 	visibility: visible;
 }
 
-.sidebarframe {
+.tutorial {
 	flex: 1;
 	border:0px;
 	min-height: 100px;
 	height: 100px; /* hack for ipad ?! */
-	overflow: scroll;
+	overflow: auto;
+	padding: 5px;
+	user-select: text;
 }
 
 .sidebarnavigationarea {

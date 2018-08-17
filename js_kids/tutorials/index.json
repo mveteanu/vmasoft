@@ -2,29 +2,81 @@
     "Tutorials" : 
     [
         {
-            "Code" : "100",
-            "Folder" : "intro-to-graphics",
-            "Language" : "en",
+            "Name" : "Introduction to graphics",
+            "Folder" : "1",
+            "Lists" : ["intro_programming", "cool_games"],
             "DateAdded" : "2018.07.25 10:12PM",
-            "Thumbnail" : "intro-to-graphics/img/thumb.png",
+            "Description" : "Welcome to the wonderful world of graphics. This tutorial will show you how to draw circles, ellipses and all sort of animations on the canvas.",
+            "Free" : "yes",
+            
+            "Code" : "100",
+            "Thumbnail" : "intro-to-graphics/thumb.png",
             "Video" : "htpp://www.youtube.com/v?xxxx",
             "VideoType" : "youtube / local_mp4 / ...",
+            "Language" : "en"
+        },
+        {
+            "Name" : "Spider sprites",
+            "Folder" : "2",
+            "Lists" : ["intro_programming"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Imagine that you are in the 80s and you need to create a sprite using 1 and 0s.",
+            "Free" : "no"
+        },
+        {
+            "Name" : "For loops",
+            "Folder" : "3",
+            "Lists" : ["intro_programming"],
+            "DateAdded" : "2017.11.23 01:59AM",
+            "Description" : "Learn how to automate things with coding.",
             "Free" : "yes"
         },
         {
-            "Code" : "101",
-            "Folder" : "fun-mouse-trails"
+            "Name" : "String Processing",
+            "Folder" : "4",
+            "Lists" : ["intro_programming"],
+            "DateAdded" : "2018.07.25 10:12PM",
+            "Description" : "Process texts and messages using your computer.",
+            "Free" : "yes"
+        },
+        {
+            "Name" : "Tetris",
+            "Folder" : "5",
+            "Lists" : ["intro_programming"],
+            "DateAdded" : "2018.07.25 10:12PM",
+            "Description" : "Recreate the well known Tetris game.",
+            "Free" : "yes"
+        },
+        {
+            "Name" : "Mini game",
+            "Folder" : "6",
+            "Lists" : ["intro_programming"],
+            "DateAdded" : "2018.07.25 10:12PM",
+            "Description" : "Learn how to create games with this mini game",
+            "Free" : "yes"
+        },
+        {
+            "Name" : "Catch the ball",
+            "Folder" : "7",
+            "Lists" : ["other"],
+            "DateAdded" : "2018.07.25 10:12PM",
+            "Description" : "Famous catch the ball game.",
+            "Free" : "yes"
         }
     ],
     "Lists" :
     [
         {
-            "Name" : "Intro to programming",
-            "Items" : [100, 101]
+            "Id" : "intro_programming",
+            "Name" : "Intro to programming"
         },
         {
-            "Name" : "Cool games",
-            "Items" : [100]
+            "Id" : "cool_games",
+            "Name" : "Cool games"
+        },
+        {
+            "Id" : "other",
+            "Name" : "Other"
         }
     ]
 }
