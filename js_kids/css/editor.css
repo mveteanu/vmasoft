@@ -98,6 +98,15 @@ a:hover, a:active {
 	font-style: italic;
 }
 
+.sketchTitle[contenteditable="true"] {
+    background-color: White;
+    color: darkblue;
+	border: 1px solid lightblue;
+	padding: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
 .sketchTitlePen {
 	padding-left: 8px;
 	cursor: pointer;
@@ -293,6 +302,7 @@ a:hover, a:active {
 	border: 1px solid navy;
 	border-radius: 4px;
 	cursor: pointer;
+	width: 75px;
 }
 
 .sidebarnavigationareabutton:disabled {

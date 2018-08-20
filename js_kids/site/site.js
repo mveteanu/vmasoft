@@ -1,4 +1,6 @@
-var db = FirebaseDB(HandleAuthChanged);
+var db;
+var jsonTutorials = fetch("tutorials/index.json");
+var lstMyFiles;
 
 var btnLogIn;
 var btnLogOut;
@@ -33,17 +35,13 @@ window.onload = function()
     divMyTutorials = document.getElementById("divMyTutorials");
     divMySketches = document.getElementById("divMySketches");
     
-    btnLogIn.addEventListener("click", HandleBtnLoginClick);
-
     btnLogOut.addEventListener("click", HandleBtnLogOutClick);
-
     btnSignInOK.addEventListener("click", HandleBtnSignInOKClick);
-
     btnShowTutorials.addEventListener("click", HandleBtnShowTutorialsClick);
-
     btnShowMySketches.addEventListener("click", HandleBtnShowMySketchesClick);
-
     btnCode.addEventListener("click", HandleBtnCodeClick);
+
+    db = FirebaseDB(HandleAuthChanged);    
 }
 
 
@@ -53,17 +51,13 @@ function HandleAuthChanged(user)
     if (user)
     {
         btnLogIn.style.display = "none";
-    
         btnSignUp.classList.remove("d-md-block");
-    
         mnuUser.style.display = "block";
-
         introBanner.style.display = "none";
-
         divPageTitle.style.display = "block";
 
         var userName = db.getAccountName(user);
-        
+
         lblUser.innerText = userName;
         lblUser.style.color = "";
 
@@ -77,22 +71,19 @@ function HandleAuthChanged(user)
             lblUser.style.color = userActive ? "" : "red";
         });
 
-        generateMyTutorials("divMyTutorials");
-        generateMyCodeList("divMySketchesGrid");
+        lstMyFiles = db.getMyFiles();
 
-        // if ( window.location.search.indexOf("what=code") != -1 )
-        //     HandleBtnShowMySketchesClick();
+        if ( window.location.search.indexOf("what=code") != -1 )
+            HandleBtnShowMySketchesClick();
+        else
+            HandleBtnShowTutorialsClick();
     }
     else
     {
         btnLogIn.style.display = "block";
-    
         btnSignUp.classList.add("d-md-block");
-
         mnuUser.style.display = "none";
-
         introBanner.style.display = "block";
-
         divPageTitle.style.display = "none";
 
         divStaticTutorials.classList.remove("d-none");
@@ -100,11 +91,6 @@ function HandleAuthChanged(user)
     }
 }
 
-
-function HandleBtnLoginClick(e)
-{
-    
-}
 
 async function HandleBtnLogOutClick(e)
 {
@@ -129,14 +115,17 @@ async function HandleBtnSignInOKClick(e)
         await db.signInStudent(userName, password);
         
         $.magnificPopup.close();
-        window.location.href = "index.html";
+        //window.location.href = "index.html";
     }
     catch(error)
     {
         var errorCode = error.code;
         var errorMessage = error.message;
 
-        alert(errorMessage);
+        
+        var lblLoginMessage = document.getElementById("lblLoginMessage");
+        lblLoginMessage.innerHTML = errorMessage;
+        lblLoginMessage.classList.remove("d-none");
     }
 }
 
@@ -144,6 +133,10 @@ function HandleBtnShowTutorialsClick(e)
 {
     divMySketches.classList.add("d-none");
     divMyTutorials.classList.remove("d-none");
+
+    var divMyTutorialsList = document.getElementById("divMyTutorialsList");
+    if (divMyTutorialsList.children.length == 0)
+        generateMyTutorials("divMyTutorials");
 } 
 
 
@@ -151,6 +144,10 @@ function HandleBtnShowMySketchesClick(e)
 {
     divMySketches.classList.remove("d-none");
     divMyTutorials.classList.add("d-none");
+
+    var divMySketchesGrid = document.getElementById("divMySketchesGrid");
+    if (divMySketchesGrid.children.length == 0)
+        generateMyCodeList("divMySketchesGrid");    
 }
 
 
@@ -162,39 +159,43 @@ function HandleBtnCodeClick(e)
 
 async function generateMyTutorials(divName)
 {
-    var r = await fetch("tutorials/index.json");
+    var r = await jsonTutorials;
     var oTutorials = await r.json();
 
     generateMyTutorialsCategories("divMyTutorialsCategories", oTutorials);
-    generateMyTutorialsList("divMyTutorialsList", oTutorials);  
+    generateMyTutorialsList("divMyTutorialsList", oTutorials);
+
+    recalculateControls();
 }
+
 
 function generateMyTutorialsCategories(ulName, oTutorials)
 {
     if (!oTutorials || !oTutorials.Lists)
         return;
     
-    var html = HtmlUtils();
+    var txt = "";
     var objUl = document.getElementById(ulName);
 
     for(var i = 0; i < oTutorials.Lists.length; i++)
     {
         var it = oTutorials.Lists[i];
-        var txt = `<li><a href="#" data-filter=".${it.Id}">${it.Name}</a></li>`;
+        var txtElement = `<li><a href="#" data-filter=".${it.Id}">${it.Name}</a></li>`;
         
-        html.appendElement(txt, objUl);
+        txt += txtElement + "\n";
     }
 
-    SEMICOLON.portfolio.filterInit();
+    objUl.innerHTML += txt;
 }
+
 
 function generateMyTutorialsList(divName, oTutorials)
 {
     if (!oTutorials || !oTutorials.Tutorials)
         return;
     
-    var html = HtmlUtils();
     var objDiv = document.getElementById(divName);
+    var txt = "";
 
     for(var oTutorial of oTutorials.Tutorials)
     {
@@ -204,7 +205,7 @@ function generateMyTutorialsList(divName, oTutorials)
 
         var txtIds = oTutorial.Lists ? oTutorial.Lists.join(" ") : "";
 
-        var txt = `<div class="entry ${txtIds} clearfix">
+        var txtElement = `<div class="entry ${txtIds} clearfix">
             <div class="entry-image">
                 <img class="image_fade" src="tutorials/${oTutorial.Folder}/thumb.png" alt="${oTutorial.Name}">
             </div>
@@ -222,22 +223,26 @@ function generateMyTutorialsList(divName, oTutorials)
             </div>
         </div>`;
 
-        html.appendElement(txt, objDiv);
+        txt += txtElement + "\n";
     }
+
+    objDiv.outerHTML = `<div id="divMyTutorialsList" class="post-grid grid-container grid-3 clearfix" data-layout="fitRows">` + txt + "</div>";
 }
+
 
 async function generateMyCodeList(divName)
 {
-    var html = HtmlUtils();
     var objDiv = document.getElementById(divName);
 
-    var lst = await db.getMyFiles();
+    var txt = "";
+
+    var lst = await lstMyFiles;
 
     for(var file of lst)
     {
         var d = new Date(file.creationDate);
 
-        var txt = `<article class="portfolio-item">
+        var txtElement = `<article class="portfolio-item">
             <div class="portfolio-desc">
                 <h3><a href="code.html?${file.id}">${file.name}</a></h3>
                 <span><i class="icon-calendar2"></i> ${d.toDateString() + " " + d.toLocaleTimeString()}</span>
@@ -248,6 +253,21 @@ async function generateMyCodeList(divName)
             </div>
         </article>`;
 
-        html.appendElement(txt, objDiv);
+        txt += txtElement + "\n";
     }
+
+    objDiv.innerHTML = txt;
 }
+
+
+// Aparently I have to re-init some controls when I manipulate them dynamically...
+function recalculateControls()
+{
+    var $gridContainer = $('.grid-container');
+    SEMICOLON.portfolio.gridInit( $gridContainer );
+    SEMICOLON.portfolio.filterInit();
+    SEMICOLON.portfolio.shuffleInit();
+    SEMICOLON.portfolio.arrange();
+    SEMICOLON.portfolio.portfolioDescMargin();
+}
+

@@ -1,0 +1,31 @@
+Q: Why choose codebeanz.com when you have so many other coding sites?
+A: codebeanz.com is specialy designed for kids with easy to follow tutorials written in a friendly language. Kids can choose whatever tutorial they want at their own pace. There are no quizes or milestones - just pure coding fun. 
+   By contrast, the majority of the other coding sites designed for adults are focused on career objectives.
+
+Q: Why learn coding?
+A: Coding is an essential 21st century skill it is digital literacy. Many schools around the world already introduced coding as a mandatory curriculum activity.
+   By learning to code you also improve your problem solving, math and spelling skills.
+
+Q: Why codebeanz.com is not using a visual blocks language?
+A: Visual Blocks languages such as Scratch have their own merits to introduce very young kids to the world of coding. However our opinion is that kids should transition as soon as possible to text based languages.
+   A text based language will help a kids develop not only real coding skills but also other important skills such as spelling. 
+   If kids in the 80s were able to learn coding using BASIC (a text based language written in rudimentary editors), we believe that contemporary childrens can also learn JavaScript using the advanced codebeanz.com environment.
+
+Q: Why teach graphics and games programming?
+A: We are using graphics and games programming as ways to capture the attention and light the imagination of young coders. What else should we teach a 10 years old: how to develop boring bussiness applications?
+   In addition to graphics and game programming we are also incorporating many math based curriculum activities.
+
+Q: What computer should I use to learn coding?
+A: Our codebeanz.com environment is Web based. Is running on any modern browser on most PCs and tablets. However, when coding, we strongly recomment to use a computer with a physical keyboard and mouse such as a Chromebook, Windows PC or Mac.
+   Coding requires to input many strange symbols that are very difficult to find and enter using a screen based keyboard.
+
+Q: What is the minimum age for codebeanz.com?
+A: codebeanz.com tutorials are designed for kids as young as 10! And even younger kids can have fun typing simple programs!
+   Don't forget that adults can have fun too with codebeanz.com -- especially if you are into game coding.
+
+Q: Can I create my own programs with codebeanz.com?
+A: Yes! On codebeanz.com we are offering unlimited space to create and store personal programs that you can share with others. 
+   You can code new programs from scratch, if you prefer so, or by starting from other programs found in tutorials or shared by friends.
+
+Q: What language are you teaching on codebeanz.com?
+A: On codebeanz.com we are teaching the most popular language nowadays: JavaScript.
