@@ -21,7 +21,7 @@
             "Lists" : ["intro_programming"],
             "DateAdded" : "2018.07.24 9:12PM",
             "Description" : "Imagine that you are in the 80s and you need to create a sprite using 1 and 0s.",
-            "Free" : "no"
+            "Free" : "yes"
         },
         {
             "Name" : "For loops",

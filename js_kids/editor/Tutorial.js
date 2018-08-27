@@ -72,7 +72,7 @@ function Tutorial()
         if (!oPage.Html)
         {
             var text = await tutorialProvider.getPage(oPage, oTutorial);
-            oPage.Html = markdownToHtml(text);
+            oPage.Html = markdownToHtml(text, oTutorial.Id);
         }
         
         renderHtml(oPage.Html, tutorialIframe);
@@ -157,14 +157,25 @@ function Tutorial()
     }
 
 
-    function markdownToHtml(text)
+    function markdownToHtml(text, tutorialId)
     {
         var converter = new showdown.Converter({tables: true, emoji : true});
+
+        var text = expandPaths(text, tutorialId);
         var html = converter.makeHtml(text);
 
         return html;
     }
 
+
+    function expandPaths(text, tutorialId)
+    {
+        if (!text || !tutorialId)
+            return text;
+
+        var path = tutorialProvider.getTutorialPath(tutorialId);
+        return text.replace(new RegExp("~", "g"), path);
+    }
 
     function renderHtml(html, objDiv)
     {
@@ -209,9 +220,10 @@ function Tutorial()
             if (!o || !o.href)
                 continue;
 
+            o.target = "_new";
+
             if (!o.href.startsWith(protocol))
             {
-                o.target = "_new";
                 continue;
             }
 
@@ -221,25 +233,25 @@ function Tutorial()
 
             o.href="code.html?t=" + tutorialId;
 
-            o.onclick = function(e) {
-                if (hasChanges())
-                {
-                    dialogs.confirm("<b>Discard changes ?</b><br><br>Note: You have unsaved changes in the current tutorial. Do you want to discard these changes and navigate to the new tutorial ?", ["Yes", "No"], 
-                    function() {
-                        parent.oShell.loadTutorial(tutorialId);
+            // o.onclick = function(e) {
+            //     if (hasChanges())
+            //     {
+            //         dialogs.confirm("<b>Discard changes ?</b><br><br>Note: You have unsaved changes in the current tutorial. Do you want to discard these changes and navigate to the new tutorial ?", ["Yes", "No"], 
+            //         function() {
+            //             parent.oShell.loadTutorial(tutorialId);
                         
-                        //Navigate by changing the Url
-                        //window.location.href = o.href;
-                    });
-                }
-                else
-                {
-                    parent.oShell.loadTutorial(tutorialId);
-                    //window.location.href = o.href;
-                }
+            //             //Navigate by changing the Url
+            //             //window.location.href = o.href;
+            //         });
+            //     }
+            //     else
+            //     {
+            //         parent.oShell.loadTutorial(tutorialId);
+            //         //window.location.href = o.href;
+            //     }
 
-                return false;
-            };
+            //     return false;
+            // };
         }
     }
 

@@ -53,6 +53,11 @@ function TutorialProvider()
         return response.ok ? response.text() : "";
     }
 
+    function getTutorialPath(id)
+    {
+        return "tutorials/" + id;
+    }
+
     function getTutorialUrl(id)
     {
         return "tutorials/" + id + "/index.json";
@@ -63,6 +68,7 @@ function TutorialProvider()
         getTutorial : getTutorial,
         getPageUrl : getPageUrl,
         getPage : getPage,
+        getTutorialPath : getTutorialPath,
         getSketchUrl : getSketchUrl
     }
 

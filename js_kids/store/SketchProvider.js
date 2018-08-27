@@ -73,7 +73,7 @@ function SketchProvider(_db)
     // Function verifies id format and returns if the sketch is a web file or should be loaded from web db...
     function isWebSketch(id)
     {
-        return id && id.length <= 5;
+        return id && (id.length <= 5 || id.indexOf("/") >= 0 );
     }
 
     // Note: Sketches contain user id in the comments section... therefore a brute search should find it...

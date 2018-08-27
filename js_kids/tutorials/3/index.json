@@ -1,0 +1,53 @@
+{
+    "Name" : "Blocky",
+    "Pages" : [
+        {
+            "Page" : "doc/01_intro.md",
+            "Sketch" : ""
+        },
+        {
+            "Page" : "doc/02_paper_size.md",
+            "Sketch" : "sketches/2.js"
+        },
+        {
+            "Page" : "doc/03_grid.md",
+            "Sketch" : "sketches/3.js"
+        },
+        {
+            "Page" : "doc/04_grid.md",
+            "Sketch" : "sketches/4.js"
+        },
+        {
+            "Page" : "doc/05_mouse.md",
+            "Sketch" : "sketches/5.js"
+        },
+        {
+            "Page" : "doc/06_findsquare.md",
+            "Sketch" : "sketches/6.js"
+        },
+        {
+            "Page" : "doc/07_loop.md",
+            "Sketch" : "sketches/7.js"
+        },
+        {
+            "Page" : "doc/08_loop_2.md",
+            "Sketch" : "sketches/7.js"
+        },
+        {
+            "Page" : "doc/08_loop_3.md",
+            "Sketch" : "sketches/8.js"
+        },
+        {
+            "Page" : "doc/09_displaycell.md",
+            "Sketch" : "sketches/9.js"
+        },
+        {
+            "Page" : "doc/10_displaycell_2.md",
+            "Sketch" : "sketches/8.js"
+        },
+        {
+            "Page" : "doc/11_conclusion.md",
+            "Sketch" : "sketches/10.js"
+        }
+    ]
+}
