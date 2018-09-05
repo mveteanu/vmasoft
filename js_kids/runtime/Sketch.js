@@ -478,6 +478,7 @@ function Sketch()
         g.key = key;
         g.keyCode = keyCode;
         g.keyIsPressed = keyIsPressed;
+        g.frameCount = frameCount;
     }
 
 

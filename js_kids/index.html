@@ -27,36 +27,10 @@
     <script src="firebase/FirebaseDB.js"></script>
 
 	<script src="site/site.js"></script>
+	<link rel="stylesheet" href="site/css/site.css" type="text/css" />
 
 	<title>CodeBeanz | Coding for kids</title>
 
-	<style>
-			#btnSignUp {
-				float: right;
-				margin: 33px 0;
-				-webkit-transition: margin .4s ease;
-				-o-transition: margin .4s ease;
-				transition: margin .4s ease;
-			}
-			
-			#header.sticky-header #btnSignUp { margin: 13px 0; }
-			
-			#btnSignUp a { margin: 0 0 0 15px; }
-			
-			#btnSignUp a:not(.button) { color: #FFF; }
-			#btnSignUp a:not(.button):hover { color: #DDD; }
-			
-			#header.sticky-header #btnSignUp a:not(.button) { color: #1ABC9C; }
-			#header.sticky-header #btnSignUp a:not(.button):hover { color: #111; }
-			
-			.device-md #btnSignUp {
-				position: absolute;
-				top: 0;
-				left: auto;
-				right: 15px;
-			}
-			</style>
-			
 
 </head>
 
@@ -80,6 +54,19 @@
 						<a href="index.html" class="standard-logo" data-dark-logo="site/images/codebeanz_logo.png"><img src="site/images/codebeanz_logo.png" alt="CodeBeanz Logo"></a>
 					</div>
 
+					<div id="top-account" class="dropdown" style="display:none;">
+						<a href="#" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icon-user"></i></a>
+						<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+							<span id="lblUser" class="dropdown-header tleft">Marian Veteanu<br>vmasoft@yahoo.com</span>
+							<div class="dropdown-divider"></div>
+							<!--<a class="dropdown-item tleft" href="#">Profile</a>
+							<a class="dropdown-item tleft" href="#">Students <span class="badge badge-pill badge-secondary fright" style="margin-top: 3px;">30</span></a>
+							<a class="dropdown-item tleft" href="#">Membership</a>
+							<div class="dropdown-divider"></div> -->
+							<a id="btnLogOut" class="dropdown-item tleft" href="#">Logout <i class="icon-signout"></i></a>
+						</ul>
+					</div>
+				
 					<!-- Primary Navigation
 					============================================= -->
 					<nav id="primary-menu">
@@ -93,26 +80,11 @@
 							</li>
 							<li><a href="educators.html"><div>Educators</div></a>
 							</li>
-							<li><a href="pricing.html"><div>Pricing</div></a>
-							</li>
 							<li id="btnLogIn"><a href="#modal-login-form" data-lightbox="inline" class="header-login-trigger"><div>Sign In</div></a>
 							</li>
-							<li id="btnSignUp" class="d-none"><div><a href="#" class="button button-small button-circle button-border button-green">Join for free</a></div>
+							<li id="btnSignUp" class="d-none"><div><a href="signup.html" class="button button-small button-circle button-border button-green">Join for free</a></div>
 							</li>
 						</ul>
-
-						<div id="top-account" class="dropdown" style="display:none;">
-							<a href="#" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icon-user"></i></a>
-							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-								<span id="lblUser" class="dropdown-header tleft">Marian Veteanu<br>vmasoft@yahoo.com</span>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item tleft" href="#">Profile</a>
-								<a class="dropdown-item tleft" href="#">Students <span class="badge badge-pill badge-secondary fright" style="margin-top: 3px;">30</span></a>
-								<a class="dropdown-item tleft" href="#">Membership</a>
-								<div class="dropdown-divider"></div>
-								<a id="btnLogOut" class="dropdown-item tleft" href="#">Logout <i class="icon-signout"></i></a>
-							</ul>
-						</div>
 	
 					</nav><!-- #primary-menu end -->
 
@@ -165,7 +137,7 @@
 
 				<div class="col_five_sixth">
 					<button id="btnShowTutorials" class="button button-border button-border-thin button-teal">Tutorials</button> 
-					<button id="btnShowMySketches" class="button button-border button-border-thin button-teal">My Sketches</button>
+					<button id="btnShowMySketches" class="button button-border button-border-thin button-teal">My Programs</button>
 				</div>
 
 				<div class="col_one_sixth col_last">
@@ -209,7 +181,7 @@
 
 			<div id="divMySketches" class="container clearfix d-none">
 				<div class="heading-block topmargin bottommargin noborder">
-					<h2 class="center">My sketches</h2>
+					<h2 class="center">My programs</h2>
 				</div>
 
 				<div id="divMySketchesGrid" class="portfolio portfolio-3 portfolio-nomargin clearfix">

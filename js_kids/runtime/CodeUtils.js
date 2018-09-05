@@ -148,6 +148,17 @@ function CodeUtils(code)
             {
                 p5.prototype.frameRate.apply(window, arguments);
             }
+
+            function cursor()
+            {
+                p5.prototype.cursor.apply(window, arguments);
+            }
+
+            function noCursor()
+            {
+                p5.prototype.noCursor.apply(window, arguments);
+            }
+
             `;
     }
 

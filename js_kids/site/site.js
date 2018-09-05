@@ -37,39 +37,62 @@ window.onload = function()
     
     btnLogOut.addEventListener("click", HandleBtnLogOutClick);
     btnSignInOK.addEventListener("click", HandleBtnSignInOKClick);
-    btnShowTutorials.addEventListener("click", HandleBtnShowTutorialsClick);
-    btnShowMySketches.addEventListener("click", HandleBtnShowMySketchesClick);
-    btnCode.addEventListener("click", HandleBtnCodeClick);
 
-    db = FirebaseDB(HandleAuthChanged);    
+    if (btnShowTutorials)
+        btnShowTutorials.addEventListener("click", HandleBtnShowTutorialsClick);
+
+    if (btnShowMySketches)
+        btnShowMySketches.addEventListener("click", HandleBtnShowMySketchesClick);
+
+    if (btnCode)
+        btnCode.addEventListener("click", HandleBtnCodeClick);
+
+    db = FirebaseDB(HandleAuthChanged);
 }
 
-
-
 function HandleAuthChanged(user)
+{
+    UpdateHeaders(user);
+    UpdateMainPage(user);
+}
+
+function UpdateHeaders(user)
 {
     if (user)
     {
         btnLogIn.style.display = "none";
         btnSignUp.classList.remove("d-md-block");
         mnuUser.style.display = "block";
-        introBanner.style.display = "none";
-        divPageTitle.style.display = "block";
 
-        var userName = db.getAccountName(user);
-
-        lblUser.innerText = userName;
+        lblUser.innerText = db.getAccountName(user);
         lblUser.style.color = "";
-
-        lblUserWelcome.innerText = "Welcome " + userName;
-
-        divStaticTutorials.classList.add("d-none");
-        divMyTutorials.classList.remove("d-none");
 
         db.getStudentDetails().then(function(userData) {
             userActive = userData && userData.active;
             lblUser.style.color = userActive ? "" : "red";
         });
+    }
+    else
+    {
+        btnLogIn.style.display = "block";
+        btnSignUp.classList.add("d-md-block");
+        mnuUser.style.display = "none";
+    }
+}
+
+function UpdateMainPage(user)
+{
+    if (!introBanner)
+        return;
+    
+    if (user)
+    {
+        introBanner.style.display = "none";
+        divPageTitle.style.display = "block";
+        lblUserWelcome.innerText = "Welcome " + db.getAccountName(user);
+
+        divStaticTutorials.classList.add("d-none");
+        divMyTutorials.classList.remove("d-none");
 
         lstMyFiles = db.getMyFiles();
 
@@ -80,16 +103,13 @@ function HandleAuthChanged(user)
     }
     else
     {
-        btnLogIn.style.display = "block";
-        btnSignUp.classList.add("d-md-block");
-        mnuUser.style.display = "none";
         introBanner.style.display = "block";
         divPageTitle.style.display = "none";
-
         divStaticTutorials.classList.remove("d-none");
         divMyTutorials.classList.add("d-none");
     }
 }
+
 
 
 async function HandleBtnLogOutClick(e)
@@ -121,7 +141,6 @@ async function HandleBtnSignInOKClick(e)
     {
         var errorCode = error.code;
         var errorMessage = error.message;
-
         
         var lblLoginMessage = document.getElementById("lblLoginMessage");
         lblLoginMessage.innerHTML = errorMessage;
