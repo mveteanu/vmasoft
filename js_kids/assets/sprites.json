@@ -2,7 +2,6 @@
     "Sprites" : 
     [
 
-
         {
             "Name" : "adventure_girl",
             "Tags" : ["adventure", "girl"],
@@ -47,26 +46,26 @@
             [
                 {
                     "Name" : "idle",
-                    "Images" : ["assets/sprites/Santa/Idle (1).png", "assets/sprites/Santa/Idle (2).png", "assets/sprites/Santa/Idle (3).png", "assets/sprites/Santa/Idle (4).png", "assets/sprites/Santa/Idle (5).png", "assets/sprites/Santa/Idle (6).png", "assets/sprites/Santa/Idle (7).png", "assets/sprites/Santa/Idle (8).png", "assets/sprites/Santa/Idle (9).png", "assets/sprites/Santa/Idle (10).png", "assets/sprites/Santa/Idle (11).png", "assets/sprites/Santa/Idle (12).png", "assets/sprites/Santa/Idle (13).png", "assets/sprites/Santa/Idle (14).png", "assets/sprites/Santa/Idle (15).png", "assets/sprites/Santa/Idle (16).png"]
+                    "Images" : ["assets/sprites/santa/Idle (1).png", "assets/sprites/santa/Idle (2).png", "assets/sprites/santa/Idle (3).png", "assets/sprites/santa/Idle (4).png", "assets/sprites/santa/Idle (5).png", "assets/sprites/santa/Idle (6).png", "assets/sprites/santa/Idle (7).png", "assets/sprites/santa/Idle (8).png", "assets/sprites/santa/Idle (9).png", "assets/sprites/santa/Idle (10).png", "assets/sprites/santa/Idle (11).png", "assets/sprites/santa/Idle (12).png", "assets/sprites/santa/Idle (13).png", "assets/sprites/santa/Idle (14).png", "assets/sprites/santa/Idle (15).png", "assets/sprites/santa/Idle (16).png"]
                 },
                 {
                     "Name" : "walk",
-                    "Images" : ["assets/sprites/Santa/Walk (1).png", "assets/sprites/Santa/Walk (2).png", "assets/sprites/Santa/Walk (3).png", "assets/sprites/Santa/Walk (4).png", "assets/sprites/Santa/Walk (5).png", "assets/sprites/Santa/Walk (6).png", "assets/sprites/Santa/Walk (7).png", "assets/sprites/Santa/Walk (8).png", "assets/sprites/Santa/Walk (9).png", "assets/sprites/Santa/Walk (10).png", "assets/sprites/Santa/Walk (11).png", "assets/sprites/Santa/Walk (12).png", "assets/sprites/Santa/Walk (13).png"]
+                    "Images" : ["assets/sprites/santa/Walk (1).png", "assets/sprites/santa/Walk (2).png", "assets/sprites/santa/Walk (3).png", "assets/sprites/santa/Walk (4).png", "assets/sprites/santa/Walk (5).png", "assets/sprites/santa/Walk (6).png", "assets/sprites/santa/Walk (7).png", "assets/sprites/santa/Walk (8).png", "assets/sprites/santa/Walk (9).png", "assets/sprites/santa/Walk (10).png", "assets/sprites/santa/Walk (11).png", "assets/sprites/santa/Walk (12).png", "assets/sprites/santa/Walk (13).png"]
                 },
                 {
                     "Name" : "run",
-                    "Images" : ["assets/sprites/Santa/Run (1).png", "assets/sprites/Santa/Run (2).png", "assets/sprites/Santa/Run (3).png", "assets/sprites/Santa/Run (4).png", "assets/sprites/Santa/Run (5).png", "assets/sprites/Santa/Run (6).png", "assets/sprites/Santa/Run (7).png", "assets/sprites/Santa/Run (8).png", "assets/sprites/Santa/Run (9).png", "assets/sprites/Santa/Run (10).png", "assets/sprites/Santa/Run (11).png"]
+                    "Images" : ["assets/sprites/santa/Run (1).png", "assets/sprites/santa/Run (2).png", "assets/sprites/santa/Run (3).png", "assets/sprites/santa/Run (4).png", "assets/sprites/santa/Run (5).png", "assets/sprites/santa/Run (6).png", "assets/sprites/santa/Run (7).png", "assets/sprites/santa/Run (8).png", "assets/sprites/santa/Run (9).png", "assets/sprites/santa/Run (10).png", "assets/sprites/santa/Run (11).png"]
                 },
                 {
                     "Name" : "jump",
-                    "Images" : ["assets/sprites/Santa/Jump (1).png", "assets/sprites/Santa/Jump (2).png", "assets/sprites/Santa/Jump (3).png", "assets/sprites/Santa/Jump (4).png", "assets/sprites/Santa/Jump (5).png", "assets/sprites/Santa/Jump (6).png", "assets/sprites/Santa/Jump (7).png", "assets/sprites/Santa/Jump (8).png", "assets/sprites/Santa/Jump (9).png", "assets/sprites/Santa/Jump (10).png", "assets/sprites/Santa/Jump (11).png", "assets/sprites/Santa/Jump (12).png", "assets/sprites/Santa/Jump (13).png", "assets/sprites/Santa/Jump (14).png", "assets/sprites/Santa/Jump (15).png", "assets/sprites/Santa/Jump (16).png"]
+                    "Images" : ["assets/sprites/santa/Jump (1).png", "assets/sprites/santa/Jump (2).png", "assets/sprites/santa/Jump (3).png", "assets/sprites/santa/Jump (4).png", "assets/sprites/santa/Jump (5).png", "assets/sprites/santa/Jump (6).png", "assets/sprites/santa/Jump (7).png", "assets/sprites/santa/Jump (8).png", "assets/sprites/santa/Jump (9).png", "assets/sprites/santa/Jump (10).png", "assets/sprites/santa/Jump (11).png", "assets/sprites/santa/Jump (12).png", "assets/sprites/santa/Jump (13).png", "assets/sprites/santa/Jump (14).png", "assets/sprites/santa/Jump (15).png", "assets/sprites/santa/Jump (16).png"]
                 },
                 {
                     "Name" : "slide",
-                    "Images" : ["assets/sprites/Santa/Slide (1).png", "assets/sprites/Santa/Slide (2).png", "assets/sprites/Santa/Slide (3).png", "assets/sprites/Santa/Slide (4).png", "assets/sprites/Santa/Slide (5).png", "assets/sprites/Santa/Slide (6).png", "assets/sprites/Santa/Slide (7).png", "assets/sprites/Santa/Slide (8).png", "assets/sprites/Santa/Slide (9).png", "assets/sprites/Santa/Slide (10).png", "assets/sprites/Santa/Slide (11).png"]
+                    "Images" : ["assets/sprites/santa/Slide (1).png", "assets/sprites/santa/Slide (2).png", "assets/sprites/santa/Slide (3).png", "assets/sprites/santa/Slide (4).png", "assets/sprites/santa/Slide (5).png", "assets/sprites/santa/Slide (6).png", "assets/sprites/santa/Slide (7).png", "assets/sprites/santa/Slide (8).png", "assets/sprites/santa/Slide (9).png", "assets/sprites/santa/Slide (10).png", "assets/sprites/santa/Slide (11).png"]
                 }
             ],
-            "Thumb" : "assets/sprites/Santa/Idle (1).png"
+            "Thumb" : "assets/sprites/santa/Idle (1).png"
         },
 
         {
@@ -407,22 +406,6 @@
         },
 
         {
-            "Name" : "askterisk_stretching",
-            "Tags" : ["asterisk"],
-            "Animations" : 
-            [
-                {
-                    "Name" : "stretch",
-                    "Images" : ["assets/sprites/asterisk_stretching0001.png", "assets/sprites/asterisk_stretching0002.png", "assets/sprites/asterisk_stretching0003.png", "assets/sprites/asterisk_stretching0004.png", "assets/sprites/asterisk_stretching0005.png", "assets/sprites/asterisk_stretching0006.png", "assets/sprites/asterisk_stretching0007.png", "assets/sprites/asterisk_stretching0008.png"]
-                },
-                {
-                    "Name" : "explode",
-                    "Images" : ["assets/sprites/asterisk_explode0001.png", "assets/sprites/asterisk_explode0002.png", "assets/sprites/asterisk_explode0003.png", "assets/sprites/asterisk_explode0004.png", "assets/sprites/asterisk_explode0005.png", "assets/sprites/asterisk_explode0006.png", "assets/sprites/asterisk_explode0007.png", "assets/sprites/asterisk_explode0008.png", "assets/sprites/asterisk_explode0009.png", "assets/sprites/asterisk_explode0010.png", "assets/sprites/asterisk_explode0011.png"]
-                }
-            ],
-            "Thumb" : "assets/sprites/asterisk_stretching0001.png"
-        },
-        {
             "Name" : "daffy",
             "Tags" : ["cartoons"],
             "Animations" : 
@@ -445,19 +428,6 @@
                 }
             ],
             "Thumb" : "assets/sprites/robot.png"
-        },
-        {
-            "Name" : "asterisk_explode",
-            "Tags": ["asterisk"],
-            "Animations" : 
-            [
-                {
-                    "Name" : "explode",
-                    "Images" : ["assets/sprites/explode_sprite_sheet.png"],
-                    "InferFrames" : { "count" : 11, "width" : 171, "height" : 158 }
-                }
-            ],
-            "Thumb" : "assets/sprites/explode_sprite_sheet.png"
         }
     ]
 }

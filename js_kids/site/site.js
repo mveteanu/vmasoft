@@ -261,6 +261,7 @@ async function generateMyCodeList(divName)
     {
         var d = new Date(file.creationDate);
 
+        /*
         var txtElement = `<article class="portfolio-item">
             <div class="portfolio-desc">
                 <h3><a href="code.html?${file.id}">${file.name}</a></h3>
@@ -271,6 +272,18 @@ async function generateMyCodeList(divName)
                 <a href="#" class="right-icon"><i class="icon-remove"></i></a>
             </div>
         </article>`;
+        */
+
+        var txtElement = `<article class="portfolio-item">
+            <div class="portfolio-desc">
+                <h3><a href="code.html?${file.id}">${file.name}</a></h3>
+                <span><i class="icon-calendar2"></i> ${d.toDateString() + " " + d.toLocaleTimeString()}</span>
+            </div>
+            <div class="portfolio-overlay">
+                <a href="code.html?${file.id}" class="left-icon"><i class="icon-edit"></i></a>
+            </div>
+        </article>`;
+
 
         txt += txtElement + "\n";
     }

@@ -26,6 +26,7 @@ function Shell()
     var btnSave;
     var btnFork;
     var btnReload;
+    var btnShare;
 
     var mode = ShellMode.Both;
 
@@ -143,10 +144,12 @@ function Shell()
         isReadOnly = readOnly;
 
         html.showInlineElement( btnEditTitle, !readOnly );
-        
-        html.showInlineElement( btnFork, readOnly );
+
+        html.showInlineElement( btnFork, readOnly || addedSketch.Id );
         html.showInlineElement( btnSave, !readOnly );
         html.showInlineElement( btnReload, readOnly );
+
+        html.showInlineElement( btnShare, addedSketch.Id || oParams.isTutorial() );
     }
 
 
@@ -169,13 +172,13 @@ function Shell()
         return pk.pack(o);
     }
 
-    async function saveSketch()
+    async function saveSketch(bSaveAs)
     {
         if ( getAuthStatus(oUser) != UserStatus.Authenticated )
             return null;
         
         var o = getSketch();
-        var id = !isReadOnly ? o.Id : "";
+        var id = !bSaveAs && !isReadOnly ? o.Id : "";
 
         var r = await sketchProvider.save(o, id);
         if (!r || r.state != "success" || !r.metadata)
@@ -183,7 +186,7 @@ function Shell()
 
         var newId = r.metadata.name;
 
-        if(o.Name != addedSketch.Name || isReadOnly)
+        if(o.Name != addedSketch.Name || isReadOnly || bSaveAs)
         {
             await sketchProvider.setName(newId, o.Name);
         }
@@ -256,6 +259,7 @@ function Shell()
         btnSave = html.findElement("btnSave");
         btnFork = html.findElement("btnFork");
         btnReload = html.findElement("btnReload");
+        btnShare = html.findElement("btnShare");
         tcEditor = TabEditor("tabcontrol", "pages");
         sketchProvider = SketchProvider(db);
         barBackgrounds = BackgroundsBar("barBackgrounds", "barBackgroundsPages");
@@ -269,8 +273,9 @@ function Shell()
         addButtonsEventHandlers("closesidebar", handleSidebarCloseButtonClick);
         addButtonEventHandler("btnPlay", handlePlayButtonClick);
         addButtonEventHandler("btnReload", handleSketchReload);
-        addButtonEventHandler("btnSave", handleSketchSaveOrFork);
-        addButtonEventHandler("btnFork", handleSketchSaveOrFork);
+        addButtonEventHandler("btnSave", handleSketchSave);
+        addButtonEventHandler("btnFork", handleSketchFork);
+        addButtonEventHandler("btnShare", handleShare)
 
         lblSketchTitle.addEventListener('blur', handleEditTitleExit, false);
         lblSketchTitle.addEventListener('dblclick', handleEditTitleButtonClick, false);
@@ -450,6 +455,11 @@ function Shell()
         }
     }
 
+    function handleShare(e)
+    {
+        alert("Share program or tutorial...")
+    }
+
     function handleSketchReload(e)
     {
         if (!addedSketch || !isReadOnly)
@@ -468,22 +478,31 @@ function Shell()
                 });
     }
 
+    async function handleSketchSave()
+    {
+        handleSketchSaveOrFork(false);
+    }
 
-    async function handleSketchSaveOrFork(e)
+    async function handleSketchFork()
+    {
+        handleSketchSaveOrFork(true);
+    }
+
+    async function handleSketchSaveOrFork(bSaveAs)
     {
         var userStatus = showAndGetAuthStatus(oUser);
 
         if (userStatus != UserStatus.Authenticated)
             return;
 
-        if (!isReadOnly && !hasChanges())
+        if (!isReadOnly && !hasChanges() && !bSaveAs)
         {
             dialogs.notify("No changes.", 1);
             return;
         }
 
         var currId = addedSketch != null ? addedSketch.Id : "";
-        var newId = await saveSketch();
+        var newId = await saveSketch(bSaveAs);
 
         if (!newId)
         {
@@ -604,7 +623,7 @@ function Shell()
     async function closeEditor()
     {
         if (!oParams.isTutorial() && !isReadOnly && hasChanges())
-            await saveSketch();
+            await saveSketch(false);
 
         var bHasChanges = oParams.isTutorial() ? tutorial.hasChanges() : hasChanges();
         if (bHasChanges)
