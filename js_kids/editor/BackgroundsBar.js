@@ -55,30 +55,38 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
         var lst = FilterList("lstColors");
         lst.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
 
-        lst.setItemTemplate(`<div class="filterlistitem color"><div style='width: 100%; height: 30px; margin-bottom: 2px; background-color:$data1'></div><div>$data0</div></div>`);
+        lst.setItemTemplate(`<div class="filterlistitem color" draggable="true"><div style='width: 100%; height: 30px; margin-bottom: 2px; background-color:$Color'></div><div>$ColorName</div></div>`);
 
         for(var c of colors.Red) 
-            lst.addItem( c, ["Red"], [ c, c ] );
+            lst.addItem( c, ["Red"], wrapColor(c));
         for(var c of colors.Pink) 
-            lst.addItem( c, ["Pink"], [ c, c ] );
+            lst.addItem( c, ["Pink"], wrapColor(c));
         for(var c of colors.Orange) 
-            lst.addItem( c, ["Orange"], [ c, c ] );
+            lst.addItem( c, ["Orange"], wrapColor(c));
         for(var c of colors.Yellow) 
-            lst.addItem( c, ["Yellow"], [ c, c ] );
+            lst.addItem( c, ["Yellow"], wrapColor(c));
         for(var c of colors.Purple) 
-            lst.addItem( c, ["Purple"], [ c, c ] );
+            lst.addItem( c, ["Purple"], wrapColor(c));
         for(var c of colors.Green) 
-            lst.addItem( c, ["Green"], [ c, c ] );
+            lst.addItem( c, ["Green"], wrapColor(c));
         for(var c of colors.Blue) 
-            lst.addItem( c, ["Blue"], [ c, c ] );
+            lst.addItem( c, ["Blue"], wrapColor(c));
         for(var c of colors.Brown) 
-            lst.addItem( c, ["Brown"], [ c, c ] );
+            lst.addItem( c, ["Brown"], wrapColor(c));
         for(var c of colors.White) 
-            lst.addItem( c, ["White"], [ c, c ] );
+            lst.addItem( c, ["White"], wrapColor(c));
         for(var c of colors.Gray) 
-            lst.addItem( c, ["Gray"], [ c, c ] );
+            lst.addItem( c, ["Gray"], wrapColor(c));
     }
 
+    function wrapColor(c)
+    {
+        return {
+            Color : c,
+            ColorName : c,
+            DragText : "background('" + c + "');\n"
+        };
+    }
 
 
     function initImages()
@@ -94,12 +102,13 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
         var lst = FilterList("lstImages");
         lst.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
 
-        lst.setItemTemplate(`<div class="filterlistitem image"><img width="100%" src="$data1"><div>$data0</div></div>`);
+        lst.setItemTemplate(`<div class="filterlistitem image"><img width="100%" src="$Thumb"><div>$Name</div></div>`);
 
         mapBackgrounds.forEach( (value, key, map) => {
             if (value)
             {
-                lst.addItem( value.Name, value.Tags, [ value.Name, value.Thumb ] );
+                value.DragText = "background('" + value.Name + "');\n";
+                lst.addItem( value.Name, value.Tags, value );
             }
         } );
     }
@@ -109,7 +118,7 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
         var lst = FilterList("lstEffects");
         lst.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
 
-        lst.setItemTemplate(`<div class="filterlistitem"><div>$data0</div></div>`);
+        lst.setItemTemplate(`<div class="filterlistitem"><div>$Name</div></div>`);
     }
 
     function initScrollingImages()
@@ -117,7 +126,7 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
         var lst = FilterList("lstEffects");
         lst.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
 
-        lst.setItemTemplate(`<div class="filterlistitem"><div>$data0</div></div>`);
+        lst.setItemTemplate(`<div class="filterlistitem"><div>$Name</div></div>`);
     }
 
 
@@ -126,15 +135,15 @@ function BackgroundsBar(tcBackgrounds, tcBackgroundsPages)
         var lst = FilterList("lstEffects");
         lst.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
 
-        lst.setItemTemplate(`<div class="filterlistitem"><div>$data0</div></div>`);
+        lst.setItemTemplate(`<div class="filterlistitem"><div>$Name</div></div>`);
     }
 
     function handleItemSelected(sender, eventArgs)
     {
-        if (!eventArgs || !eventArgs.Item)
+        if (!eventArgs || !eventArgs.Item || !eventArgs.Item.Data)
             return;
 
-        oExampleValue.innerHTML = "background( '" + eventArgs.Item.Name + "' ) <i class='far fa-copy'></i>";
+        oExampleValue.innerHTML = eventArgs.Item.Data.DragText + " <i class='far fa-copy'></i>";
     }
 
     function handleExampleClick(e)

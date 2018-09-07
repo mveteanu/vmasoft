@@ -24,14 +24,17 @@ function FilterList(idList)
         itemTemplate = _itemTemplate;
     }
 
-
     function addItem(name, tags, data)
     {
         var txt = buildItemHtml(data);
 
         var oItem = html.appendElement(txt, oItemsContainer);
         oItem.addEventListener("click", handleItemClick)
-        arAddedItems.push( { Name : name, Tags : tags, Element : oItem } );
+        oItem.addEventListener("dragstart", function(ev) {
+            var text = data ? data.DragText || "" : "";
+            ev.dataTransfer.setData("text", text);
+        });
+        arAddedItems.push( { Name : name, Tags : tags, Data : data, Element : oItem } );
 
         addTags(tags);
 
@@ -65,8 +68,8 @@ function FilterList(idList)
 
         var txt = itemTemplate;
 
-        for(var i = 0; i < data.length; i++)
-            txt = txt.replace("$data" + i, data[i]);
+        for(var p in data)
+            txt = txt.replace("$" + p, data[p]);
 
         return txt;
     }

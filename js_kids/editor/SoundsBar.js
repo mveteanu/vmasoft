@@ -15,22 +15,23 @@ function SoundsBar(tcSounds, tcSoundsPages)
 
         var mapSounds = oSketch._AssetsData.getSounds();
         if (mapSounds)
-            fillList("lstSoundsEffects", mapSounds, handleSoundSelected);
+            fillList("lstSoundsEffects", mapSounds, "sound");
 
         var mapMusic = oSketch._AssetsData.getMusics();
         if (mapMusic)
-            fillList("lstSoundsMusic", mapMusic, handleMusicSelected);
+            fillList("lstSoundsMusic", mapMusic, "music");
     }
 
 
-    function fillList(lstId, map, fnClick)
+    function fillList(lstId, map, usage)
     {
         var lst = FilterList(lstId);
-        lst.addEventListener(FilterListEvents.OnItemSelected, fnClick);
-        lst.setItemTemplate(`<div class="filterlistitem sound"><i class="fas fa-volume-up"></i><div style='padding-top: 5px;'>$data0</div></div>`);
+        lst.addEventListener(FilterListEvents.OnItemSelected, handleSoundSelected);
+        lst.setItemTemplate(`<div class="filterlistitem sound" draggable="true"><i class="fas fa-volume-up"></i><div style='padding-top: 5px;'>$Name</div></div>`);
     
         map.forEach( (value, key, map) => {
-            lst.addItem( value.Name, value.Tags, [ value.Name ] );
+            value.DragText = usage + "('" + value.Name + "');\n";
+            lst.addItem( value.Name, value.Tags, value );
         } );
     }
 
@@ -47,18 +48,10 @@ function SoundsBar(tcSounds, tcSoundsPages)
 
     function handleSoundSelected(sender, eventArgs)
     {
-        if (!eventArgs || !eventArgs.Item)
+        if (!eventArgs || !eventArgs.Item || !eventArgs.Item.Data)
             return;
 
-        oExampleValue.innerHTML = "sound( '" + eventArgs.Item.Name + "' ) <i class='far fa-copy'></i>";
-    }
-
-    function handleMusicSelected(sender, eventArgs)
-    {
-        if (!eventArgs || !eventArgs.Item)
-            return;
-
-        oExampleValue.innerHTML = "music( '" + eventArgs.Item.Name + "' ) <i class='far fa-copy'></i>";
+        oExampleValue.innerHTML = eventArgs.Item.Data.DragText + " <i class='far fa-copy'></i>";
     }
 
     function handleExampleClick(e)

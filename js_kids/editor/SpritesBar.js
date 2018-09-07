@@ -15,11 +15,11 @@ function SpritesBar(tcSprites, tcSpritesPages)
 
         var lstStatic = FilterList("lstSpriteStatic");
         lstStatic.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
-        lstStatic.setItemTemplate(`<div class="filterlistitem image"><img style="height:155px; max-width:100%;" src="$data1"><div>$data0</div></div>`);
+        lstStatic.setItemTemplate(`<div class="filterlistitem image" draggable="true"><img style="height:155px; max-width:100%;" src="$Thumb"><div>$Name</div></div>`);
         
         var lstAnimated = FilterList("lstSpriteAnimated");
         lstAnimated.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
-        lstAnimated.setItemTemplate(`<div class="filterlistitem image"><img style="height:155px; max-width:100%" src="$data1"><div>$data0</div></div>`);
+        lstAnimated.setItemTemplate(`<div class="filterlistitem image" draggable="true"><img style="height:155px; max-width:100%" src="$Thumb"><div>$Name</div></div>`);
 
         mapSprites.forEach( (value, key, map) => {
                 addSprite(value, lstStatic, lstAnimated)
@@ -43,11 +43,13 @@ function SpritesBar(tcSprites, tcSpritesPages)
         if (!value || !value.Animations)
             return;
 
+        value.DragText = "sprite('" + value.Name + "');\n";
+
         var lst = isAnimated(value) ? lstAnimated : lstStatic;
 
-        lst.addItem( value.Name, value.Tags, [ value.Name, value.Thumb ] );
+        lst.addItem( value.Name, value.Tags, value );
     }
-
+    
     function isAnimated(value)
     {
         if ( value.Animations.length > 1 )
@@ -73,10 +75,10 @@ function SpritesBar(tcSprites, tcSpritesPages)
 
     function handleItemSelected(sender, eventArgs)
     {
-        if (!eventArgs || !eventArgs.Item)
+        if (!eventArgs || !eventArgs.Item || !eventArgs.Item.Data)
             return;
 
-        oExampleValue.innerHTML = "sprite( '" + eventArgs.Item.Name + "' ) <i class='far fa-copy'></i>";
+        oExampleValue.innerHTML = eventArgs.Item.Data.DragText + " <i class='far fa-copy'></i>";
     }
     
     function handleExampleClick(e)

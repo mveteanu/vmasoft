@@ -29,3 +29,6 @@ A: Yes! On codebeanz.com we are offering unlimited space to create and store per
 
 Q: What language are you teaching on codebeanz.com?
 A: On codebeanz.com we are teaching the most popular language nowadays: JavaScript.
+
+Q: Why learning through games and creative programming?
+A: Games and animations are the first type of applications that a kid encounters on either personal computers or mobile devices. Therefore kids are very motivated to create and share their own games with friends and family.
