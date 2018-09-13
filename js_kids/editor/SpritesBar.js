@@ -15,11 +15,11 @@ function SpritesBar(tcSprites, tcSpritesPages)
 
         var lstStatic = FilterList("lstSpriteStatic");
         lstStatic.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
-        lstStatic.setItemTemplate(`<div class="filterlistitem image" draggable="true"><img style="height:155px; max-width:100%;" src="$Thumb"><div>$Name</div></div>`);
+        lstStatic.setItemTemplate(`<div class="filterlistitem image" draggable="true"><img style="height:155px; max-width:100%;" src="$Thumb" title="$Tooltip"><div>$Name</div></div>`);
         
         var lstAnimated = FilterList("lstSpriteAnimated");
         lstAnimated.addEventListener(FilterListEvents.OnItemSelected, handleItemSelected);
-        lstAnimated.setItemTemplate(`<div class="filterlistitem image" draggable="true"><img style="height:155px; max-width:100%" src="$Thumb"><div>$Name</div></div>`);
+        lstAnimated.setItemTemplate(`<div class="filterlistitem image" draggable="true"><img style="height:155px; max-width:100%" src="$Thumb" title="$Tooltip"><div>$Name</div></div>`);
 
         mapSprites.forEach( (value, key, map) => {
                 addSprite(value, lstStatic, lstAnimated)
@@ -44,12 +44,29 @@ function SpritesBar(tcSprites, tcSpritesPages)
             return;
 
         value.DragText = "sprite('" + value.Name + "');\n";
+        value.Tooltip = getTooltip(value);
 
         var lst = isAnimated(value) ? lstAnimated : lstStatic;
 
         lst.addItem( value.Name, value.Tags, value );
     }
     
+    function getTooltip(value)
+    {
+        var noAnimations = value.Animations.length;
+        if (noAnimations <= 1)
+            return `sprite('${value.Name}');`;
+
+        var txt = "";
+
+        for(var i = 0; i < noAnimations; i++)
+        {
+            txt += "p.show('" + value.Animations[i].Name + "');\n";
+        }
+
+        return `var p = sprite('${value.Name}');\n...\n${txt}`;
+    }
+
     function isAnimated(value)
     {
         if ( value.Animations.length > 1 )

@@ -21,7 +21,8 @@
 
 - use * tippyjs for the buttons in the actionbar
 
-
+- allow passing animation name in the sprite("sprite.animation") function...
+  (useful when having a sprite full of single frame animations -- eg. for ui: buttons.ok, etc. )
 
 TUTORIALS
 =========

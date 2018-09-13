@@ -1,0 +1,167 @@
+{
+    "Commands" : {
+        "Structure" : [
+            {
+                "Text" : "for",
+                "Code" : "for(let i = 0; i < 5; i++)\n{\n}\n",
+                "Desc" : "for loop can be used to execute a block of code a number of times.",
+                "Tags" : ["loop"]
+            },
+            {
+                "Text" : "while",
+                "Code" : "while(i < 100)\n{\n\t// ...\n\ti++;\n}\n",
+                "Desc" : "Run the block continously while the condition is true.",
+                "Tags" : ["loop"]
+            },
+            {
+                "Text" : "do - while",
+                "Code" : "do\n{\n\t// ...\n\ti++;\n}\nwhile(i < 100)\n",
+                "Desc" : "Run the block once, then re-run the block as long as the condition is true.",
+                "Tags" : ["loop"]
+            },
+            {
+                "Text" : "if",
+                "Code" : "if (mouseX < width)\n{\n}\n",
+                "Desc" : "Use the if statement to run a block of code only when a condition is met.",
+                "Tags" : ["condition"]
+            },
+            {
+                "Text" : "if - else",
+                "Code" : "if (hour < 12)\n{\n}\nelse\n{\n}\n",
+                "Desc" : "Execute the first block when the condition is met, othewise execute the second block.",
+                "Tags" : ["condition"]
+            },
+            {
+                "Text" : "if - else if",
+                "Code" : "if (minute <= 15)\n{\n}\nelse if(minute <= 30)\n{\n}\nelse\n{\n}\n",
+                "Desc" : "Use else if to specify a new condition when the previous condition is false.",
+                "Tags" : ["condition"]
+            },
+            {
+                "Text" : "switch",
+                "Code" : "switch(myExpresion)\n{\n\tcase 100:\n\t\t//...\n\t\tbreak;\n\tcase 200:\n\t\t//...\n\t\tbreak;\n\tcase 300:\n\t\t//...\n\t\tbreak;\n\tdefault:\n\t\t//...\n}\n",
+                "Desc" : "Use switch to execute codeblocks that meet the criteria.",
+                "Tags" : ["condition"]
+            }
+        ],
+        "Events" : [
+            {
+                "Text" : "enter",
+                "Code" : "function enter()\n{\n}\n",
+                "Desc" : "Executes once each time the scene is shown.",
+                "Tags" : ["control"]
+            },
+            {
+                "Text" : "loop",
+                "Code" : "function loop()\n{\n}\n",
+                "Desc" : "Execute continously x times per second.",
+                "Tags" : ["control"]
+            },
+            {
+                "Text" : "mouseClicked",
+                "Code" : "function mouseClicked()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "mousePressed",
+                "Code" : "function mousePressed()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "mouseReleased",
+                "Code" : "function mouseReleased()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "mouseMoved",
+                "Code" : "function mouseMoved()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "mouseDragged",
+                "Code" : "function mouseDragged()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "doubleClicked",
+                "Code" : "function doubleClicked()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "mouseWheel",
+                "Code" : "function mouseWheel()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "keyPressed",
+                "Code" : "function keyPressed()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["keyboard"]
+            },
+            {
+                "Text" : "keyReleased",
+                "Code" : "function keyReleased()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["keyboard"]
+            },
+            {
+                "Text" : "keyTyped",
+                "Code" : "function keyTyped()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["keyboard"]
+            },
+            {
+                "Text" : "touchStarted",
+                "Code" : "function touchStarted()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            },
+            {
+                "Text" : "touchMoved",
+                "Code" : "function touchMoved()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            },
+            {
+                "Text" : "touchEnded",
+                "Code" : "function touchEnded()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            },
+            {
+                "Text" : "deviceMoved",
+                "Code" : "function deviceMoved()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            },
+            {
+                "Text" : "deviceTurned",
+                "Code" : "function deviceTurned()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            },
+            {
+                "Text" : "deviceShaken",
+                "Code" : "function deviceShaken()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            }
+        ],
+        "Common" : [
+            
+        ],
+        "Drawing" : [
+            
+        ],
+        "Media" : [
+            
+        ]
+    }
+}

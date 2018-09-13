@@ -58,6 +58,14 @@
     text-align: center;
 }
 
+.filterlistitem.command {
+    width: 100px;
+    height: 28px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 .filterlisttags {
     margin-top: 5px;
 }

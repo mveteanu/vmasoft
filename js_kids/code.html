@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="css/tc.css">
     <link rel="stylesheet" href="css/filterlist.css">
+    <link rel="stylesheet" href="css/toggle.css">
     <script src="editor/Parameters.js"></script>
     <script src="editor/HtmlUtils.js"></script>
     <script src="editor/Dialogs.js"></script>
@@ -56,6 +57,7 @@
     <script src="editor/TabEditor.js"></script>
     <script src="editor/Tutorial.js"></script>
     <script src="editor/FilterList.js"></script>
+    <script src="editor/CommandsBar.js"></script>
     <script src="editor/BackgroundsBar.js"></script>
     <script src="editor/SpritesBar.js"></script>
     <script src="editor/SoundsBar.js"></script>
@@ -87,9 +89,9 @@
             <div class="actionbar ">
                 <span class="actionbarbutton" title="Home"><i class="fa fa-home"></i></span> 
                 <span id='tutorialButton' sidebar="barTutorial" class="actionbarbutton" title="Tutorial"><i class="fab fa-readme"></i></span> 
-                <span sidebar="barDocumentation" class="actionbarbutton" title="Documentation"><i class="fas fa-book"></i></span> 
+                <span sidebar="barCommands" class="actionbarbutton" title="Commands"><i class="fas fa-stream"></i></span> 
                 <span sidebar="barBackgrounds" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></span> 
-                <span sidebar="barSprites" class="actionbarbutton" title="Sprites"><i class="fas fa-robot"></i></span>
+                <span sidebar="barSprites" class="actionbarbutton" title="Sprites"><i class="fas fa-rocket"></i></span>
                 <span sidebar="barSounds" class="actionbarbutton" title="Sounds"><i class="fas fa-music"></i></span> 
             </div>
             
@@ -114,13 +116,80 @@
                 </div>
             </div>
 
-            <div id="barDocumentation" class="sidebar">
+            <div id="barCommands" class="sidebar">
                 <div class="sidebarbar">
-                    <div class="sidebarbar-item left"><i class="fas fa-book"></i> Documentation</div>
+                    <div class="sidebarbar-item left"><i class="fas fa-stream"></i> Commands</div>
                     <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
                 </div>
                 <div class="sidebararea">
-                    Documentation...
+                    <div class="tabheaders">
+                        <div class="tabheader style2 selected" page="tabCmdStructure" ><span>Structure</span></div>
+                        <div class="tabheader style2" page="tabCmdEvents"><span>Events</span></div>
+                        <div class="tabheader style2" page="tabCmdCommon"><span>Common</span></div>
+                        <div class="tabheader style2" page="tabCmdDrawing"><span>Drawing</span></div>
+                        <div class="tabheader style2" page="tabCmdMedia"><span>Media</span></div>
+                    </div>
+                    <div id="barCommandsPages" class="sidebararea">
+                        <div page="tabCmdStructure" class="sidebararea" style="display: inherit;">
+                            <div id="lstCmdStructure" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div page="tabCmdEvents" class="sidebararea" style="display: none;">
+                            <div id="lstCmdEvents" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div page="tabCmdCommon" class="sidebararea" style="display: none">
+                            <div id="lstCmdCommon" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div page="tabCmdDrawing" class="sidebararea" style="display: none">
+                            <div id="lstCmdDrawing" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div page="tabCmdMedia" class="sidebararea" style="display: none">
+                            <div id="lstCmdMedia" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -206,7 +275,7 @@
 
             <div id="barSprites" class="sidebar">
                     <div class="sidebarbar">
-                        <div class="sidebarbar-item left"><i class="fas fa-robot"></i> Sprites</div>
+                        <div class="sidebarbar-item left"><i class="fas fa-rocket"></i> Sprites</div>
                         <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
                     </div>
                     <div class="sidebararea">
@@ -331,6 +400,34 @@
     </div>
 
     <div id="statusbar" class="statusbar">Status...</div>
+
+    <div style="display:none">
+        <div id="shareProgram" class="shareForm">
+
+            <div>
+                Share the source code together with your program
+
+                <label class="switch" style="float:right">
+                        <input id="chkProgramSource" type="checkbox" checked>
+                        <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div>
+                <label for="txtProgramUrl">Link to share this program</label>
+                <input id="txtProgramUrl" type="url" readonly>
+                <button id="btnCopyUrl" style="float:right;">Copy</button>
+            </div>
+
+            <div style="margin-top: 25px">
+                <label for="txtProgramEmbed">Embed your program to your blog or website by copying the following code</label>
+                <textarea id="txtProgramEmbed" readonly></textarea>
+                <button id="btnCopyEmbed" style="float:right;">Copy</button>
+            </div>
+        
+        </div>
+
+    </div>
 
 </div>
 

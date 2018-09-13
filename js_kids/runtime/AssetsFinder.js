@@ -70,7 +70,27 @@ function AssetsFinder(code, oData)
 
     function findSpriteNames()
     {
-        return findFirstParameter(code, "sprite");
+        var ar = findFirstParameter(code, "sprite");
+
+        for(var i = 0; i < ar.length; i++ )
+        {
+            ar[i] = _getSpriteName(ar[i]);
+        }
+
+        return ar;
+    }
+
+    // Returns just the sprite name without the optional animation part
+    function _getSpriteName(spriteName)
+    {
+        if (!spriteName)
+            return;
+
+        var p = spriteName.indexOf(".");
+        if (p == -1)
+            return spriteName;
+
+        return spriteName.substring(0, p);
     }
 
     function findMusicNames()

@@ -33,11 +33,11 @@ document.write = function(sText)
     console.log(sText);
 }
 
-// Draw sprite specified by name at specified positions (or middle of the screen if x and y are not specified)
-function sprite(spriteName, x, y)
+// Draw sprite specified by name at specified position and scale (or middle of screen if not specified)
+function sprite(spriteName, x, y, scale)
 {
     var spriteBuilder = SpriteBuilder( oSketch._AssetsData, oSketch._AssetsCache );
-    var oSprite = spriteBuilder.getSprite(spriteName, x, y);
+    var oSprite = spriteBuilder.getSprite(spriteName, x, y, scale);
     
     // TODO: Instead of returning null, I should return a generic sprite in order to avoid null errors in sketches
     if (oSprite == null)

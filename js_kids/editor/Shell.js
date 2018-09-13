@@ -17,6 +17,7 @@ function Shell()
     var btnCodeFullScreen;
     var btnTutorial;
     var tcEditor;
+    var barCommands;
     var barBackgrounds;
     var barSprites;
     var barSounds;
@@ -149,7 +150,7 @@ function Shell()
         html.showInlineElement( btnSave, !readOnly );
         html.showInlineElement( btnReload, readOnly );
 
-        html.showInlineElement( btnShare, addedSketch.Id || oParams.isTutorial() );
+        html.showInlineElement( btnShare, addedSketch.Id );
     }
 
 
@@ -238,6 +239,8 @@ function Shell()
 
     function loadAssets()
     {
+        barCommands.load();
+
         barBackgrounds.load();
         barSprites.load();
         barSounds.load();
@@ -262,6 +265,7 @@ function Shell()
         btnShare = html.findElement("btnShare");
         tcEditor = TabEditor("tabcontrol", "pages");
         sketchProvider = SketchProvider(db);
+        barCommands = CommandsBar("barCommands", "barCommandsPages");
         barBackgrounds = BackgroundsBar("barBackgrounds", "barBackgroundsPages");
         barSprites = SpritesBar("barSprites", "barSpritesPages");
         barSounds = SoundsBar("barSounds", "barSoundsPages");
@@ -457,7 +461,7 @@ function Shell()
 
     function handleShare(e)
     {
-        alert("Share program or tutorial...")
+        dialogs.shareProgram( addedSketch.Id );
     }
 
     function handleSketchReload(e)

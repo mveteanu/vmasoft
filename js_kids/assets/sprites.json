@@ -33,7 +33,7 @@
                 },
                 {
                     "Name" : "dead",
-                        "Images" : ["assets/sprites/adventure_girl/Dead (1).png", "assets/sprites/adventure_girl/Dead (2).png", "assets/sprites/adventure_girl/Dead (3).png", "assets/sprites/adventure_girl/Dead (4).png", "assets/sprites/adventure_girl/Dead (5).png", "assets/sprites/adventure_girl/Dead (6).png", "assets/sprites/adventure_girl/Dead (7).png", "assets/sprites/adventure_girl/Dead (8).png", "assets/sprites/adventure_girl/Dead (9).png", "assets/sprites/adventure_girl/Dead (10).png"]
+                    "Images" : ["assets/sprites/adventure_girl/Dead (1).png", "assets/sprites/adventure_girl/Dead (2).png", "assets/sprites/adventure_girl/Dead (3).png", "assets/sprites/adventure_girl/Dead (4).png", "assets/sprites/adventure_girl/Dead (5).png", "assets/sprites/adventure_girl/Dead (6).png", "assets/sprites/adventure_girl/Dead (7).png", "assets/sprites/adventure_girl/Dead (8).png", "assets/sprites/adventure_girl/Dead (9).png", "assets/sprites/adventure_girl/Dead (10).png"]
                 }
             ],
             "Thumb" : "assets/sprites/adventure_girl/Idle (1).png"
