@@ -412,10 +412,10 @@
             [
                 {
                     "Name" : "normal",
-                    "Images" : ["assets/sprites/_todel/daffy_duck.png"]
+                    "Images" : ["assets/sprites/todel/daffy_duck.png"]
                 }
             ],
-            "Thumb" : "assets/sprites/_todel/daffy_duck.png"
+            "Thumb" : "assets/sprites/todel/daffy_duck.png"
         },
         {
             "Name" : "robot",
@@ -424,10 +424,10 @@
             [
                 {
                     "Name" : "normal",
-                    "Images" : ["assets/sprites/_todel/robot.png"]
+                    "Images" : ["assets/sprites/todel/robot.png"]
                 }
             ],
-            "Thumb" : "assets/sprites/_todel/robot.png"
+            "Thumb" : "assets/sprites/todel/robot.png"
         }
     ]
 }
