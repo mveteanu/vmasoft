@@ -289,11 +289,19 @@ a:hover, a:active {
 	align-items: center;
 }
 
+.sidebarnavigationarea > div {
+	width:90%;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
 .sidebarnavigationareatext {
 	display: inline-block;
-	width: 300px;
 	text-align: center;
+	margin-top: 9px;
 }
+
 
 .sidebarnavigationareabutton {
 	height: 30px;
