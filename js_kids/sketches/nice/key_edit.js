@@ -4,7 +4,6 @@ var t = 0;
 var tmax = 8;
 
 background('Field')
-music( 'Sayonara' ) 
 
 textSize(32);
 fill(0);

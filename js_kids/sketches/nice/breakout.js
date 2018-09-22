@@ -75,12 +75,6 @@ function displayStats()
     pop();
 }
 
-function isInsideRectangle(x, y, xr, yr, wr, hr)
-{
-    return (x >= xr && x <= xr + wr && 
-            y >= yr && y <= yr + hr);
-}
-
 function updateBall()
 {
     if ( !ball.inMotion )
@@ -107,8 +101,7 @@ function updateBallInMotion()
     {
         ball.yvel *= -1;
     }
-    else if ( ball.y >= yPaddle - ball.radius && 
-        (ball.x > xPaddle && ball.x < xPaddle + paddleWidth) )
+    else if ( collisionCircleRect(ball.x, ball.y, ball.radius, xPaddle, yPaddle, paddleWidth, 10) )
     {
         ball.yvel *= -1;
     }
@@ -154,7 +147,7 @@ function getHitBrick()
     {
         var brick = bricks[i];
 
-        if ( isInsideRectangle( ball.x, ball.y, brick.x, brick.y, brickWidth, brickHeight ) )
+        if ( collisionCircleRect( ball.x, ball.y, ball.radius, brick.x, brick.y, brickWidth, brickHeight ) )
         {
             return i;
         }

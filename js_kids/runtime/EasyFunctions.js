@@ -284,3 +284,52 @@ function loadText(url, onSuccess, onError)
                 onError(error)
         });
 }
+
+function collisionPointCircle(pointX, pointY, circleX, circleY, circleR)
+{
+    return p5.prototype.dist(pointX, pointY, circleX, circleY) <= circleR;
+}
+
+function collisionCirclePoint(circleX, circleY, circleR, pointX, pointY)
+{
+    return collisionPointCircle(pointX, pointY, circleX, circleY, circleR);
+}
+
+function collisionCircleCircle(circle1X, circle1Y, circle1R, circle2X, circle2Y, circle2R)
+{
+    return p5.prototype.dist(circle1X, circle1Y, circle2X, circle2Y) <= circle1R + circle2R;
+}
+
+// algorithm from https://yal.cc/rectangle-circle-intersection-test/
+function collisionCircleRect(circleX, circleY, circleR, rectX, rectY, rectWidth, rectHeight)
+{
+    var px = max(rectX, min(circleX, rectX + rectWidth));
+    var py = max(rectY, min(circleY, rectY + rectHeight));
+
+    return p5.prototype.dist(px, py, circleX, circleY) < circleR;
+}
+
+function collisionRectCircle(rectX, rectY, rectWidth, rectHeight, circleX, circleY, circleR)
+{
+    return collisionCircleRect(circleX, circleY, circleR, rectX, rectY, rectWidth, rectHeight);
+}
+
+function collisionPointRect(pointX, pointY, rectX, rectY, rectWidth, rectHeight)
+{
+    return pointX > rectX && pointX < rectX + rectWidth &&
+            pointY > rectY && pointY < rectY + rectHeight;
+}
+
+function collisionRectPoint(rectX, rectY, rectWidth, rectHeight, pointX, pointY)
+{
+    return collisionPointRect(pointX, pointY, rectX, rectY, rectWidth, rectHeight);
+}
+
+// algorithm from https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+function collisionRectRect(rect1X, rect1Y, rect1Width, rect1Height, rect2X, rect2Y, rect2Width, rect2Height)
+{
+    return (rect1X < rect2X + rect2Width &&
+       rect1X + rect1Width > rect2X &&
+       rect1Y < rect2Y + rect2Height &&
+       rect1Y + rect1Height > rect2Y);
+}
