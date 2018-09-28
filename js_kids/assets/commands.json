@@ -72,6 +72,18 @@
                 "Code" : "switch(myExpresion)\n{\n\tcase 100:\n\t\t//...\n\t\tbreak;\n\tcase 200:\n\t\t//...\n\t\tbreak;\n\tcase 300:\n\t\t//...\n\t\tbreak;\n\tdefault:\n\t\t//...\n}\n",
                 "Desc" : "Use switch to execute codeblocks that meet the criteria.",
                 "Tags" : ["condition"]
+            },
+            {
+                "Text" : "function",
+                "Code" : "function myFn(x, y)\n{\n\treturn;\n}\n",
+                "Desc" : "define a new function",
+                "Tags" : ["functions"]
+            },
+            {
+                "Text" : "myFn()",
+                "Code" : "myFn(100, 200);\n",
+                "Desc" : "call a function",
+                "Tags" : ["functions"]
             }
         ],
         "Events" : [

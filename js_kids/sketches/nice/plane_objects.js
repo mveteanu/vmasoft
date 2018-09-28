@@ -19,18 +19,13 @@ function loop()
 
 function keyPressed()
 {
-    showScene("Game");
-}
-
-function mousePressed()
-{
-    showScene("Game");
+    showScene("Game", 0);
 }
 
 // #BEGINSCENE Game
 var p = sprite('plane', 150, 300, 0.2);
 
-var maxObjects = 9;
+var maxObjects = 10;
 var bullets = [];
 var objects = [];
 
@@ -39,6 +34,7 @@ var isHit = false;
 function enter()
 {
     background('lightblue');
+    maxObjects += PublicVars.Arguments;
 
     p.x = 150;
     p.y = 300;
@@ -246,9 +242,11 @@ function checkCollision(o)
 
 
 // #BEGINSCENE Status
+var win;
+
 function enter()
 {
-    var win = PublicVars.Arguments;
+    win = PublicVars.Arguments;
 
     clear();
     textAlign(CENTER);
@@ -262,6 +260,6 @@ function keyPressed()
 {
     if (key == 'R')
     {
-        showScene("Game");
+        showScene("Game", win ? 10 : 0);
     }
 }
