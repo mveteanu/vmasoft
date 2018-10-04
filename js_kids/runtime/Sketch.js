@@ -408,6 +408,8 @@ function Sketch()
         buff.noFill();
         buff.strokeWeight(1);
         buff.stroke(0);
+
+        buff.angleMode(DEGREES);
     }
     
     // Returns true if an offscreen buffer is totally empty

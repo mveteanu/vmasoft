@@ -33,6 +33,16 @@ document.write = function(sText)
     console.log(sText);
 }
 
+// inspect the last element of an array
+Array.prototype.peek = function() 
+{
+    var n = this.length;
+    if (n == 0) 
+        return undefined;
+
+    return this[n - 1];
+}
+
 // Draw sprite specified by name at specified position and scale (or middle of screen if not specified)
 function sprite(spriteName, x, y, scale)
 {
