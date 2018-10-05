@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="CodeBeanz" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="site/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="site/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="site/css/site.css" type="text/css" />
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-storage.js"></script>
+    
+    <script src="firebase/FirebaseDB.js"></script>
+
+	<script src="site/signup.js"></script>
+
+
+	<!-- Document Title
+	============================================= -->
+	<title>Sign-up | CodeBeanz</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="index.html" class="standard-logo" data-dark-logo="site/images/codebeanz_logo.png"><img src="site/images/codebeanz_logo.png" alt="CodeBeanz Logo"></a>
+					</div>
+
+					<div id="top-account" class="dropdown" style="display:none;">
+						<a href="#" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icon-user"></i></a>
+						<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+							<span id="lblUser" class="dropdown-header tleft">Marian Veteanu<br>vmasoft@yahoo.com</span>
+							<div class="dropdown-divider"></div>
+							<!-- <a class="dropdown-item tleft" href="#">Profile</a>
+							<a class="dropdown-item tleft" href="#">Students <span class="badge badge-pill badge-secondary fright" style="margin-top: 3px;">30</span></a>
+							<a class="dropdown-item tleft" href="#">Membership</a>
+							<div class="dropdown-divider"></div> -->
+							<a id="btnLogOut" class="dropdown-item tleft" href="#">Logout <i class="icon-signout"></i></a>
+						</ul>
+					</div>
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu">
+
+						<ul>
+							<li><a href="index.html"><div>Home</div></a>
+							</li>
+							<li><a href="about.html"><div>About</div></a>
+							</li>
+							<li><a href="parents.html"><div>Parents</div></a>
+							</li>
+							<li><a href="educators.html"><div>Educators</div></a>
+							</li>
+							<li id="btnLogIn" class="d-none"><a href="#modal-login-form" data-lightbox="inline" class="header-login-trigger"><div>Sign In</div></a>
+							</li>
+							<li id="btnSignUp" class="d-none"><div><a href="signup.html" class="button button-small button-circle button-border button-green">Join for free</a></div>
+							</li>
+						</ul>
+
+
+					</nav><!-- #primary-menu end -->
+
+				</div>
+
+			</div>
+
+		</header><!-- #header end -->
+
+		<!-- Page Title
+		============================================= -->
+		<section id="page-title">
+
+			<div class="container clearfix">
+				<h1>JOIN CODEBEANZ</h1>
+			</div>
+
+		</section>
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<div class="col_one_third nobottommargin">
+
+						<div class="well well-lg nobottommargin">
+							<form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
+
+								<h3>Login to your Account</h3>
+
+								<div class="col_full">
+									<label for="login-form-username">Username:</label>
+									<input type="text" id="login-form-username" name="login-form-username" value="" class="form-control" />
+								</div>
+
+								<div class="col_full">
+									<label for="login-form-password">Password:</label>
+									<input type="password" id="login-form-password" name="login-form-password" value="" class="form-control" />
+								</div>
+
+								<div id="divLoginError" class="style-msg errormsg d-none">
+									<div class="sb-msg"><i class="icon-remove"></i><strong>Oh snap!</strong> <span id="msgLoginError">Change a few things up and try submitting again.</span></div>
+								</div>
+
+								<div class="col_full nobottommargin">
+									<button class="button button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+									<a href="#" class="fright">Forgot Password?</a>
+								</div>
+
+							</form>
+						</div>
+
+					</div>
+
+					<div class="col_two_third col_last nobottommargin">
+
+						<h3>Don't have an Account? Register now for Free.</h3>
+
+						<p>Create your free CodeBeanz account and start coding games and applications that you can share with friends and family. You gen unlimited space to create whatever game you can imagine.</p>
+
+						<form id="register-form" name="register-form" class="nobottommargin" action="index.html" method="post">
+
+							<div class="col_half">
+								<label for="register-form-name">Name:</label>
+								<input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+							</div>
+
+							<div class="col_half col_last">
+                                    <label for="register-form-username">Choose a Username:</label>
+                                    <input type="text" id="register-form-username" name="register-form-username" value="" class="form-control" />
+                            </div>
+
+							<div class="clear"></div>
+
+							<div class="col_half">
+								<label for="register-form-password">Choose Password:</label>
+								<input type="password" id="register-form-password" name="register-form-password" value="" class="form-control" />
+							</div>
+
+							<div class="col_half col_last">
+								<label for="register-form-repassword">Re-enter Password:</label>
+								<input type="password" id="register-form-repassword" name="register-form-repassword" value="" class="form-control" />
+							</div>
+
+                            <div class="clear"></div>
+                            
+                            <div class="col_full">
+                                If you are 13 years or older and you have an email address, please enter your own email address
+                                ... otherwise enter the email address of your mom or dad.
+                            </div>
+
+
+                            <div class="clear"></div>
+
+
+                            <div class="col_half">
+                                <label for="register-form-email">Email Address:</label>
+                                <input type="text" id="register-form-email" name="register-form-email" value="" class="form-control" />
+                                Leave empty if you don't have an email address.
+                            </div>
+    
+                            <div class="col_half col_last">
+								<label for="register-form-email-parent">Parent Email:</label>
+                                <input type="text" id="register-form-email-parent" name="register-form-email-parent" value="" class="form-control" />
+                                Leave empty if you are a grown-up.
+							</div>
+
+
+							<div class="clear"></div>
+
+							<div id="divError" class="style-msg errormsg d-none">
+								<div class="sb-msg"><i class="icon-remove"></i><strong>Oh snap!</strong> <span id="msgError">Change a few things up and try submitting again.</span></div>
+							</div>
+	
+
+							<div class="clear"></div>
+
+							<div class="col_full nobottommargin">
+								<button class="button button-3d button-black nomargin" id="register-form-submit" name="register-form-submit" value="register">Register Now</button>
+							</div>
+
+						</form>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section><!-- #content end -->
+
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="dark">
+
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix">
+
+					<div class="col_half">
+						Copyrights &copy; 2018 All Rights Reserved by CodeBeanz<br>
+						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+					</div>
+
+					<div class="col_half col_last tright">
+						<div class="fright clearfix">
+							<a href="#" class="social-icon si-small si-borderless si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-gplus">
+								<i class="icon-gplus"></i>
+								<i class="icon-gplus"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-pinterest">
+								<i class="icon-pinterest"></i>
+								<i class="icon-pinterest"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-vimeo">
+								<i class="icon-vimeo"></i>
+								<i class="icon-vimeo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-github">
+								<i class="icon-github"></i>
+								<i class="icon-github"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-yahoo">
+								<i class="icon-yahoo"></i>
+								<i class="icon-yahoo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
+						</div>
+
+						<div class="clear"></div>
+
+						<i class="icon-envelope2"></i> info@codebeanz.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +91-11-6541-6369 <span class="middot">&middot;</span> <i class="icon-skype2"></i> CanvasOnSkype
+					</div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script src="site/js/jquery.js"></script>
+	<script src="site/js/plugins.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="site/js/functions.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+#btnSignUp {
+    float: right;
+    margin: 33px 0;
+    -webkit-transition: margin .4s ease;
+    -o-transition: margin .4s ease;
+    transition: margin .4s ease;
+}
+
+#header.sticky-header #btnSignUp { margin: 13px 0; }
+
+#btnSignUp a { margin: 0 0 0 15px; }
+
+#btnSignUp a:not(.button) { color: #FFF; }
+#btnSignUp a:not(.button):hover { color: #DDD; }
+
+#header.sticky-header #btnSignUp a:not(.button) { color: #1ABC9C; }
+#header.sticky-header #btnSignUp a:not(.button):hover { color: #111; }
+
+.device-md #btnSignUp {
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 15px;
+}

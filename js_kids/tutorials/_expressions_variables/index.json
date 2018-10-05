@@ -1,0 +1,67 @@
+{
+    "Name" : "Expressions and variables",
+    "Pages" : [
+        {
+            "Page" : "doc/10_intro.md"
+        },
+        {
+            "Page" : "doc/20_a_small_house.md"
+        },
+        {
+            "Page" : "doc/30_solution.md",
+            "Sketch" : "sketches/house1.js"
+        },
+        {
+            "Page" : "doc/40_calculations.md",
+            "Sketch" : "sketches/house1.js"
+        },
+        {
+            "Page" : "doc/50_let_the_computer_calculate.md",
+            "Sketch" : "sketches/house1.js"
+        },
+        {
+            "Page" : "doc/60_code_with_calculations.md",
+            "Sketch" : "sketches/house2.js"
+        },
+        {
+            "Page" : "doc/70_a_bigger_house.md",
+            "Sketch" : "sketches/house2.js"
+        },
+        {
+            "Page" : "doc/80_solution_for_a_bigger_house.md",
+            "Sketch" : "sketches/house3.js"
+        },
+        {
+            "Page" : "doc/90_introducing_variables.md",
+            "Sketch" : "sketches/var.js"
+        },
+        {
+            "Page" : "doc/95_variables_in_calculations.md",
+            "Sketch" : "sketches/house4.js"
+        },
+        {
+            "Page" : "doc/96_multiple_variables.md",
+            "Sketch" : "sketches/house4.js"
+        },
+        {
+            "Page" : "doc/97_house_with_variables.md",
+            "Sketch" : "sketches/house5.js"
+        },
+        {
+            "Page" : "doc/98_variables_can_be_reassigned.md",
+            "Sketch" : "sketches/house5.js"
+        },
+        {
+            "Page" : "doc/99_house_at_different_position.md",
+            "Sketch" : "sketches/house6.js"
+        },
+        {
+            "Page" : "doc/100_uninitialized_variables.md",
+            "Sketch" : "sketches/house7.js"
+        },
+        {
+            "Page" : "doc/101_keep_playing.md",
+            "Sketch" : "sketches/house7.js"
+        }
+    ]
+}

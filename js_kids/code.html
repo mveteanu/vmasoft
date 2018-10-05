@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+    <title>CodeBeanz Playground</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-storage.js"></script>
+
+    <script src="lib/polyfills.js"></script>
+
+    <script src="lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="lib/showdown/github-markdown.css">
+    <link rel="stylesheet" href="lib/showdown/default.css">
+    <script src="lib/showdown/showdown.min.js"></script>
+    <script src="lib/showdown/highlight.pack.js"></script>
+
+    <script src="lib/alertifyjs/alertify.min.js"></script>
+    <link rel="stylesheet" href="lib/alertifyjs/css/alertify.min.css" />
+    <link rel="stylesheet" href="lib/alertifyjs/css/themes/default.min.css" />    
+
+    <script src="lib/p5.js"></script>
+    <script src="lib/p5.sound.js"></script>
+    <script src="lib/p5.play_.js"></script>
+
+    <script src="runtime/EasyFunctions.js"></script>
+    <script src="runtime/Sketch.js"></script>
+    <script src="runtime/CodeUtils.js"></script>
+    <script src="runtime/AssetsData.js"></script>
+    <script src="runtime/AssetsFinder.js"></script>
+    <script src="runtime/AssetsCache.js"></script>
+    <script src="runtime/SpriteBuilder.js"></script>
+    <script src="runtime/start.js"></script>
+    <script src="firebase/FirebaseDB.js"></script>
+    <script src="store/TextPacker.js"></script>
+    <script src="store/WebFile.js"></script>
+    <script src="store/DBFile.js"></script>
+    <script src="store/SketchProvider.js"></script>
+
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/tc.css">
+    <link rel="stylesheet" href="css/filterlist.css">
+    <link rel="stylesheet" href="css/toggle.css">
+    <script src="editor/Parameters.js"></script>
+    <script src="editor/HtmlUtils.js"></script>
+    <script src="editor/Dialogs.js"></script>
+    <script src="editor/TabControl.js"></script>
+    <script src="editor/TabEditor.js"></script>
+    <script src="editor/Tutorial.js"></script>
+    <script src="editor/FilterList.js"></script>
+    <script src="editor/CommandsBar.js"></script>
+    <script src="editor/BackgroundsBar.js"></script>
+    <script src="editor/SpritesBar.js"></script>
+    <script src="editor/SoundsBar.js"></script>
+    <script src="store/TutorialProvider.js"></script>
+    <script src="editor/Shell.js"></script>
+    <script src="editor/start.js"></script>
+    
+</head>
+<body>
+
+<div class="shell">
+
+    <div id="navbar" class="navbar">
+        <div class="navbar-item left"><span class="sitelogo">CodeBeanz</span></div>
+        <div class="navbar-item left">
+            <span id="lblSketchTitle" class="sketchTitle">Untitled</span>
+            <span class="sketchTitlePen"><i id="btnEditTitle" class="fas fa-pen"></i></span>
+        </div>
+
+        <div class="navbar-item right"><span id="btnSave" class="navbarbutton"><i class="fas fa-cloud"></i> Save</span></div>
+        <div class="navbar-item right"><span id="btnFork" class="navbarbutton"><i class="fas fa-code-branch"></i> Save a copy</span></div>
+        <div class="navbar-item right"><span id="btnReload" class="navbarbutton"><i class="fas fa-sync-alt"></i> Reload</span></div>
+
+        <div class="navbar-item right"><span id="btnShare" class="navbarbutton"><i class="fas fa-share-alt"></i> Share</span></div>
+    </div>
+
+    <div id="workspace" class="workspace">
+        <div id="editor" class="editor">
+            <div class="actionbar ">
+                <span class="actionbarbutton" title="Home"><i class="fa fa-home"></i></span> 
+                <span id='tutorialButton' sidebar="barTutorial" class="actionbarbutton" style='display: none;' title="Tutorial"><i class="fab fa-readme"></i></span> 
+                <span sidebar="barCommands" class="actionbarbutton" title="Commands"><i class="fas fa-stream"></i></span> 
+                <span sidebar="barBackgrounds" class="actionbarbutton" title="Backgrounds"><i class="far fa-image"></i></span> 
+                <span sidebar="barSprites" class="actionbarbutton" title="Sprites"><i class="fas fa-rocket"></i></span>
+                <span sidebar="barSounds" class="actionbarbutton" title="Sounds"><i class="fas fa-music"></i></span> 
+            </div>
+            
+            <div id="barTutorial" class="sidebar">
+                <div class="sidebarbar">
+                    <div class="sidebarbar-item left"><i class="fab fa-readme"></i> <span id='tutorialTitle'>Tutorial</span></div>
+                    <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                </div>
+                <div class="sidebarbar subtitle" style='display:none;'>
+                    <span id='tutorialSubtitle'>Subtitle</span>
+                </div>
+                <div class="sidebararea">
+                    <!-- <iframe id='tutorialIframe' class='sidebarframe'></iframe> -->
+                    <div id='tutorialIframe' class='tutorial'></div>
+                    <div class="sidebarnavigationarea">
+                        <div>
+                            <button id='tutorialBack' class='sidebarnavigationareabutton'><i class='fas fa-arrow-left'></i> Prev</button>
+                            <div id='tutorialPage' class='sidebarnavigationareatext'>1 / 10</div>
+                            <button id='tutorialNext' class='sidebarnavigationareabutton'>Next <i class='fas fa-arrow-right'></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="barCommands" class="sidebar">
+                <div class="sidebarbar">
+                    <div class="sidebarbar-item left"><i class="fas fa-stream"></i> Commands</div>
+                    <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                </div>
+                <div class="sidebararea">
+                    <div class="tabheaders">
+                        <div class="tabheader style2 selected" page="tabCmdStructure" ><span>Structure</span></div>
+                        <div class="tabheader style2" page="tabCmdEvents"><span>Events</span></div>
+                        <div class="tabheader style2" page="tabCmdCommon"><span>Common</span></div>
+                        <div class="tabheader style2" page="tabCmdDrawing"><span>Drawing</span></div>
+                        <div class="tabheader style2" page="tabCmdMedia"><span>Media</span></div>
+                    </div>
+                    <div id="barCommandsPages" class="sidebararea">
+                        <div page="tabCmdStructure" class="sidebararea" style="display: inherit;">
+                            <div id="lstCmdStructure" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div page="tabCmdEvents" class="sidebararea" style="display: none;">
+                            <div id="lstCmdEvents" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div page="tabCmdCommon" class="sidebararea" style="display: none">
+                            <div id="lstCmdCommon" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div page="tabCmdDrawing" class="sidebararea" style="display: none">
+                            <div id="lstCmdDrawing" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div page="tabCmdMedia" class="sidebararea" style="display: none">
+                            <div id="lstCmdMedia" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="barBackgrounds" class="sidebar">
+                    <div class="sidebarbar">
+                        <div class="sidebarbar-item left"><i class="far fa-image"></i> Backgrounds</div>
+                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                    </div>
+                    <div class="sidebararea">
+                        <div class="tabheaders">
+                            <div class="tabheader style2 selected" page="tabBkColors" ><span>Colors</span></div>
+                            <div class="tabheader style2" page="tabBkImages"><span>Images</span></div>
+                            <div class="tabheader style2" page="tabBkAnimated"><span>Animated</span></div>
+                            <div class="tabheader style2" page="tabBkScrolling"><span>Scrolling</span></div>
+                            <div class="tabheader style2" page="tabBkEffects"><span>Effects</span></div>
+                        </div>
+                        <div id="barBackgroundsPages" class="sidebararea">
+                            <div page="tabBkColors" class="sidebararea" style="display: inherit;">
+                                <div id="lstColors" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div page="tabBkImages" class="sidebararea" style="display: none;">
+                                <div id="lstImages" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div page="tabBkAnimated" class="sidebararea" style="display: none">
+                                <div id="lstAnimatedImages" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div page="tabBkScrolling" class="sidebararea" style="display: none">
+                                <div id="lstScrollingImages" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div page="tabBkEffects" class="sidebararea" style="display: none">
+                                <div id="lstEffects" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebarusage">
+                            <span class="examplevalue">Select item to see usage...</span>
+                        </div>
+                    </div>
+            </div>
+
+            <div id="barSprites" class="sidebar">
+                    <div class="sidebarbar">
+                        <div class="sidebarbar-item left"><i class="fas fa-rocket"></i> Sprites</div>
+                        <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                    </div>
+                    <div class="sidebararea">
+                        <div class="tabheaders">
+                            <div class="tabheader style2 selected" page="tabSpriteAnimated"><span>Animated</span></div>
+                            <div class="tabheader style2" page="tabSpriteStatic" ><span>Static</span></div>
+                        </div>
+                        <div id="barSpritesPages" class="sidebararea">
+                            <div page="tabSpriteStatic" class="sidebararea" style="display: inherit;">
+                                <div id="lstSpriteStatic" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div page="tabSpriteAnimated" class="sidebararea" style="display: none">
+                                <div id="lstSpriteAnimated" class="filterlist">
+                                    <div class="filterlistheader">
+                                        <input type="search">
+                                        <div class="filterlisttags">
+                                        </div>
+                                    </div>
+                                    <div class="filterlistcontent">
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        </div>
+                        <div class="sidebarusage">
+                            <span class="examplevalue">Select item to see usage...</span>
+                        </div>
+                    </div>
+            </div>
+
+
+            <div id="barSounds" class="sidebar">
+                <div class="sidebarbar">
+                    <div class="sidebarbar-item left"><i class="fas fa-music"></i> Music and Sounds</div>
+                    <div class="sidebarbar-item right closesidebar"><i class="fas fa-angle-double-left" title="Close"></i></div>
+                </div>
+                <div class="sidebararea">
+                    <div class="tabheaders">
+                        <div class="tabheader style2 selected" page="tabSoundsMusic"><span>Music</span></div>
+                        <div class="tabheader style2" page="tabSoundsEffects" ><span>Sounds</span></div>
+                    </div>
+                    <div id="barSoundsPages" class="sidebararea">
+                        <div page="tabSoundsMusic" class="sidebararea" style="display: none">
+                            <div id="lstSoundsMusic" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+                        <div page="tabSoundsEffects" class="sidebararea" style="display: inherit;">
+                            <div id="lstSoundsEffects" class="filterlist">
+                                <div class="filterlistheader">
+                                    <input type="search">
+                                    <div class="filterlisttags">
+                                    </div>
+                                </div>
+                                <div class="filterlistcontent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebarusage">
+                        <span class="examplevalue">Select item to see usage...</span>
+                    </div>
+                </div>
+            </div>
+        
+
+            <div class="splitter"></div>
+
+            <div class="codewithbararea">
+                <div class="codebar">
+                    <div id="tabcontrol" class="tabcontrol">
+                        <div class="tabcommands">
+                            <div class="tabcommand left"><i class="fas fa-caret-left"></i></div>
+                            <div class="tabcommand right"><i class="fas fa-caret-right"></i></div>
+                        </div>
+                        <div class="tabheaders">
+                        </div>
+                        <div class="tabcommands">
+                            <div class="tabcommand add"><i class="fas fa-plus" title="New Scene"></i></div>
+                        </div>
+
+                        <div class="tabheadermenu">
+                            <div action="rename"><i class="fas fa-pen"></i></div>
+                            <div action="remove"><i class="far fa-trash-alt"></i></div>
+                        </div>
+                    </div>
+                            
+                    <i id="btnPlay" class="playbutton fas fa-play" title="Play / Stop"></i>
+                    <i id="btnCodeFullScreen" class="fas fa-expand" title="Expand"></i>
+                </div>
+                <div class="codearea">
+                        
+                    <div id="pages" class="codeareapages">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="splitter"></div>
+
+        <div id="output" class="output">
+            <div class="outputbar"><i id="btnOutputFullScreen" class="fas fa-expand" title="Expand"></i></div>
+            <div id="outputarea" class="outputarea"></div>
+        </div>
+
+    </div>
+
+    <div id="statusbar" class="statusbar">Status...</div>
+
+    <div style="display:none">
+        <div id="shareProgram" class="shareForm">
+
+            <div>
+                Share the source code together with your program
+
+                <label class="switch" style="float:right">
+                        <input id="chkProgramSource" type="checkbox" checked>
+                        <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div>
+                <label for="txtProgramUrl">Link to share this program</label>
+                <input id="txtProgramUrl" type="url" readonly>
+                <button id="btnCopyUrl" style="float:right;">Copy</button>
+            </div>
+
+            <div style="margin-top: 25px">
+                <label for="txtProgramEmbed">Embed your program to your blog or website by copying the following code</label>
+                <textarea id="txtProgramEmbed" readonly></textarea>
+                <button id="btnCopyEmbed" style="float:right;">Copy</button>
+            </div>
+        
+        </div>
+
+    </div>
+
+</div>
+
+<!--
+<script id="Scene1" language="sketch">
+    // Add here some default scene to load when a new editor is loaded...
+</script>
+-->
+
+</body>
+</html>

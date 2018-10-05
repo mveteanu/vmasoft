@@ -1,0 +1,270 @@
+{
+    "Tutorials" : 
+    [
+        {
+            "Name" : "Intro to coding",
+            "Folder" : "_intro_to_coding",
+            "Lists" : ["coding"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Welcome to the wonderful world of coding! In this first lesson you'll learn how to give instructions to your obedient computer.",
+
+            "Free" : "yes",
+            "Code" : "100",
+            "Thumbnail" : "intro-to-graphics/thumb.png",
+            "Video" : "htpp://www.youtube.com/v?xxxx",
+            "VideoType" : "youtube / local_mp4 / ...",
+            "Language" : "en"
+        },
+        {
+            "Name" : "Pixels and Coordinates",
+            "Folder" : "_coordinates",
+            "Lists" : ["coding"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Learn about Pixels, Resolution and Coordinates - important computer science concepts wildly used in CodeGuppy."
+        },
+        {
+            "Name" : "Expressions and Variables",
+            "Folder" : "_expressions_variables",
+            "Lists" : ["coding"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Expressions and variables are the core of any programming language. Learn about these concepts using a fun lesson."
+        },
+        {
+            "Name" : "Functions",
+            "Folder" : "_functions",
+            "Lists" : ["coding"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Create new 'instructions' and achieve code modularization through the use of functions."
+        },
+        {
+            "Name" : "Variables and Functions recap",
+            "Folder" : "_variables_recap",
+            "Lists" : ["coding"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "In this lesson you'll recap variables, expressions and functions and learn about the concept of strings."
+        },
+
+
+        {
+            "Name" : "Artist",
+            "Folder" : "artist",
+            "Lists" : ["featured", "drawing"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Draw colored lines, circles and other shapes with the awesome Artist program."
+        },
+        {
+            "Name" : "Blocky",
+            "Folder" : "blocky",
+            "Lists" : ["pixelart"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Pixel art is awesome. With this tutorial you'll learn how to build your own pixel art editor."
+        },
+        {
+            "Name" : "Breakout",
+            "Folder" : "breakout",
+            "Lists" : ["featured", "games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Breakout game is a classic. Learn how to recreate this game that will offer you hours of entertainment."
+        },
+        {
+            "Name" : "Analog clock",
+            "Folder" : "clock",
+            "Lists" : ["featured", "polar"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "With all the digital gadgets around us, analog clocks represents a classical beauty. Learn how to re-create one with our tutorial and a little bit of trigonometry."
+        },
+        {
+            "Name" : "Micro draw",
+            "Folder" : "draw",
+            "Lists" : ["drawing"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "It is amazing that in a few lines of code you can create a draw program."
+        },
+        {
+            "Name" : "Falling balls",
+            "Folder" : "falling_balls",
+            "Lists" : ["games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Balloons are falling! Pop them all with your needle to win the game."
+        },
+        {
+            "Name" : "Plot a function",
+            "Folder" : "fngraph",
+            "Lists" : ["math"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "A simple and efficient function plotter."
+        },
+        {
+            "Name" : "Visual sort",
+            "Folder" : "visual_sort",
+            "Lists" : ["featured", "math"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Visualize what happens in computer memory during a common sort operation."
+        },
+        {
+            "Name" : "Invaders",
+            "Folder" : "invaders",
+            "Lists" : ["featured", "games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Invaders game is one of the most well known classic games. Learn how to how to create your own custom clone of this game."
+        },
+        {
+            "Name" : "Input text",
+            "Folder" : "key_edit",
+            "Lists" : ["other"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Build an arcade style name input screen."
+        },
+        {
+            "Name" : "Line artist",
+            "Folder" : "line_artist",
+            "Lists" : ["featured", "drawing"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Create amazing drawings and texts using colored line art."
+        },
+        {
+            "Name" : "Micro spirograph",
+            "Folder" : "micro_spirograph",
+            "Lists" : ["featured", "polar"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Tune our micro spirograph and enjoy the amazing shapes left behind."
+        },
+        {
+            "Name" : "Movable",
+            "Folder" : "movable",
+            "Lists" : ["featured", "drawing"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Have fun with our drawing while learn how to implement movable shapes."
+        },
+        {
+            "Name" : "Musical Notes",
+            "Folder" : "musical_notes",
+            "Lists" : ["games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Play with the musical notes to create your symphony."
+        },
+        {
+            "Name" : "Plane vs Objects",
+            "Folder" : "plane_objects",
+            "Lists" : ["featured", "games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Pilot the airplane and distroy all the objects before your crash into them."
+        },
+        {
+            "Name" : "Planets",
+            "Folder" : "planets",
+            "Lists" : ["featured", "polar"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Learn how to create a simulation of our solar system with realistic planet movement."
+        },
+        {
+            "Name" : "Pop balloons",
+            "Folder" : "pop_balloons",
+            "Lists" : ["featured", "games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Use your keyboard typing skills to shoot all the balloons."
+        },
+        {
+            "Name" : "Random shapes",
+            "Folder" : "random_shapes",
+            "Lists" : ["drawing"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "A visually interesting demo using only random shapes."
+        },
+        {
+            "Name" : "Computer poetry",
+            "Folder" : "poetry",
+            "Lists" : ["strings"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "With a little bit of coding, your computer can be a poet. Have fun at the amazing writtings."
+        },
+        {
+            "Name" : "Sliding puzzle",
+            "Folder" : "sliding_puzzle",
+            "Lists" : ["featured", "games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Implement the classic sliding puzzle... and then have fun solving it. Perhaps you can even share it with your friends."
+        },
+        {
+            "Name" : "Snake",
+            "Folder" : "snake",
+            "Lists" : ["games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Guide the snake around the obstacles to find the exit door."
+        },
+        {
+            "Name" : "Sprite MouseMove",
+            "Folder" : "sprite_movemouse",
+            "Lists" : ["other"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "A small sprite animation on mouse move."
+        },
+        {
+            "Name" : "Retro sprite",
+            "Folder" : "sprite_spider_array",
+            "Lists" : ["pixelart"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Create a retro sprite using only an array of numbers."
+        },
+        {
+            "Name" : "Falling spiders",
+            "Folder" : "sprite_spider",
+            "Lists" : ["pixelart"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Use the binary system to efficientize the retro sprite storage... and then animate the sprite to implement falling spiders effect."
+        },
+        {
+            "Name" : "Tic Tac Toe",
+            "Folder" : "xand0",
+            "Lists" : ["games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Implement the classical game of Tic Tac Toe and play a match against computer."
+        },
+        {
+            "Name" : "Pong",
+            "Folder" : "pong",
+            "Lists" : ["featured", "games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Play a game of Pong against the computer. It can be pretty challenging."
+        }
+    ],
+    "Lists" :
+    [
+        {
+            "Id" : "featured",
+            "Name" : "Editor picked"
+        },
+        {
+            "Id" : "coding",
+            "Name" : "Coding lessons"
+        },
+        {
+            "Id" : "drawing",
+            "Name" : "Drawing"
+        },
+        {
+            "Id" : "pixelart",
+            "Name" : "Pixel Art"
+        },
+        {
+            "Id" : "games",
+            "Name" : "Games"
+        },
+        {
+            "Id" : "polar",
+            "Name" : "Polar coordinates"
+        },
+        {
+            "Id" : "math",
+            "Name" : "Math"
+        },
+        {
+            "Id" : "strings",
+            "Name" : "Text processing"
+        },
+        {
+            "Id" : "other",
+            "Name" : "Other"
+        }
+    ]
+}

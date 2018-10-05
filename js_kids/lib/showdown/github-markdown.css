@@ -1,0 +1,700 @@
+/* 
+Based on stylesheet from
+https://github.com/sindresorhus/github-markdown-css 
+*/
+
+@font-face {
+  font-family: octicons-link;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.tutorial {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.5;
+  color: #24292e;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.tutorial .pl-c {
+  color: #6a737d;
+}
+
+.tutorial .pl-c1,
+.tutorial .pl-s .pl-v {
+  color: #005cc5;
+}
+
+.tutorial .pl-e,
+.tutorial .pl-en {
+  color: #6f42c1;
+}
+
+.tutorial .pl-smi,
+.tutorial .pl-s .pl-s1 {
+  color: #24292e;
+}
+
+.tutorial .pl-ent {
+  color: #22863a;
+}
+
+.tutorial .pl-k {
+  color: #d73a49;
+}
+
+.tutorial .pl-s,
+.tutorial .pl-pds,
+.tutorial .pl-s .pl-pse .pl-s1,
+.tutorial .pl-sr,
+.tutorial .pl-sr .pl-cce,
+.tutorial .pl-sr .pl-sre,
+.tutorial .pl-sr .pl-sra {
+  color: #032f62;
+}
+
+.tutorial .pl-v,
+.tutorial .pl-smw {
+  color: #e36209;
+}
+
+.tutorial .pl-bu {
+  color: #b31d28;
+}
+
+.tutorial .pl-ii {
+  color: #fafbfc;
+  background-color: #b31d28;
+}
+
+.tutorial .pl-c2 {
+  color: #fafbfc;
+  background-color: #d73a49;
+}
+
+.tutorial .pl-c2::before {
+  content: "^M";
+}
+
+.tutorial .pl-sr .pl-cce {
+  font-weight: bold;
+  color: #22863a;
+}
+
+.tutorial .pl-ml {
+  color: #735c0f;
+}
+
+.tutorial .pl-mh,
+.tutorial .pl-mh .pl-en,
+.tutorial .pl-ms {
+  font-weight: bold;
+  color: #005cc5;
+}
+
+.tutorial .pl-mi {
+  font-style: italic;
+  color: #24292e;
+}
+
+.tutorial .pl-mb {
+  font-weight: bold;
+  color: #24292e;
+}
+
+.tutorial .pl-md {
+  color: #b31d28;
+  background-color: #ffeef0;
+}
+
+.tutorial .pl-mi1 {
+  color: #22863a;
+  background-color: #f0fff4;
+}
+
+.tutorial .pl-mc {
+  color: #e36209;
+  background-color: #ffebda;
+}
+
+.tutorial .pl-mi2 {
+  color: #f6f8fa;
+  background-color: #005cc5;
+}
+
+.tutorial .pl-mdr {
+  font-weight: bold;
+  color: #6f42c1;
+}
+
+.tutorial .pl-ba {
+  color: #586069;
+}
+
+.tutorial .pl-sg {
+  color: #959da5;
+}
+
+.tutorial .pl-corl {
+  text-decoration: underline;
+  color: #032f62;
+}
+
+.tutorial .octicon {
+  display: inline-block;
+  vertical-align: text-top;
+  fill: currentColor;
+}
+
+.tutorial a {
+  background-color: transparent;
+}
+
+.tutorial a:active,
+.tutorial a:hover {
+  outline-width: 0;
+}
+
+.tutorial strong {
+  font-weight: inherit;
+}
+
+.tutorial strong {
+  font-weight: bolder;
+}
+
+.tutorial h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.tutorial img {
+  border-style: none;
+}
+
+.tutorial code,
+.tutorial kbd,
+.tutorial pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.tutorial hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+.tutorial input {
+  font: inherit;
+  margin: 0;
+}
+
+.tutorial input {
+  overflow: visible;
+}
+
+.tutorial [type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.tutorial * {
+  box-sizing: border-box;
+}
+
+.tutorial input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.tutorial a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.tutorial a:hover {
+  text-decoration: underline;
+}
+
+.tutorial strong {
+  font-weight: 600;
+}
+
+.tutorial hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #dfe2e5;
+}
+
+.tutorial hr::before {
+  display: table;
+  content: "";
+}
+
+.tutorial hr::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.tutorial table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.tutorial td,
+.tutorial th {
+  padding: 0;
+}
+
+.tutorial h1,
+.tutorial h2,
+.tutorial h3,
+.tutorial h4,
+.tutorial h5,
+.tutorial h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.tutorial h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.tutorial h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.tutorial h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.tutorial h4 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tutorial h5 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.tutorial h6 {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tutorial p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.tutorial blockquote {
+  margin: 0;
+}
+
+.tutorial ul,
+.tutorial ol {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.tutorial ol ol,
+.tutorial ul ol {
+  list-style-type: lower-roman;
+}
+
+.tutorial ul ul ol,
+.tutorial ul ol ol,
+.tutorial ol ul ol,
+.tutorial ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.tutorial dd {
+  margin-left: 0;
+}
+
+.tutorial code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.tutorial pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.tutorial .octicon {
+  vertical-align: text-bottom;
+}
+
+.tutorial .pl-0 {
+  padding-left: 0 !important;
+}
+
+.tutorial .pl-1 {
+  padding-left: 4px !important;
+}
+
+.tutorial .pl-2 {
+  padding-left: 8px !important;
+}
+
+.tutorial .pl-3 {
+  padding-left: 16px !important;
+}
+
+.tutorial .pl-4 {
+  padding-left: 24px !important;
+}
+
+.tutorial .pl-5 {
+  padding-left: 32px !important;
+}
+
+.tutorial .pl-6 {
+  padding-left: 40px !important;
+}
+
+.tutorial::before {
+  display: table;
+  content: "";
+}
+
+.tutorial::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.tutorial>*:first-child {
+  margin-top: 0 !important;
+}
+
+.tutorial>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.tutorial a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tutorial .anchor {
+  float: left;
+  padding-right: 4px;
+  margin-left: -20px;
+  line-height: 1;
+}
+
+.tutorial .anchor:focus {
+  outline: none;
+}
+
+.tutorial p,
+.tutorial blockquote,
+.tutorial ul,
+.tutorial ol,
+.tutorial dl,
+.tutorial table,
+.tutorial pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.tutorial hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0;
+}
+
+.tutorial blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+}
+
+.tutorial blockquote>:first-child {
+  margin-top: 0;
+}
+
+.tutorial blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.tutorial kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: solid 1px #c6cbd1;
+  border-bottom-color: #959da5;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #959da5;
+}
+
+.tutorial h1,
+.tutorial h2,
+.tutorial h3,
+.tutorial h4,
+.tutorial h5,
+.tutorial h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.tutorial h1 .octicon-link,
+.tutorial h2 .octicon-link,
+.tutorial h3 .octicon-link,
+.tutorial h4 .octicon-link,
+.tutorial h5 .octicon-link,
+.tutorial h6 .octicon-link {
+  color: #1b1f23;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.tutorial h1:hover .anchor,
+.tutorial h2:hover .anchor,
+.tutorial h3:hover .anchor,
+.tutorial h4:hover .anchor,
+.tutorial h5:hover .anchor,
+.tutorial h6:hover .anchor {
+  text-decoration: none;
+}
+
+.tutorial h1:hover .anchor .octicon-link,
+.tutorial h2:hover .anchor .octicon-link,
+.tutorial h3:hover .anchor .octicon-link,
+.tutorial h4:hover .anchor .octicon-link,
+.tutorial h5:hover .anchor .octicon-link,
+.tutorial h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.tutorial h1 {
+  padding-bottom: 0.3em;
+  font-size: 2em;
+  border-bottom: 1px solid #eaecef;
+}
+
+.tutorial h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #eaecef;
+}
+
+.tutorial h3 {
+  font-size: 1.25em;
+}
+
+.tutorial h4 {
+  font-size: 1em;
+}
+
+.tutorial h5 {
+  font-size: 0.875em;
+}
+
+.tutorial h6 {
+  font-size: 0.85em;
+  color: #6a737d;
+}
+
+.tutorial ul,
+.tutorial ol {
+  padding-left: 2em;
+}
+
+.tutorial ul ul,
+.tutorial ul ol,
+.tutorial ol ol,
+.tutorial ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.tutorial li {
+  word-wrap: break-all;
+}
+
+.tutorial li>p {
+  margin-top: 16px;
+}
+
+.tutorial li+li {
+  margin-top: 0.25em;
+}
+
+.tutorial dl {
+  padding: 0;
+}
+
+.tutorial dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.tutorial dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.tutorial table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+
+.tutorial table th {
+  font-weight: 600;
+}
+
+.tutorial table th,
+.tutorial table td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.tutorial table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.tutorial table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.tutorial img {
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+
+.tutorial img[align=right] {
+  padding-left: 20px;
+}
+
+.tutorial img[align=left] {
+  padding-right: 20px;
+}
+
+.tutorial code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+}
+
+.tutorial pre {
+  word-wrap: normal;
+}
+
+.tutorial pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.tutorial .highlight {
+  margin-bottom: 16px;
+}
+
+.tutorial .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.tutorial .highlight pre,
+.tutorial pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+
+.tutorial pre code {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.tutorial .full-commit .btn-outline:not(:disabled):hover {
+  color: #005cc5;
+  border-color: #005cc5;
+}
+
+.tutorial kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: solid 1px #d1d5da;
+  border-bottom-color: #c6cbd1;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #c6cbd1;
+}
+
+.tutorial :checked+.radio-label {
+  position: relative;
+  z-index: 1;
+  border-color: #0366d6;
+}
+
+.tutorial .task-list-item {
+  list-style-type: none;
+}
+
+.tutorial .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.tutorial .task-list-item input {
+  margin: 0 0.2em 0.25em -1.6em;
+  vertical-align: middle;
+}
+
+.tutorial hr {
+  border-bottom-color: #eee;
+}

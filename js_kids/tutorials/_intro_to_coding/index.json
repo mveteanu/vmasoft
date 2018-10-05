@@ -1,0 +1,53 @@
+{
+    "Name" : "Intro to coding",
+    "Pages" : [
+        {
+            "Name" : "Know your environment",
+            "Page" : "doc/p1.md"
+        },
+        {
+            "Page" : "doc/p2.md",
+            "Sketch" : "sketches/p2.js"
+        },
+        {
+            "Page" : "doc/p3.md",
+            "Sketch" : "sketches/p2.js"
+        },
+        {
+            "Page" : "doc/p4.md",
+            "Sketch" : "sketches/p2.js"
+        },
+        {
+            "Page" : "doc/p5.md",
+            "Sketch" : "sketches/p5.js"
+        },
+        {
+            "Page" : "doc/p6.md",
+            "Sketch" : "sketches/p5.js"
+        },
+        {
+            "Page" : "doc/p7.md",
+            "Sketch" : "sketches/p2.js"
+        },
+        {
+            "Page" : "doc/p8.md",
+            "Sketch" : "sketches/p8.js"
+        },
+        {
+            "Page" : "doc/p9.md",
+            "Sketch" : "sketches/p9.js"
+        },
+        {
+            "Page" : "doc/p10.md",
+            "Sketch" : "sketches/p10.js"
+        },
+        {
+            "Page" : "doc/p11.md",
+            "Sketch" : "sketches/p11.js"
+        },
+        {
+            "Page" : "doc/p12.md",
+            "Sketch" : "sketches/p11.js"
+        }
+    ]
+}

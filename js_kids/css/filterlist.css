@@ -1,0 +1,91 @@
+.filterlist {
+    background-color: pink;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.filterlistheader {
+    background-color:whitesmoke;
+    padding: 10px;
+}
+
+.filterlistheader > :first-child {
+    width: 100%;
+}
+
+
+.filterlistcontent {
+    background-color: White;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+
+.filterlistitem {
+    border: 1px solid lightgray;
+    margin: 10px;
+    width: 64px;
+    height : 64px;
+    border-radius: 5px;
+    padding: 5px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+}
+
+.filterlistitem:hover {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 255, .1);;
+}
+
+
+.filterlistitem.image {
+    width: 219px;
+    height: 181px;
+}
+
+.filterlistitem.color {
+    width: 219px;
+    height: 55px;
+    text-align: center;
+}
+
+.filterlistitem.sound {
+    width: 100px;
+    height: 55px;
+    text-align: center;
+}
+
+.filterlistitem.command {
+    width: 100px;
+    height: 28px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.filterlisttags {
+    margin-top: 5px;
+}
+
+.filterlisttag {
+    display: inline-block;
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-right: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+    border: 1px solid whitesmoke;
+}
+
+.filterlisttag.selected {
+    background-color: navy;
+    color: white;
+}
+
+.filterlisttag:hover {
+    border: 1px solid navy;
+}
