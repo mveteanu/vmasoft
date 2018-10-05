@@ -50,5 +50,9 @@ function parentCanvas(canvas)
     if (!div)
         return;
 
+    div.oncontextmenu = function(){
+        return false;
+    }
+
     canvas.parent(div.id);
 }

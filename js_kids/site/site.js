@@ -218,7 +218,7 @@ function generateMyTutorialsList(divName, oTutorials)
 
     for(var oTutorial of oTutorials.Tutorials)
     {
-        var free = oTutorial.Free && oTutorial.Free.toLowerCase() === "yes";
+        var free = !oTutorial.Free || oTutorial.Free.toLowerCase() === "yes";
         var txtAccess = free ? `<li><i class="icon-unlocked"></i> Free</li>` : `<li><i class="icon-lock"></i> Members</li>`;
         var tutorialUrl = free ? `code.html?t=${oTutorial.Folder}` : `#`;
 
