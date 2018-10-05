@@ -1,9 +1,0 @@
-{
-    "Name" : "Tutorial",
-    "Pages" : [
-        {
-            "Page" : "doc/10_Intro.md",
-            "Sketch" : "sketches/program.js"
-        }
-    ]
-}
