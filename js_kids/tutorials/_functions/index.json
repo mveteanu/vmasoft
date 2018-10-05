@@ -1,0 +1,52 @@
+{
+    "Name" : "Functions",
+    "Pages" : [
+        {
+            "Page" : "doc/10_intro.md"
+        },
+        {
+            "Page" : "doc/20_recap.md",
+            "Sketch" : "sketches/house1.js"
+        },
+        {
+            "Page" : "doc/30_planning_a_new_instruction.md",
+            "Sketch" : ""
+        },
+        {
+            "Page" : "doc/40_define_drawhouse.md",
+            "Sketch" : ""
+        },
+        {
+            "Page" : "doc/50_implement_drawhouse_function.md",
+            "Sketch" : "sketches/house2.js"
+        },
+        {
+            "Page" : "doc/60_using_drawhouse.md",
+            "Sketch" : "sketches/house3.js"
+        },
+        {
+            "Page" : "doc/65_identation.md",
+            "Sketch" : "sketches/house3.js"
+        },
+        {
+            "Page" : "doc/70_functions_are_reusable.md",
+            "Sketch" : "sketches/house4.js"
+        },
+        {
+            "Page" : "doc/80_functions_can_be_parametrized.md",
+            "Sketch" : "sketches/house5.js"
+        },
+        {
+            "Page" : "doc/90_using_parameters.md",
+            "Sketch" : "sketches/house6.js"
+        },
+        {
+            "Page" : "doc/100_observations.md",
+            "Sketch" : "sketches/house7.js"
+        },
+        {
+            "Page" : "doc/110_excerise.md",
+            "Sketch" : "sketches/house7.js"
+        }
+    ]
+}

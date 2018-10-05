@@ -1,0 +1,42 @@
+<script src="lib/p5.js"></script>
+<script src="runtime/AssetsData.js"></script>
+<script src="runtime/AssetsFinder.js"></script>
+
+<script>
+
+var _oBackgroundsAssets;
+var _oSpritesAssets;
+var _oSoundsAssets;
+var _oMusicAssets;
+
+var oData;
+var oFinder;
+
+function preload()
+{
+    _oBackgroundsAssets = loadJSON("assets/backgrounds.json");
+    _oSpritesAssets = loadJSON("assets/sprites.json");
+    _oSoundsAssets = loadJSON("assets/sounds.json");
+    _oMusicAssets = loadJSON("assets/music.json");
+}
+
+function setup()
+{
+    createCanvas(600, 300);
+
+    oData = AssetsData();
+
+    // console.log(oData.getBackgroundImages("clouds"));
+    // console.log(oData.getSpriteImages("player"));
+    // console.log(oData.getSpriteImages("askterisk_stretching"));
+    // console.log(oData.getSpriteImages("asterisk_explode"));
+    // console.log(oData.getSoundFiles("doorbell"));
+    // console.log(oData.getMusicFiles("x"));
+
+    oFinder = AssetsFinder("", oData);
+    console.log( oFinder.getImages() );
+    console.log( oFinder.getSounds() );
+}
+
+
+</script>

@@ -1,0 +1,69 @@
+<script src="lib/p5.js"></script>
+<script>
+
+p5.prototype.circle = function(x, y, r)
+{
+    this.ellipse(x, y, r * 2, r * 2);
+}
+
+var p;
+var g;
+
+function setup()
+{
+    p = createCanvas(800, 600);
+
+    g = createGraphics(800, 600);
+    g.pixelDensity(1);
+}
+
+function draw()
+{
+    drawStaticPicture({ screenBuffer: g});
+    image(g, 0, 0);
+    //test(g);
+}
+
+function mouseMoved()
+{
+    g.mouseY = mouseY;
+    handleMouseMoved({ screenBuffer: g});
+}
+
+function handleMouseMoved(buff)
+{
+    with(buff.screenBuffer)
+    {
+        console.log(window.mouseX, mouseY);
+    }
+}
+
+function drawStaticPicture(buff)
+{
+    let _mouseX = mouseX;
+    let _mouseY = mouseY;
+    
+    with(buff.screenBuffer)
+    {
+        let mouseX = _mouseX;
+        let mouseY = _mouseY;
+        
+        dostuff();
+
+        function dostuff()
+        {
+            background("lightblue");
+            ellipse(0, 0, 10);
+            ellipse(width, 0, 10);
+            ellipse(0, height, 10);
+            ellipse(width, height, 10);
+            circle(width / 2, height /2, 50)
+
+            ellipse(100, 100, 100);
+        }
+    }
+}
+
+
+
+</script>
