@@ -129,12 +129,12 @@
 
 								<div class="col_full">
 									<label for="login-form-username">Username:</label>
-									<input type="text" id="login-form-username" name="login-form-username" value="" class="form-control" />
+									<input type="text" id="login-form-username" autocomplete="username" name="login-form-username" value="" class="form-control" />
 								</div>
 
 								<div class="col_full">
 									<label for="login-form-password">Password:</label>
-									<input type="password" id="login-form-password" name="login-form-password" value="" class="form-control" />
+									<input type="password" id="login-form-password" autocomplete="current-password" name="login-form-password" value="" class="form-control" />
 								</div>
 
 								<div id="divLoginError" class="style-msg errormsg d-none">
@@ -143,7 +143,7 @@
 
 								<div class="col_full nobottommargin">
 									<button class="button button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
-									<a href="#" class="fright">Forgot Password?</a>
+									<a id="btnResetPassword" href="#" class="fright">Forgot Password?</a>
 								</div>
 
 							</form>
@@ -166,19 +166,19 @@
 
 							<div class="col_half col_last">
                                     <label for="register-form-username">Choose a Username:</label>
-                                    <input type="text" id="register-form-username" name="register-form-username" value="" class="form-control" />
+                                    <input type="text" id="register-form-username" autocomplete="username" name="register-form-username" value="" class="form-control" />
                             </div>
 
 							<div class="clear"></div>
 
 							<div class="col_half">
 								<label for="register-form-password">Choose Password:</label>
-								<input type="password" id="register-form-password" name="register-form-password" value="" class="form-control" />
+								<input type="password" id="register-form-password" autocomplete="current-password" name="register-form-password" value="" class="form-control" />
 							</div>
 
 							<div class="col_half col_last">
 								<label for="register-form-repassword">Re-enter Password:</label>
-								<input type="password" id="register-form-repassword" name="register-form-repassword" value="" class="form-control" />
+								<input type="password" id="register-form-repassword" autocomplete="current-password" name="register-form-repassword" value="" class="form-control" />
 							</div>
 
                             <div class="clear"></div>
