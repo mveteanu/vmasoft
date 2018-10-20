@@ -1,0 +1,39 @@
+1. "Partners in education" - Find corporate sponsors for $10,000+ 
+   I will list their logo / link to a section on the main page.
+
+2. Create advertisement-type games with characters from companies (e.g. cereal box mascot, etc.)
+   $25,000+
+
+3. "CodeGuppy for books authors"
+   Create page to explain why codeguppy can be used by authors writting books about coding for kids.
+   Contact a few well-know authors and show them the offer...
+
+4. "CodeGuppy for bloggers"
+   Create page to explain how codeguppy can be used by bloggers... explain how to embed the codeguppy code editor in webpages
+
+5. Contact phisical gadgets manufacturers
+   Contact popular robots / toys manufacturers that have programmable gadgets and offer them to create an API in codeguppy to control their gadget
+
+6. "Coding in news"
+   In the parents section of the website, include a section listing articles from media about coding...
+
+7. Kickstarter campaign
+   Create a kickstarter campain and ask for $100 to sponsor the codeguppy site. For sponsors offer lifetime (e.g. 5 years) code to have access to unlocked codeguppy.
+
+8. Codeguppy on social media and Linkedin
+   Youtube, Twitter, Facebook, Instagram, Pinterest
+
+9. Codeguppy on medium
+   Republish all free articles / tutorials from codeguppy on medium to atract users to site
+
+10. Codeguppy on itch.io
+   Put a few nicer games on itch.io
+
+11. Sell t-shirts
+   Put a section to sell t-shirts and other customized merchantise on the site
+
+12. Support "hour of code" 
+    Make a /hoc url and register to code.org
+
+13. CodeGuppy for coding clubs
+    Make a website section and offer codeguppy for coding clubs (offer the coding platform free ... )

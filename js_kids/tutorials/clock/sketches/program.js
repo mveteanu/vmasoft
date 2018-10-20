@@ -1,5 +1,5 @@
 // #SKETCHNAME Analog clock
-angleMode(DEGREES);
+background("LightBlue");
 
 function loop()
 {
@@ -11,6 +11,9 @@ function loop()
 
 function displayDigitalClock()
 {
+    noStroke();
+    fill(0);
+
     var d = new Date();
     var hour = d.getHours();
     var min = d.getMinutes();
@@ -18,14 +21,17 @@ function displayDigitalClock()
 
     var s = hour + ":" + min + ":" + sec;
 
-    strokeWeight(1);
     text(s, 10, height - 10);
 }
 
 function displayAnalogClock(x, y, r)
 {
+    stroke(0);
     strokeWeight(1);
-    ellipse(x, y, r * 2);
+    fill("white");
+
+    circle(x, y, r);
+    
     displayClockNumbers(x, y, r * 0.9);
     
     var d = new Date();
@@ -40,6 +46,9 @@ function displayAnalogClock(x, y, r)
 
 function displayClockNumbers(x, y, r)
 {
+    noStroke();
+    fill(0);
+    
     for(var i = 0; i < 12; i++)
     {
         var ai = map(i, 0, 12, 0, 360);
@@ -55,6 +64,8 @@ function displayClockNumbers(x, y, r)
 
 function displayClockHand(v, maxInterval, x, y, size, weight)
 {
+    stroke(0);
+    
     var angle = map(v, 0, maxInterval, 0, 360);
 
     angle -= 90; // rotate the reference system

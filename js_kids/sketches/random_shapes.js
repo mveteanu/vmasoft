@@ -1,7 +1,7 @@
 // #SKETCHNAME Random shapes
 var noShapes = 1;
 
-var arFunctions = [ randomLine1, randomLine2, randomLine3, randomCircle, randomRect, randomTriangle, randomEllipse, randomChar ];
+var arFunctions = [ randomLine1, randomLine2, randomLine3, randomCircle, randomCircles, randomRect, randomTriangle, randomEllipse, randomChar ];
 var currFunction = 0;
 
 function loop()
@@ -66,6 +66,20 @@ function randomCircle()
     circle(x, y, r);
 }
 
+
+function randomCircles()
+{
+    var x = random(width);
+    var y = random(height);
+    
+    var r = random(100);
+    
+    for(var i = 0; i <= r; i++)
+    {
+        stroke(random(255), random(255), random(255));
+        circle(x, y, i);
+    }
+}
 
 function randomEllipse()
 {

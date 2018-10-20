@@ -13,6 +13,7 @@ var btnShowTutorials;
 var btnShowMySketches;
 var btnCode;
 var divPageTitle;
+var btnResetPassword;
 
 var divStaticTutorials;
 var divMyTutorials;
@@ -34,9 +35,11 @@ window.onload = function()
     divStaticTutorials = document.getElementById("divStaticTutorials");
     divMyTutorials = document.getElementById("divMyTutorials");
     divMySketches = document.getElementById("divMySketches");
+    btnResetPassword = document.getElementById("btnResetPassword");
     
     btnLogOut.addEventListener("click", HandleBtnLogOutClick);
     btnSignInOK.addEventListener("click", HandleBtnSignInOKClick);
+    btnResetPassword.addEventListener("click", HandleBtnResetPassword);
 
     if (btnShowTutorials)
         btnShowTutorials.addEventListener("click", HandleBtnShowTutorialsClick);
@@ -135,7 +138,9 @@ async function HandleBtnSignInOKClick(e)
         await db.signInStudent(userName, password);
         
         $.magnificPopup.close();
-        //window.location.href = "index.html";
+
+        if (!window.location.href.endsWith("index.html"))
+            window.location.href = "index.html";
     }
     catch(error)
     {
@@ -146,6 +151,11 @@ async function HandleBtnSignInOKClick(e)
         lblLoginMessage.innerHTML = errorMessage;
         lblLoginMessage.classList.remove("d-none");
     }
+}
+
+function HandleBtnResetPassword(e)
+{
+    
 }
 
 function HandleBtnShowTutorialsClick(e)

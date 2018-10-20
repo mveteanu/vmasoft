@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="CodeBeanz" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="site/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/swiper.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="site/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-storage.js"></script>
+    
+    <script src="editor/HtmlUtils.js"></script>
+    <script src="firebase/FirebaseDB.js"></script>
+
+	<script src="site/site.js"></script>
+	<link rel="stylesheet" href="site/css/site.css" type="text/css" />
+
+	<title>CodeBeanz | Parents</title>
+
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<div id="logo">
+						<a href="index.html" class="standard-logo" data-dark-logo="site/images/codebeanz_logo.png"><img src="site/images/codebeanz_logo.png" alt="CodeBeanz Logo"></a>
+					</div>
+
+					<div id="top-account" class="dropdown" style="display:none;">
+						<a href="#" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icon-user"></i></a>
+						<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+							<a href="index.html"  class="dropdown-item tleft"><span id="lblUser">Marian Veteanu<br>vmasoft@yahoo.com</span></a>
+							<div class="dropdown-divider"></div>
+							<!-- <a class="dropdown-item tleft" href="#">Profile</a>
+							<a class="dropdown-item tleft" href="#">Students <span class="badge badge-pill badge-secondary fright" style="margin-top: 3px;">30</span></a>
+							<a class="dropdown-item tleft" href="#">Membership</a>
+							<div class="dropdown-divider"></div> -->
+							<a id="btnLogOut" class="dropdown-item tleft" href="#">Logout <i class="icon-signout"></i></a>
+						</ul>
+					</div>
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu">
+
+						<ul>
+							<li><a href="index.html"><div>Home</div></a>
+							</li>
+							<li><a href="about.html"><div>About</div></a>
+							</li>
+							<li><a href="parents.html"><div>Parents</div></a>
+							</li>
+							<li><a href="educators.html"><div>Educators</div></a>
+							</li>
+							<li><a href="pricing.html"><div>Pricing</div></a>
+							</li>
+							<li id="btnLogIn"><a href="#modal-login-form" data-lightbox="inline" class="header-login-trigger"><div>Sign In</div></a>
+							</li>
+							<li id="btnSignUp" class="d-none"><div><a href="signup.html" class="button button-small button-circle button-border button-green">Join for free</a></div>
+							</li>
+						</ul>
+
+	
+					</nav><!-- #primary-menu end -->
+
+				</div>
+
+			</div>
+
+		</header><!-- #header end -->
+
+		<div class="clear"></div>
+
+
+
+		<div class="container clearfix">
+
+				<div class="modal1 mfp-hide" id="modal-login-form">
+				<div class="block divcenter col-padding" style="background-color: #FFF; max-width: 400px;">
+					<h4 class="uppercase ls1">Login to your Account</h4>
+						<div class="col_full">
+							<label for="" class="capitalize t600">Username or Email:</label>
+							<input type="text" id="txtUser" value="" class="sm-form-control" />
+						</div>
+						<div class="col_full">
+							<label for="" class="capitalize t600">Password:</label>
+							<input type="password" id="txtPassword" value="" class="sm-form-control" />
+						</div>
+						<div id="lblLoginMessage" class="col_full d-none">
+						</div>
+						<div class="col_full nobottommargin">
+							<div class="row">
+								<div class="col-6">
+									<button id="btnSignInOK" class="button button-rounded button-small button-dark nomargin">Login</button>
+								</div>
+								<div class="col-6">
+									<p class="nobottommargin tright"><small class="t300"><em><a href="#">Forgot Password?</a></em></small></p>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<!-- Page Title
+		============================================= -->
+		<section id="page-title" class="page-title-parallax page-title-dark" style="background-image: url('site/images/title_.jpg'); background-size: cover; padding: 120px 0;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -300px;">
+
+			<div class="container clearfix">
+				<h1>Why coding?</h1>
+				<span>The Many Benefits of Coding for Kids</span>
+			</div>
+
+		</section><!-- #page-title end -->
+
+		<div class="clear"></div>
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<div class="heading-block center">
+						<h2>Why coding?</h2>
+						<span>The Many Benefits of Coding for Kids</span>
+					</div>
+
+					<div class="col_full">
+                        <!-- <h2>The Many Benefits of Coding for Kids</h2> -->
+
+                        <p>It’s amazing how many studies focus on the negative effects of children increasing their screen time.</p>
+
+                        <p>With these studies in mind, encouraging kids to learn how to code seems counter intuitive; perhaps even a cause for concern. On one hand, why give kids more chances to spend time in front of their screens? Another concern: will kids even be able to grasp the concept of coding? Since many adults find it complicated, doesn’t it seem fair to assume that kids will inevitably have a harder time?</p>
+
+                        <p>Regardless of these challenges, there are a multitude of resources for children to learn how to code. Coding camps, educational websites, school programs are all easily accessible and make coding fun and easy to learn. Really, all parents need to do is help their children choose which of the most common programming languages to focus on: Javascript, HTML, CSS, or something else entirely.</p>
+
+                        <p>If you have some reservations, here are some reasons why kids should learn how to code.</p>
+
+                        <h3>Learning to Code Gives Kids a Competitive Advantage</h3>
+
+                        <p>Coding is an in-demand skill and not everyone knows how to do it.</p>
+
+                        <p>Mastering (or chipping away at learning) this skill set at an early age gives your child a competitive advantage. Learning to code can help with academics! Programming helps kids learn to appreciate what they may otherwise consider “boring” classes like math.</p>
+
+                        <p>Coding also helps children understand how things were built and how the world around them works. It also develops logical thinking because at its core, programming is more about knowing how to solve problems than actually knowing which syntax to use.</p>
+
+                        <h3>Coding Teaches Children Soft Skills</h3>
+
+                        <p>Besides helping children develop technical skills, coding also teaches children soft skills. These soft skills are a combination of intangible skills that enable people to interact with others. Although technical skills can get your foot through the door, the soft skills are what can make you climb the ladder.</p>
+
+                        <p>By learning how to code, children improve their problem solving skills, which in turn, also develops their creativity and persistence in solving problems. Coding improves their communication skills by teaching them to collaborate with others. Coding teaches kids to be focused, patient, and resilient — all skills they need to successfully debug programs.</p>
+                        
+                        <p>Coding can also help build their confidence when they solve a tough challenge.</p>
+                                                
+                        
+                        <h3>Final Thoughts: Coding is the Future</h3>
+
+                        <p>The future is leaning towards tech.</p>
+                        
+                        <p>Statistics have shown that there is no shortage of STEM (science, technology, and math) jobs. It’s been predicted that in 2018, there will be 2.4 million open STEM positions. Of these, 71% of new jobs in STEM are in the field of computing, but only 8% of STEM students graduate with a Computer Science degree.</p>
+                        
+                        <p>These numbers really are a shame, since working in the computer programming industry can be quite lucrative. Almost everything is run and controlled by computers. Kids these days have the advantage of being born in the midst of the internet age; navigating technology is second nature to them.</p>
+                        
+                        <p>There are several advantages to learning how to code. Instead of being concerned about increased screen time, parents should instead focus their attention on how to make that time productive for their children.</p>
+                        
+                        <p>Ready to help your child learn to code? <a href="pricing.html">Start a subscription</a> to CodeBeanz, where kids learn Javascript through project-based learning. Following along with lessons and tutorials, kids will get a sense of accomplishment by creating their own mini-games and other fun applications!</p>
+                        
+
+                    </div>
+
+                </div>
+                
+                <a href="pricing.html" class="button button-full center tright footer-stick">
+                    <div class="container clearfix">
+                        Ready to help your child learn to code? <strong>Start a subscription</strong> to CodeBeanz <i class="icon-caret-right" style="top:4px;"></i>
+                    </div>
+                </a>
+            
+
+			</div>
+		
+		
+		</section><!-- #content end -->
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="dark">
+
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix">
+
+					<div class="col_half">
+						Copyrights &copy; 2018 All Rights Reserved by CodeBeanz<br>
+						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+					</div>
+
+					<div class="col_half col_last tright">
+						<div class="fright clearfix">
+							<a href="#" class="social-icon si-small si-borderless si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-pinterest">
+								<i class="icon-pinterest"></i>
+								<i class="icon-pinterest"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-youtube">
+								<i class="icon-youtube"></i>
+								<i class="icon-youtube"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
+						</div>
+
+						<div class="clear"></div>
+
+						<i class="icon-envelope2"></i> info@codebeanz.com
+					</div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script src="site/js/jquery.js"></script>
+	<script src="site/js/plugins.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="site/js/functions.js"></script>
+
+</body>
+</html>
