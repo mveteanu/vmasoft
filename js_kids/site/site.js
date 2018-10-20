@@ -9,6 +9,7 @@ var mnuUser;
 var lblUser;
 var lblUserWelcome;
 var introBanner;
+var registerBanner;
 var btnShowTutorials;
 var btnShowMySketches;
 var btnCode;
@@ -28,6 +29,7 @@ window.onload = function()
     lblUser = document.getElementById("lblUser");
     lblUserWelcome = document.getElementById("lblUserWelcome");
     introBanner = document.getElementById("introBanner");
+    registerBanner = document.getElementById("registerBanner");
     btnShowTutorials = document.getElementById("btnShowTutorials");
     btnShowMySketches = document.getElementById("btnShowMySketches");
     btnCode = document.getElementById("btnCode");
@@ -91,7 +93,9 @@ function UpdateMainPage(user)
     if (user)
     {
         introBanner.style.display = "none";
+        registerBanner.style.display = "none";
         divPageTitle.style.display = "block";
+
         lblUserWelcome.innerText = "Welcome " + db.getAccountName(user);
 
         divStaticTutorials.classList.add("d-none");
@@ -107,6 +111,7 @@ function UpdateMainPage(user)
     else
     {
         introBanner.style.display = "block";
+        registerBanner.style.display = "block";
         divPageTitle.style.display = "none";
         divStaticTutorials.classList.remove("d-none");
         divMyTutorials.classList.add("d-none");

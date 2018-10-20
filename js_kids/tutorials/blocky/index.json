@@ -43,11 +43,15 @@
         },
         {
             "Page" : "doc/10_displaycell_2.md",
-            "Sketch" : "sketches/8.js"
+            "Sketch" : "sketches/9.js"
         },
         {
-            "Page" : "doc/11_conclusion.md",
+            "Page" : "doc/11_displaycell_3.md",
             "Sketch" : "sketches/10.js"
+        },
+        {
+            "Page" : "doc/100_conclusion.md",
+            "Sketch" : "sketches/program.js"
         }
     ]
 }

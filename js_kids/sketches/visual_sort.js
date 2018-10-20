@@ -2,11 +2,10 @@
 var ar = [];
 var sortRound;
 
+frameRate(10);
+
 function loop()
 {
-    if (frameCount % 15 != 0)
-        return;
-
     clear();
     
     if ( !sortArray(ar) )
