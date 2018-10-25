@@ -1,15 +1,28 @@
+// #SKETCHNAME Test collisions
+var tests = [pointCircle, circleCircle, circleRect, pointRect, rectRect];
+var currTest = 0;
 
 function loop()
 {
     clear();
 
-    //pointCircle();
-    //circleCircle();
-    //circleRect();
-    //pointRect();
-    rectRect();
+    var test = tests[currTest];
+    test();
+    
+    text(test.name, 10, height - 10);
 }
 
+function keyPressed()
+{
+    if (keyCode == LEFT_ARROW && currTest > 0)
+    {
+        currTest--;
+    }
+    else if (keyCode == RIGHT_ARROW && currTest < tests.length - 1)
+    {
+        currTest++;
+    }
+}
 
 function pointCircle()
 {
@@ -46,7 +59,6 @@ function pointRect()
     stroke(collide ? "red" : "black");
     rect(300, 200, 200, 100);
 }
-
 
 function rectRect()
 {

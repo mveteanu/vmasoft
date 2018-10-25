@@ -57,6 +57,13 @@
             "Folder" : "blocky",
             "Lists" : ["pixelart"],
             "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Pixel art is awesome. This tutorial will show you how easy is to build a simple pixel art editor."
+        },
+        {
+            "Name" : "Color Blocky",
+            "Folder" : "color_blocky",
+            "Lists" : ["pixelart"],
+            "DateAdded" : "2018.10.24 9:12PM",
             "Description" : "Pixel art is awesome. With this tutorial you'll learn how to build your own pixel art editor."
         },
         {
@@ -81,8 +88,8 @@
             "Description" : "It is amazing that in a few lines of code you can create a draw program."
         },
         {
-            "Name" : "Falling balls",
-            "Folder" : "falling_balls",
+            "Name" : "Falling balloons",
+            "Folder" : "falling_balloons",
             "Lists" : ["games"],
             "DateAdded" : "2018.07.24 9:12PM",
             "Description" : "Balloons are falling! Pop them all with your needle to win the game."
@@ -128,6 +135,20 @@
             "Lists" : ["featured", "polar"],
             "DateAdded" : "2018.07.24 9:12PM",
             "Description" : "Tune our micro spirograph and enjoy the amazing shapes left behind."
+        },
+        {
+            "Name" : "Magnetic needles",
+            "Folder" : "magnetic_needles",
+            "Lists" : ["featured", "polar"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Have fun moving your mouse in a field of magnetic needles."
+        },
+        {
+            "Name" : "Eyes mouse",
+            "Folder" : "eyes_mouse",
+            "Lists" : ["featured", "polar"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Learn how to build the famous eyes that follow the mouse cursor."
         },
         {
             "Name" : "Movable",
@@ -226,6 +247,27 @@
             "Lists" : ["featured", "games"],
             "DateAdded" : "2018.07.24 9:12PM",
             "Description" : "Play a game of Pong against the computer. It can be pretty challenging."
+        },
+        {
+            "Name" : "Random circle",
+            "Folder" : "circle_random",
+            "Lists" : ["polar"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Watch how a series of dots are moving to reconstruct a circle."
+        },
+        {
+            "Name" : "Jagged shapes",
+            "Folder" : "jagged_shapes",
+            "Lists" : ["polar"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "When straight lines and circles are not enought, you can implement jagged shapes."
+        },
+        {
+            "Name" : "Virtual screen",
+            "Folder" : "virtual_screen",
+            "Lists" : ["other"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Implement the game mechanism for virtual world scrolling games."
         }
     ],
     "Lists" :

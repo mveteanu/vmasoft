@@ -1,3 +1,30 @@
+BIG TICKET ITEMS
+================
+
+1. Secure the firebase assets (implement security)
+
+2. Write tutorials
+
+3. Implement "Forgot password"
+
+4. Implement account activation
+
+5. Implement "Buy Now" flat fee subscription
+
+6. Implement monthly subscription
+
+7. Implement sketch management: e.g. delete sketch
+
+8. Implement "pro" assets (displayed with a "pro" symbol but available only to paid subscribers)
+
+9. Host the site on the official domain (codeguppy?) and open social media accounts...
+
+10. Presentation video to use it on webiste, youtube ... and also send it to "investors" to explain what codeguppy is
+
+------------------------------------------
+
+
+
 RUNTIME
 =======
 
