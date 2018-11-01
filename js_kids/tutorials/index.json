@@ -268,6 +268,41 @@
             "Lists" : ["other"],
             "DateAdded" : "2018.07.24 9:12PM",
             "Description" : "Implement the game mechanism for virtual world scrolling games."
+        },
+        {
+            "Name" : "Connect the dots",
+            "Folder" : "connect_dots",
+            "Lists" : ["drawing", "featured"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Learnd how to implement 'Connect the dots' game that you can share it with your friends and family."
+        },
+        {
+            "Name" : "Character editor",
+            "Folder" : "char_editor",
+            "Lists" : ["pixelart"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Implement an 8x8 character editor that you can use to edit your own fonts or sprites."
+        },
+        {
+            "Name" : "User defined characters",
+            "Folder" : "user_characters",
+            "Lists" : ["pixelart"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Learn how to define and write with 8x8 characters while exercising binary to hex transformation in the process."
+        },
+        {
+            "Name" : "Bitmap font",
+            "Folder" : "bitmap_font",
+            "Lists" : ["pixelart"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Take the writing with 8x8 bitmap fonts to a new level."
+        },
+        {
+            "Name" : "LED scrolling",
+            "Folder" : "led_scrolling",
+            "Lists" : ["pixelart", "featured"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Implement a classical scrolling LED display to transmit your messages in style."
         }
     ],
     "Lists" :
