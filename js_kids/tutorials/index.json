@@ -303,6 +303,20 @@
             "Lists" : ["pixelart", "featured"],
             "DateAdded" : "2018.07.24 9:12PM",
             "Description" : "Implement a classical scrolling LED display to transmit your messages in style."
+        },
+        {
+            "Name" : "LED matrix",
+            "Folder" : "led_matrix",
+            "Lists" : ["pixelart", "featured"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Learn how to implement a color LED matrix for displaying your messages."
+        },
+        {
+            "Name" : "Turtle graphics",
+            "Folder" : "turtle_graphics",
+            "Lists" : ["polar"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Turtle graphics is the flagship feature of Logo programming language. See how easy is to add Logo like commands to your favorite JavaScript language."
         }
     ],
     "Lists" :
