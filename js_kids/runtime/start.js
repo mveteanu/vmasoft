@@ -6,7 +6,7 @@ var _oSpritesAssets;
 var _oSoundsAssets;
 var _oMusicAssets;
 
-// p5.disableFriendlyErrors = true;
+p5.disableFriendlyErrors = true;
 
 // If OFFSCREEN_RENDERING variable is "false" (by default "false") then offscreen_rendering is used only for static scenes (e.g. without loop())
 // ... but if this is true, all scenes will be rendered offscreen! -- potentially slower but will capture the static scene...

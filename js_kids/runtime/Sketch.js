@@ -256,6 +256,24 @@ function Sketch()
     }
 
 
+    // Use functions from a different scene
+    function require(sceneNameOrIndex)
+    {
+        var oSceneWrapper = findScene(sceneNameOrIndex);
+        if (!oSceneWrapper)
+            return {};
+
+        // runs the specified scene function with the context of current scene
+        // NOTE: The scene will be executed for each "require"
+        return oSceneWrapper.fnScene( scene.oSceneData );
+
+        // if ( !oSceneWrapper.sceneExecuted )
+        //      _executeScene(oSceneWrapper);
+
+        // return oSceneWrapper.oScene;
+    }
+
+
     // --------- Begin Private Functions ------------
         
 
@@ -491,7 +509,6 @@ function Sketch()
         var oScreenBuffer_init = null;
         
         var oCodeUtils = CodeUtils(sceneCode);
-        oCodeUtils.addP5Events(P5Events);
         oCodeUtils.parse();
 
         var hasLoop = oCodeUtils.hasLoop();
@@ -609,6 +626,7 @@ function Sketch()
             run : run,
             reset : reset,
             getPublicVars : getPublicVars,
+            require : require,
             showScene : showScene,
             showNextScene : showNextScene,
             _AssetsCache : oAssetsCache,

@@ -14,7 +14,7 @@ text("Press any key to start the game...", width / 2, height - 9);
 
 function loop()
 {
-    pIntro.y += sin(frameCount * 0.1);
+    pIntro.y = height / 2 + 10 * sin(frameCount);
 }
 
 function keyPressed()

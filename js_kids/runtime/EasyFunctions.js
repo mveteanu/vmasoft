@@ -21,6 +21,12 @@ function getPublicVars(sceneNameOrIndex)
     return oSketch.getPublicVars(sceneNameOrIndex);
 }
 
+// Use functions from a different scene
+function require(sceneNameOrIndex)
+{
+    return oSketch.require(sceneNameOrIndex);
+}
+
 // Draw a circle at coordinates x, y of radius r
 p5.prototype.circle = function(x, y, r)
 {
@@ -65,6 +71,27 @@ function sprite(spriteName, x, y, scale)
 
     return oSprite;
 }
+
+
+// Defines a clip region at specified coordinates. Only drawings inside this region are visible
+// Use this between push() ... and  ... pop()
+function clip(x, y, w, h)
+{
+    var scene = oSketch.getCurrentScene();
+    if (!scene)
+        return;
+    
+    var buff = scene.oSceneData.ScreenBuffer || window;
+    if (!buff)
+        return;
+
+    var ctx = buff.drawingContext;
+
+    ctx.beginPath();
+    ctx.rect(x, y, w, h);
+    ctx.clip();
+}
+
 
 // Plays the specified sound file
 function sound(soundName)

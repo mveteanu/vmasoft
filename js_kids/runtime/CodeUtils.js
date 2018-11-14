@@ -3,19 +3,12 @@ function CodeUtils(code)
 {
     var sCode = code;
 
-    var arPublicEvents = ["loop", "enter"];
     var arPublicVars = []; //[ "PublicVars" ];
 
     var sWithObject = "";
 
     var arDetectedFunctions = [];
 
-    // Add specified events to the public events array
-    // Usually: mouseClicked, keyPressed, ...
-    function addP5Events(arEvents)
-    {
-        arPublicEvents = arPublicEvents.concat(arEvents);
-    }
 
     // Set the "with" keyword that will wrap the scene code (if specified)
     function setWith(withName)
@@ -27,7 +20,7 @@ function CodeUtils(code)
     // Parse the code and sets internal variables with information about code
     function parse()
     {
-        arDetectedFunctions = detectEvents();
+        arDetectedFunctions = getFunctions(sCode);
     }
 
     
@@ -58,7 +51,7 @@ function CodeUtils(code)
 
         if (sWithObject)
         {
-            sFnCode = "with (sceneFunctionArgs." + sWithObject + ") \n {\n" + 
+            sFnCode = "with (sceneFunctionArgs." + sWithObject + ") \n{\n" + 
                     sFnCode +
                     "}\n";
         }
@@ -69,38 +62,67 @@ function CodeUtils(code)
 
     // --------- Begin private functions ------------------
 
-
-    // Returns an array with detected public events
-    function detectEvents()
+    // Returns an array with all the functions from a script
+    function getFunctions(script)
     {
-        var arDetectedFunctions = [];
-
-        if (arPublicEvents)
+        if (!script)
+            return [];
+        
+        var arLines = script.split("\n");
+        
+        var ar = [];
+        var inComment = 0;
+        var inFunction = 0;
+    
+        for(var line of arLines)
         {
-            for(var i = 0; i < arPublicEvents.length; i++)
+            line = line.trimStart();
+    
+            if (line.startsWith("//"))
+                continue;
+            
+            // ... needs update to better handle multi-line comments
+            if (line.indexOf("/*") >= 0)
+                inComment++;
+            
+            if (line.indexOf("*/") >= 0 && inComment >= 0)
+                inComment--;
+    
+            if (inComment === 0 && inFunction === 0 && line.startsWith("function"))
             {
-                var fn = arPublicEvents[i];
-                if(hasFunction(fn))
-                    arDetectedFunctions.push(fn);
+                var fn = getFunction(line);
+                ar.push(fn);
+            }
+    
+            if (!inComment)
+            {
+                if (line.indexOf("{") >= 0)
+                    inFunction++;
+    
+                if (line.indexOf("}") >= 0 && inFunction >= 0)
+                    inFunction--;
             }
         }
-
-        return arDetectedFunctions;
+    
+        return ar;
     }
-
-
-    // Returns true if the specified code contains the specified function
-    // Works by doing text processing on the code
-    function hasFunction(sFunctionName)
+       
+    // Returns the function name from a function code line
+    function getFunction(line)
     {
-        if (!sFunctionName || !sCode)
-            return false;
-        
-        //TODO: Improve the logic for detecting if specified function is part of the code
-        //to cover scenarios such as extra white spaces ... or the other declaration var loop = function()
-        return sCode.indexOf("function " + sFunctionName + "(") >= 0;
+        var keyword = "function";
+    
+        var i1 = keyword.length;
+        var i2 = line.indexOf("(", i1);
+    
+        if (i1 >= line.length || i1 >= i2)
+            return null;
+    
+        var fn = line.substr(i1, i2 - i1);
+    
+        return fn.trim();
     }
-
+    
 
     // Returns the line of code that should represent the return from scene closure
     function getSceneReturnAsText()
@@ -132,39 +154,38 @@ function CodeUtils(code)
 
     function getScenePrefixCodeAsText()
     {
-        return `
-            var PublicVars = sceneFunctionArgs.PublicVars;
+        return `var PublicVars = sceneFunctionArgs.PublicVars;
+var sceneArgs = PublicVars.Arguments;
 
-            function preload()
-            {
-            }
+function preload()
+{
+}
 
-            function background()
-            {
-                sceneFunctionArgs.SceneBackground = arguments;
-            }
+function background()
+{
+    sceneFunctionArgs.SceneBackground = arguments;
+}
 
-            function frameRate()
-            {
-                p5.prototype.frameRate.apply(window, arguments);
-            }
+function frameRate()
+{
+    p5.prototype.frameRate.apply(window, arguments);
+}
 
-            function cursor()
-            {
-                p5.prototype.cursor.apply(window, arguments);
-            }
+function cursor()
+{
+    p5.prototype.cursor.apply(window, arguments);
+}
 
-            function noCursor()
-            {
-                p5.prototype.noCursor.apply(window, arguments);
-            }
+function noCursor()
+{
+    p5.prototype.noCursor.apply(window, arguments);
+}
 
-            `;
+`;
     }
 
 
-    return { addP5Events : addP5Events,
-            setWith : setWith,
+    return { setWith : setWith,
             parse : parse,
             hasLoop : hasLoop,
             hasEnter : hasEnter,
