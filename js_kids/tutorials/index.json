@@ -314,9 +314,44 @@
         {
             "Name" : "Turtle graphics",
             "Folder" : "turtle_graphics",
-            "Lists" : ["polar"],
+            "Lists" : ["polar", "featured"],
             "DateAdded" : "2018.07.24 9:12PM",
             "Description" : "Turtle graphics is the flagship feature of Logo programming language. See how easy is to add Logo like commands to your favorite JavaScript language."
+        },
+        {
+            "Name" : "Guessing game",
+            "Folder" : "find_object",
+            "Lists" : ["games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Pick an object from the display list then let the computer find the answer by answering a series of questions."
+        },
+        {
+            "Name" : "Lava lamp",
+            "Folder" : "lavalamp",
+            "Lists" : ["pixelart", "drawing"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Create nice animations that simulate a red and white lavalamp."
+        },
+        {
+            "Name" : "Color lava lamp",
+            "Folder" : "lavalamp_color",
+            "Lists" : ["pixelart", "drawing"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Simulate a color lavalamp using metaballs."
+        },
+        {
+            "Name" : "Seven segment display",
+            "Folder" : "seven_segment",
+            "Lists" : ["pixelart"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Learn what it takes to create a classic seven segment display to display the current time in style."
+        },
+        {
+            "Name" : "Word search",
+            "Folder" : "word_search",
+            "Lists" : ["games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Send your friends a special greeting... To see they first have to solve a classic game of word search."
         }
     ],
     "Lists" :
