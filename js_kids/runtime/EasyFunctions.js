@@ -1,5 +1,3 @@
-
-
 // GlobalVars object used from within the code of the scenes...
 var GlobalVars = {};
 
@@ -27,16 +25,13 @@ function require(sceneNameOrIndex)
     return oSketch.require(sceneNameOrIndex);
 }
 
-// Draw a circle at coordinates x, y of radius r
-p5.prototype.circle = function(x, y, r)
+// Repeats the specified function / lambda n times
+function repeat(n, fn)
 {
-    this.ellipse(x, y, r * 2);
-}
-
-// Overwrite the document.write function
-document.write = function(sText)
-{
-    console.log(sText);
+    for(var i = 0; i < n; i++)
+    {
+        fn(i);
+    }
 }
 
 // inspect the last element of an array
@@ -47,6 +42,18 @@ Array.prototype.peek = function()
         return undefined;
 
     return this[n - 1];
+}
+
+// Overwrite the document.write function
+document.write = function(sText)
+{
+    console.log(sText);
+}
+
+// Draw a circle at coordinates x, y of radius r
+p5.prototype.circle = function(x, y, r)
+{
+    this.ellipse(x, y, r * 2);
 }
 
 // Draw sprite specified by name at specified position and scale (or middle of screen if not specified)
@@ -73,7 +80,7 @@ function sprite(spriteName, x, y, scale)
 }
 
 
-// Defines a clip region at specified coordinates. Only drawings inside this region are visible
+// Defines a rectangular clip region at specified coordinates. Only drawings inside this region are visible
 // Use this between push() ... and  ... pop()
 function clip(x, y, w, h)
 {
@@ -369,4 +376,16 @@ function collisionRectRect(rect1X, rect1Y, rect1Width, rect1Height, rect2X, rect
        rect1X + rect1Width > rect2X &&
        rect1Y < rect2Y + rect2Height &&
        rect1Y + rect1Height > rect2Y);
+}
+
+function createEdit(x, y, w, h)
+{
+    var htmlElements = HtmlElements();
+    return htmlElements.createEdit(x, y, w, h);
+}
+
+function createButton(x, y, w, h)
+{
+    var htmlElements = HtmlElements();
+    return htmlElements.createButton(x, y, w, h);
 }

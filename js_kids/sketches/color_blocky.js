@@ -55,7 +55,7 @@ function loop()
 
 function keyPressed()
 {
-    showNumbers = (key == "Z") & !showNumbers;
+    showNumbers = (key.toUpperCase() === "Z") & !showNumbers;
 }
 
 function handleCellClick()

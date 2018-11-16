@@ -30,11 +30,11 @@ function keyPressed()
     {
         currColor++;
     }
-    else if (key == 'Z')
+    else if (key.toUpperCase() === 'Z')
     {
         undo();
     }
-    else if (key == 'Y')
+    else if (key.toUpperCase() === 'Y')
     {
         redo();
     }

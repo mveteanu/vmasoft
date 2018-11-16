@@ -32,6 +32,7 @@
     <script src="lib/p5.sound.js"></script>
     <script src="lib/p5.play_.js"></script>
 
+
     <script src="runtime/EasyFunctions.js"></script>
     <script src="runtime/Sketch.js"></script>
     <script src="runtime/CodeUtils.js"></script>
@@ -39,6 +40,7 @@
     <script src="runtime/AssetsFinder.js"></script>
     <script src="runtime/AssetsCache.js"></script>
     <script src="runtime/SpriteBuilder.js"></script>
+    <script src="runtime/HtmlElements.js"></script>
     <script src="runtime/start.js"></script>
     <script src="firebase/FirebaseDB.js"></script>
     <script src="store/TextPacker.js"></script>
@@ -394,7 +396,9 @@
 
         <div id="output" class="output">
             <div class="outputbar"><i id="btnOutputFullScreen" class="fas fa-expand" title="Expand"></i></div>
-            <div id="outputarea" class="outputarea"></div>
+            <div id="outputarea" class="outputarea">
+                <div id="canvas"></div>
+            </div>
         </div>
 
     </div>

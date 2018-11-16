@@ -46,11 +46,15 @@ function setup()
 
 function parentCanvas(canvas)
 {
-    var div = document.getElementById("outputarea");
+    var div = document.getElementById("canvas");
     if (!div)
         return;
 
-    div.oncontextmenu = function(){
+    // div.oncontextmenu = function(){
+    //     return false;
+    // }
+
+    window.canvas.oncontextmenu = function(){
         return false;
     }
 

@@ -131,7 +131,7 @@ function checkHit()
         
         if (o.y >= 0 && o.y <= height)
         {
-            if (o.chr == key && !o.hit)
+            if (o.chr === key.toUpperCase() && !o.hit)
             {
                 o.hit = true;
                 hit++;

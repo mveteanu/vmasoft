@@ -426,6 +426,7 @@ a:hover, a:active {
 	flex: 1 1 auto;
 	background-color: pink;
 	margin: 0;
+	min-width: 800px;
 
 	display: flex;
 	flex-direction: column;
@@ -457,7 +458,6 @@ a:hover, a:active {
 	color: black;
 }
 
-
 .outputarea {
 	background-color: White;
 	width: 100%;
@@ -471,9 +471,12 @@ a:hover, a:active {
 	overflow: hidden;
 }
 
-/* Canvas should be the first element in outputarea */
+/* Canvas (or div for canvas?) should be the first element in outputarea */
 .outputarea > :first-child {
 	border: 1px dashed lightgray;
+
+	position: absolute; 
+	overflow: hidden;	
 }
 
 /*

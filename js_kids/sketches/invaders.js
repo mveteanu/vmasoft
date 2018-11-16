@@ -293,7 +293,7 @@ function enter()
 
 function keyPressed()
 {
-    if (key == "R")
+    if (key.toUpperCase() === "R")
     {
         showScene("Game");
     }

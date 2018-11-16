@@ -134,11 +134,26 @@ function Sketch()
     // Note: Normally the image cache should not be cleared on reset() to avoid re-download of assets
     function reset(bClearAssetsCache)
     {
+        // remove HTML elements
+        var htmlElements = HtmlElements();
+        htmlElements.removeElements();
+
+        // remove offscreen buffers...
+        for(var o of scenes)
+        {
+            if (o.oSceneData && o.oSceneData.ScreenBuffer)
+            {
+                o.oSceneData.ScreenBuffer.remove();
+                o.oSceneData.ScreenBuffer = null;
+            }
+        }
+
         scene = null;
         scenes = [];
         GlobalVars = {};
         resetAttributes();
-        
+        frameCount = 0;
+
         if (sketchMusic != null)
         {
             sketchMusic.stop();
@@ -192,6 +207,11 @@ function Sketch()
         return scene;
     }
 
+    function getScenes()
+    {
+        return scenes;
+    }
+
     // Show the scene specified by name
     // The function justs sets the current scene... in order for the main loop to know what to call
     function showScene(sceneNameOrIndex, sceneArgs)
@@ -213,6 +233,11 @@ function Sketch()
 
         //if (!OFFSCREEN_RENDERING) /// If not offscreen rendering... I should save scenes attributes...
         //var currAttributes = p5.Renderer.prototype.push.apply(sketchCanvas);
+
+        // Hide elements from current scene ... and show the elements from the new scene
+        var htmlElements = HtmlElements();
+        htmlElements.hideElements(scene);
+        htmlElements.showElements(o);
 
         scene = o;
     }
@@ -560,7 +585,8 @@ function Sketch()
                    sceneExecuted : false,
                    enterExecuted : false,
                    errorMessage : fnSceneError,
-                   spritesGroup : new Group()
+                   spritesGroup : new Group(),
+                   htmlElements : []
                 };
     }  
 
@@ -623,6 +649,7 @@ function Sketch()
             findScene : findScene,
             getSceneCount : getSceneCount,
             getCurrentScene : getCurrentScene,
+            getScenes : getScenes,
             run : run,
             reset : reset,
             getPublicVars : getPublicVars,

@@ -38,7 +38,7 @@ function mouseClicked()
 // debugging method...
 function keyPressed()
 {
-    if (key == "X")
+    if (key.toUpperCase() === "X")
     {
         board = [1, 2, 3, 4, 5, 6, 7, 0, 8];
     }
