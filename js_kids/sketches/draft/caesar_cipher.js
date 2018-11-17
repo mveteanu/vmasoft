@@ -15,12 +15,12 @@ function createUI()
     noStroke();
 
     text("Type here your plain or encryted message", 10, 20);
-    editPlain = createEdit(10, 30, 780, 221);
-    editPlain.value = "I LOVE CODING!";
+    editPlain = createEdit(10, 30, 780, 220);
+    editPlain.text = "I LOVE CODING!";
 
     text("Password", 10, 285);
-    editPassword = createEdit(80, 270, 151);
-    editPassword.value = "secret";
+    editPassword = createEdit(80, 270, 150);
+    editPassword.text = "secret";
     
     btnEncrypt = createButton(250, 265);
     btnEncrypt.text = "Encrypt";
@@ -31,30 +31,30 @@ function createUI()
     btnDecrypt.onclick = btnDecrypt_OnClick;
 
     text("Encrypted / Decrypted message", 10, 330);
-    editEncrypted = createEdit(10, 340, 781, 221);
-    editEncrypted.readOnly = true;
+    editEncrypted = createEdit(10, 340, 781, 220);
+    editEncrypted.readonly = true;
 
     text("Exchange secret messages with your friends by encrypting / decrypting them with the Caesar Cipher.", 10, 590);
 }
 
 function btnEncrypt_OnClick()
 {
-    var msg = editPlain.value.toUpperCase();
-    var password = editPassword.value;
+    var msg = editPlain.text.toUpperCase();
+    var password = editPassword.text;
     
     var key = getKey(password);
 
-    editEncrypted.value = encrypt(msg, key);
+    editEncrypted.text = encrypt(msg, key);
 }
 
 function btnDecrypt_OnClick()
 {
-    var msg = editPlain.value.toUpperCase();
-    var password = editPassword.value;
+    var msg = editPlain.text.toUpperCase();
+    var password = editPassword.text;
     
     var key = getKey(password);
 
-    editEncrypted.value = decrypt(msg, key);
+    editEncrypted.text = decrypt(msg, key);
 }
 
 

@@ -112,11 +112,11 @@ function HtmlElements()
             };
     
             Object.defineProperties(oReturn, { 
-                "value" : {
+                "text" : {
                     get() { return oReturn.getText(); },
                     set(value) { oReturn.setText(value); }
                     },
-                "readOnly" : {
+                "readonly" : {
                     get() { return el.readOnly; },
                     set(value) { el.readOnly = value; }
                     },
