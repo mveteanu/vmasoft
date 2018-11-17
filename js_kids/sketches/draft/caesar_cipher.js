@@ -1,38 +1,85 @@
 // #SKETCHNAME Caesar cipher
 var editPlain;
 var editEncrypted;
-var editKey;
+var editPassword;
+
+var btnEncrypt;
+var btnDecrypt;
 
 createUI();
 
 function createUI()
 {
-    background("LightBlue");
+    background("Lavender");
     fill(0);
     noStroke();
-    
+
     text("Type here your plain or encryted message", 10, 20);
     editPlain = createEdit(10, 30, 780, 221);
-    editPlain.onchange = encryptText;
+    editPlain.value = "I LOVE CODING!";
+
+    text("Password", 10, 285);
+    editPassword = createEdit(80, 270, 151);
+    editPassword.value = "secret";
     
-    text("Encrypted / Decrypted message", 10, 280);
-    editEncrypted = createEdit(10, 290, 780, 221);
+    btnEncrypt = createButton(250, 265);
+    btnEncrypt.text = "Encrypt";
+    btnEncrypt.onclick = btnEncrypt_OnClick;
+
+    btnDecrypt = createButton(390, 265);
+    btnDecrypt.text = "Decrypt";
+    btnDecrypt.onclick = btnDecrypt_OnClick;
+
+    text("Encrypted / Decrypted message", 10, 330);
+    editEncrypted = createEdit(10, 340, 781, 221);
     editEncrypted.readOnly = true;
 
-    text("Key", 10, 550);
-    editKey = createEdit(45, 535, 50);
-    editKey.value = 13;
-    editKey.onchange = encryptText;
-    
-    text("Exchange secret messages with your friends using the Caesar Cipher.", 10, 590);
+    text("Exchange secret messages with your friends by encrypting / decrypting them with the Caesar Cipher.", 10, 590);
 }
 
-function encryptText()
+function btnEncrypt_OnClick()
 {
     var msg = editPlain.value.toUpperCase();
-    var key = parseInt(editKey.value);
+    var password = editPassword.value;
+    
+    var key = getKey(password);
 
     editEncrypted.value = encrypt(msg, key);
+}
+
+function btnDecrypt_OnClick()
+{
+    var msg = editPlain.value.toUpperCase();
+    var password = editPassword.value;
+    
+    var key = getKey(password);
+
+    editEncrypted.value = decrypt(msg, key);
+}
+
+
+// Obtain an encryption key by adding the codes of all the letters of the password
+function getKey(password)
+{
+    var key = 0;
+    
+    if (!password)
+        return key;
+    
+    for(var i = 0; i < password.length; i++)
+    {
+        var code = password.charCodeAt(i);
+        key += code;
+    }
+    
+    return key;
+}
+
+// Decrypt a message by using the same encrypt function
+// ... but using the inverse of the key (e.g. rotate in the other direction)
+function decrypt(msg, key)
+{
+    return encrypt(msg, key * -1);
 }
 
 // Function will implement Caesar Cipher to
