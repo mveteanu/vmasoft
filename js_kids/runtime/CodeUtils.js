@@ -76,7 +76,7 @@ function CodeUtils(code)
     
         for(var line of arLines)
         {
-            line = line.trimStart();
+            line = line.trimLeft();
     
             if (line.startsWith("//"))
                 continue;
