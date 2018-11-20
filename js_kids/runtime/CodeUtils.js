@@ -93,7 +93,13 @@ function CodeUtils(code)
                 var fn = getFunction(line);
                 ar.push(fn);
             }
-    
+
+            if (inComment === 0 && inFunction === 0 && line.startsWith("class"))
+            {
+                var fn = getClass(line);
+                ar.push(fn);
+            }
+
             if (!inComment)
             {
                 if (line.indexOf("{") >= 0)
@@ -106,6 +112,39 @@ function CodeUtils(code)
     
         return ar;
     }
+
+
+    function getClass(line)
+    {
+        var keyword = "class";
+
+        var i1 = keyword.length + 1;
+
+        var i2 = line.indexOf("\n", i1);
+
+        if (i2 < 0)
+            i2 = line.indexOf("\r", i1);
+
+        if (i2 < 0)
+            i2 = line.indexOf(" ", i1);
+
+        if (i2 < 0)
+            i2 = line.indexOf("\t", i1);
+
+        if (i2 < 0)
+            i2 = line.indexOf("{", i1);
+
+        if (i2 < 0)
+            i2 = line.length;
+
+        if (i1 >= line.length || i1 >= i2)
+            return null;
+            
+        var fn = line.substr(i1, i2 - i1);
+
+        return fn.trim();
+    }
+
        
     // Returns the function name from a function code line
     function getFunction(line)

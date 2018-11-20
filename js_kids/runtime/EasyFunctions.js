@@ -44,10 +44,61 @@ Array.prototype.peek = function()
     return this[n - 1];
 }
 
-// Overwrite the document.write function
-document.write = function(sText)
+// clears an array
+Array.prototype.clear = function()
 {
-    console.log(sText);
+    this.length = 0;
+}
+
+// Overwrite the p5.print function to make it write into the text layer
+p5.prototype.print = function()
+{
+    var htmlElements = HtmlElements();
+    htmlElements.print(...arguments);
+}
+
+// Similar to print, but adds an "LF" at the end
+p5.prototype.println = function()
+{
+    print(...arguments, "\n");
+}
+
+// Overwrite the document.write function
+document.write = function()
+{
+    print(...arguments);
+}
+
+
+// Get a random int between min and max (both included)
+function randomInt(min, max) 
+{
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+
+// Returns a random char between chr1 and chr2 (both included)
+function randomChar(chr1, chr2)
+{
+    var code1 = chr1.charCodeAt(0);
+    var code2 = chr2.charCodeAt(0);
+    
+    var code = randomInt(code1, code2);
+    
+    return String.fromCharCode(code);
+}
+
+// based on https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+Array.prototype.shuffle = function()
+{
+    for (var i = this.length - 1; i > 0; i--) 
+    {
+        var j = randomInt(0, i);
+        
+        var x = this[i];
+        this[i] = this[j];
+        this[j] = x;
+    }
 }
 
 // Draw a circle at coordinates x, y of radius r

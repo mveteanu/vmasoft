@@ -1,5 +1,22 @@
 function HtmlElements()
 {
+    function print()
+    {
+        var pre = document.getElementById("text");
+        if (!pre)
+            return;
+
+        pre.style.display = "block";
+        
+        var txt = "";
+        for(var i = 0; i < arguments.length; i++)
+        {
+             txt += arguments[i];
+        }
+
+        pre.value += txt;
+    }
+
     // Creates an edit control INPUT. Parameters w and h are optional.
     // If h is specified then a multiline TEXTAREA is created instead
     function createEdit(x, y, w, h)
@@ -335,6 +352,15 @@ function HtmlElements()
         }
     }
 
+    function removePrint()
+    {
+        var pre = document.getElementById("text");
+        if (pre)
+        {
+            pre.value = "";
+            pre.style.display = "none";
+        }
+    }
 
     function registerElement(o)
     {
@@ -345,10 +371,9 @@ function HtmlElements()
         scene.htmlElements.push( { element : o, visible : true } );
     }
 
-
-    
-
     return {
+        print : print,
+        removePrint : removePrint,
         createEdit : createEdit,
         createButton : createButton,
         showElements : showElements,

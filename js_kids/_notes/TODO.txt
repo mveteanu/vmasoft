@@ -21,6 +21,10 @@ BIG TICKET ITEMS
 
 10. Presentation video to use it on website, youtube ... and also send it to "investors" to explain what codeguppy is
 
+
+... option: Offer codeguppy for free until I write the tutorials. Publish tutorials on medium.com and codeguppy.com as I write them... Introduce paid subscription after I write all important tutorials.
+
+
 ------------------------------------------
 
 
@@ -30,9 +34,8 @@ RUNTIME
 
 - implement use("sceneName"); to allow creation of modules with functions inside a scene
   E.g. 
-    var utils = use("Utils");
+    var utils = require("Utils");
     utils.doStuff();
-  (note: the function can be named `use` or `require`.)
 
 MISC
 ====

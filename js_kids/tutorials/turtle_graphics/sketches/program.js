@@ -1,6 +1,6 @@
-// #SKETCHNAME Logo
+// #SKETCHNAME Turtle graphics
 var turtle;
-initTurtle();
+home();
 
 var ar = [
         ()=>{plant(100, 0)},
@@ -15,7 +15,7 @@ var ar = [
 function loop()
 {
     clear();
-    initTurtle();
+    home();
     
     var x = constrain(mouseX, 0, width - 1);
     var n = round(map(x, 0, width - 1, 0, ar.length - 1));
@@ -27,7 +27,8 @@ function loop()
 
 // -----------------
 
-// Examples from: http://fmslogo.sourceforge.net/workshop/
+// Turtle graphics examples translated from LOGO examples
+// from: http://fmslogo.sourceforge.net/workshop/
 
 function spiral()
 {
@@ -153,7 +154,7 @@ function spiro()
 
 // ------------------
 
-function initTurtle()
+function home()
 {
     if (!turtle)
         turtle = {};
