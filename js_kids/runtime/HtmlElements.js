@@ -15,6 +15,8 @@ function HtmlElements()
         }
 
         pre.value += txt;
+
+        pre.scrollTop = pre.scrollHeight;
     }
 
     // Creates an edit control INPUT. Parameters w and h are optional.
@@ -79,6 +81,9 @@ function HtmlElements()
         function setText(text)
         {
             el.value = text;
+
+            if (type === "TEXTAREA")
+                el.scrollTop = el.scrollHeight;
         }
     
         function setPosition(x, y)

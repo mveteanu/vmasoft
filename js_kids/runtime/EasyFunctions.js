@@ -19,6 +19,13 @@ function getPublicVars(sceneNameOrIndex)
     return oSketch.getPublicVars(sceneNameOrIndex);
 }
 
+// EXPERIMENTAL: Returns the object with functions from a scene (if scene is initialized already)
+function getScene(sceneNameOrIndex)
+{
+    var scene = sceneNameOrIndex ? oSketch.findScene(sceneNameOrIndex) : oSketch.getCurrentScene();
+    return scene ? scene.oScene : null;
+}
+
 // Use functions from a different scene
 function require(sceneNameOrIndex)
 {

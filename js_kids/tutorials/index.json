@@ -387,6 +387,20 @@
             "Lists" : ["math"],
             "DateAdded" : "2018.07.24 9:12PM",
             "Description" : "Navigate prime numbers, one page at a time."
+        },
+        {
+            "Name" : "Console math",
+            "Folder" : "console_math",
+            "Lists" : ["math"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Create a simple math game while coding in 'console' mode."
+        },
+        {
+            "Name" : "Escape the lab",
+            "Folder" : "escape_lab",
+            "Lists" : ["games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Escape the lab is text adventure game that requires imagination rather than skills."
         }
     ],
     "Lists" :
