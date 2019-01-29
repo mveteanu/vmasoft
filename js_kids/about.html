@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="CodeGuppy" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="site/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/swiper.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="site/css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="site/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-storage.js"></script>
+    
+    <script src="editor/HtmlUtils.js"></script>
+    <script src="firebase/FirebaseDB.js"></script>
+
+	<script src="site/site.js"></script>
+	<link rel="stylesheet" href="site/css/site.css" type="text/css" />
+
+	<title>CodeGuppy | About</title>
+
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<div id="logo">
+						<a href="index.html" class="standard-logo" data-dark-logo="site/images/codeguppy_logo.png"><img src="site/images/codeguppy_logo.png" alt="CodeGuppy Logo"></a>
+					</div>
+
+					<div id="top-account" class="dropdown" style="display:none;">
+						<a href="#" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icon-user"></i></a>
+						<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+							<a href="index.html"  class="dropdown-item tleft"><span id="lblUser">Marian Veteanu<br>vmasoft@yahoo.com</span></a>
+							<div class="dropdown-divider"></div>
+							<!-- <a class="dropdown-item tleft" href="#">Profile</a>
+							<a class="dropdown-item tleft" href="#">Students <span class="badge badge-pill badge-secondary fright" style="margin-top: 3px;">30</span></a>
+							<a class="dropdown-item tleft" href="#">Membership</a>
+							<div class="dropdown-divider"></div> -->
+							<a id="btnLogOut" class="dropdown-item tleft" href="#">Logout <i class="icon-signout"></i></a>
+						</ul>
+					</div>
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu">
+
+						<ul>
+							<li><a href="index.html"><div>Home</div></a>
+							</li>
+							<li><a href="about.html"><div>About</div></a>
+							</li>
+							<li><a href="parents.html"><div>Parents</div></a>
+							</li>
+							<li><a href="educators.html"><div>Educators</div></a>
+							</li>
+							<li><a href="pricing.html"><div>Pricing</div></a>
+							</li>
+							<li id="btnLogIn"><a href="#modal-login-form" data-lightbox="inline" class="header-login-trigger"><div>Sign In</div></a>
+							</li>
+							<li id="btnSignUp" class="d-none"><div><a href="signup.html" class="button button-small button-circle button-border button-green">Join for free</a></div>
+							</li>
+						</ul>
+
+	
+					</nav><!-- #primary-menu end -->
+
+				</div>
+
+			</div>
+
+		</header><!-- #header end -->
+
+		<div class="clear"></div>
+
+		<!-- Page Title
+		============================================= -->
+		<section id="page-title">
+
+				<div class="container clearfix">
+					<h1>About CodeGuppy</h1>
+					<span>Learn coding by building games and fun applications</span>
+				</div>
+		
+			</section>
+
+		<div class="container clearfix">
+
+				<div class="modal1 mfp-hide" id="modal-login-form">
+				<div class="block divcenter col-padding" style="background-color: #FFF; max-width: 400px;">
+					<h4 class="uppercase ls1">Login to your Account</h4>
+						<div class="col_full">
+							<label for="" class="capitalize t600">Username or Email:</label>
+							<input type="text" id="txtUser" value="" class="sm-form-control" />
+						</div>
+						<div class="col_full">
+							<label for="" class="capitalize t600">Password:</label>
+							<input type="password" id="txtPassword" value="" class="sm-form-control" />
+						</div>
+						<div id="lblLoginMessage" class="col_full d-none">
+						</div>
+						<div class="col_full nobottommargin">
+							<div class="row">
+								<div class="col-6">
+									<button id="btnSignInOK" class="button button-rounded button-small button-dark nomargin">Login</button>
+								</div>
+								<div class="col-6">
+									<p class="nobottommargin tright"><small class="t300"><em><a id="btnResetPassword" href="#">Forgot Password?</a></em></small></p>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<section id="page-title" style="display:none;">
+			<div class="container ">
+				<h1 id="lblUserWelcome">Welcome Marian Veteanu</h1>
+		
+				<br>
+
+				<div class="col_five_sixth">
+					<button id="btnShowTutorials" class="button button-border button-border-thin button-teal">Tutorials</button> 
+					<button id="btnShowMySketches" class="button button-border button-border-thin button-teal">My Sketches</button>
+				</div>
+
+				<div class="col_one_sixth col_last">
+					<button id="btnCode" class="button button-3d">Code Now</button>
+				</div>
+				<br>
+			</div>		
+		</section>
+
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<section id="section-info" class="page-section">
+					<div class="container clearfix">
+
+						<div class="heading-block center">
+							<h2>CodeGuppy Platform</h2>
+							<span>Learning to code can be easy and fun with the right platform. Just open codeguppy.com and start coding - no need to install any software. Our entire curriculum of lessons and projects is tailored made for kids with activities such as interactive graphics and game creation. On codeguppy students love creating programs and share them with their friends!</span>
+						</div>
+
+						<div class="col_full">
+
+							<img data-animate="fadeIn" class="aligncenter" src="site/images/macbook.png" alt="Coding Platform">
+
+						</div>
+
+						<div class="col_one_third nobottommargin">
+
+							<div class="feature-box fbox-plain">
+								<div class="fbox-icon">
+									<a href="#"><i class="i-alt">1.</i></a>
+								</div>
+								<h3>Web based platform</h3>
+								<p>With CodeGuppy you'll learn to code real games and applications directly in your browser. You don't need to install any software on your local machine. Any Windows, Mac or Chromebook computer is perfect for CodeGuppy.</p>
+							</div>
+
+						</div>
+
+						<div class="col_one_third nobottommargin">
+
+							<div class="feature-box fbox-plain">
+								<div class="fbox-icon">
+									<a href="#"><i class="i-alt">2.</i></a>
+								</div>
+								<h3>JavaScript language</h3>
+								<p>At CodeGuppy.com we teach JavaScript - the most used and popular programming language nowadays. Our multi-scene code editor is empowering beginners to type their first line of code as well as advanced users to create multi-scene platform games.</p>
+							</div>
+
+						</div>
+
+						<div class="col_one_third nobottommargin col_last">
+
+							<div class="feature-box fbox-plain">
+								<div class="fbox-icon">
+									<a href="#"><i class="i-alt">3.</i></a>
+								</div>
+								<h3>Game assets</h3>
+								<p>To make coding fun and engaging, CodeGuppy is providing you with a full library of animated characters, background images, and sounds that you can use in your games and applications.</p>
+							</div>
+
+						</div>
+
+					</div>
+				</section>
+
+				<div class="section">
+					<div class="heading-block center nobottomborder nobottommargin">
+						<h2>"Everything is designed, but some things are designed well."</h2>
+					</div>
+				</div>
+			
+				<section id="section-faqs" class="page-section">
+					<div class="container clearfix">
+
+					<div class="heading-block center">
+						<h2>Questions and Answers</h2>
+					</div>
+
+					<div id="faqs" class="faqs">
+						<div class="toggle faq">
+							<div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>Why choose codeguppy.com when you have so many other coding sites?</div>
+							<div class="togglec">codeguppy.com is specialy designed for kids with easy to follow tutorials written in a friendly language. Kids can choose whatever tutorial they want at their own pace. There are no quizes or milestones - just pure coding fun. By contrast, the majority of the other coding sites designed for adults are focused on career objectives.</div>
+						</div>
+
+						<div class="toggle faq">
+							<div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>Why learn coding?</div>
+							<div class="togglec">Coding is an essential 21st century skill it is digital literacy. Many schools around the world already introduced coding as a mandatory curriculum activity. By learning to code you also improve your problem solving, math and spelling skills.</div>
+						</div>
+						
+						<div class="toggle faq">
+							<div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>Why codeguppy.com is not using a visual blocks language?</div>
+							<div class="togglec">Visual Blocks languages such as Scratch have their own merits to introduce very young kids to the world of coding. However our opinion is that kids should transition as soon as possible to text based languages. A text based language will help a kids develop not only real coding skills but also other important skills such as spelling. If kids in the 80s were able to learn coding using BASIC (a text based language written in rudimentary editors), we believe that contemporary childrens can also learn JavaScript using the advanced codeguppy.com environment.</div>
+						</div>
+						
+						<div class="toggle faq">
+							<div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>Why teach graphics and games programming?</div>
+							<div class="togglec">We are using graphics and games programming as ways to capture the attention and light the imagination of young coders. What else should we teach a 10 years old: how to develop boring bussiness applications? In addition to graphics and game programming we are also incorporating many math based curriculum activities.</div>
+						</div>
+						
+						<div class="toggle faq">
+							<div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>What computer should I use to learn coding?</div>
+							<div class="togglec">Our codeguppy.com environment is Web based. Is running on any modern browser on most PCs and tablets. However, when coding, we strongly recomment to use a computer with a physical keyboard and mouse such as a Chromebook, Windows PC or Mac. Coding requires to input many strange symbols that are very difficult to find and enter using a screen based keyboard.</div>
+						</div>
+						
+						<div class="toggle faq">
+							<div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>What is the minimum age for codeguppy.com?</div>
+							<div class="togglec">codeguppy.com tutorials are designed for kids as young as 10! And even younger kids can have fun typing simple programs! Don't forget that adults can have fun too with codeguppy.com -- especially if you are into game coding.</div>
+						</div>
+						
+						<div class="toggle faq">
+							<div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>Can I create my own programs with codeguppy.com?</div>
+							<div class="togglec">Yes! On codeguppy.com we are offering unlimited space to create and store personal programs that you can share with others. You can code new programs from scratch, if you prefer so, or by starting from other programs found in tutorials or shared by friends.</div>
+						</div>
+						
+						<div class="toggle faq">
+							<div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>What language are you teaching on codeguppy.com?</div>
+							<div class="togglec">On codeguppy.com we are teaching the most popular language nowadays: JavaScript.</div>
+						</div>
+						
+						<div class="toggle faq">
+							<div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>What makes the codeguppy.com platform special?</div>
+							<div class="togglec">CodeGuppy is teaching JavaScript. Our platform adds just the right amount of 'spark' on top of JavaScript in order to empower users to create nice programs but without distracting them from the language and computer science concepts. Behind the scenes, CodeGuppy is using <a target="_new" href="https://p5js.org/">p5.js</a>  - a JavaScript library with deep roots in academia. On top of the coding platform, CodeGuppy provides a library of game building assets, an online coding editor with syntax highlight, program sharing capabilities and unlimited space for personal programs.</div>
+						</div>
+
+						<div class="toggle faq">
+							<div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>Why learning through games and creative programming?</div>
+							<div class="togglec">Games and animations are the first type of applications that a kid encounters on either personal computers or mobile devices. Therefore kids are very motivated to create and share their own games with friends and family.</div>
+						</div>
+
+					</div>
+					</div>
+				</section>
+
+				<div class="section">
+						<h4 class="uppercase center">What <span>Users</span> say?</h4>
+
+						<div class="fslider testimonial testimonial-full" data-animation="fade" data-arrows="false">
+							<div class="flexslider">
+								<div class="slider-wrap">
+									<div class="slide">
+										<div class="testi-content">
+											<p>CodeGuppy allows me to create my own games that I can share with my friends.</p>
+										</div>
+									</div>
+									<div class="slide">
+										<div class="testi-content">
+											<p>I was always interested to see how the classic games such as Pong and Breakout were made. CodeGuppy has tutorials for these games as well as many others.</p>
+										</div>
+									</div>
+									<div class="slide">
+										<div class="testi-content">
+											<p>CodeGuppy is the best coding site on the entire web.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+				</div>
+
+			</div>
+		
+		
+		</section><!-- #content end -->
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="dark">
+
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix">
+
+					<div class="col_half">
+						Copyrights &copy; 2019 All Rights Reserved by CodeGuppy<br>
+						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+					</div>
+
+					<div class="col_half col_last tright">
+						<div class="fright clearfix">
+							<a href="#" class="social-icon si-small si-borderless si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-pinterest">
+								<i class="icon-pinterest"></i>
+								<i class="icon-pinterest"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-youtube">
+								<i class="icon-youtube"></i>
+								<i class="icon-youtube"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
+						</div>
+
+						<div class="clear"></div>
+
+						<i class="icon-envelope2"></i> info@codeguppy.com
+					</div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script src="site/js/jquery.js"></script>
+	<script src="site/js/plugins.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="site/js/functions.js"></script>
+
+</body>
+</html>

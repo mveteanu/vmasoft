@@ -1,0 +1,62 @@
+{
+    "Name" : "Coordinates",
+    "Pages" : [
+        {
+            "Page" : "doc/01_intro.md",
+            "Sketch" : ""
+        },
+        {
+            "Page" : "doc/02_pixels.md",
+            "Sketch" : ""
+        },
+        {
+            "Page" : "doc/03_resolution.md",
+            "Sketch" : ""
+        },
+        {
+            "Page" : "doc/04_coordinates_1.md",
+            "Sketch" : ""
+        },
+        {
+            "Page" : "doc/05_coordinates_2.md",
+            "Sketch" : ""
+        },
+        {
+            "Page" : "doc/06_playing_1.md",
+            "Sketch" : "sketches/p1.js"
+        },
+        {
+            "Page" : "doc/07_playing_2.md",
+            "Sketch" : "sketches/p1.js"
+        },
+        {
+            "Page" : "doc/07_playing_3.md",
+            "Sketch" : "sketches/p2.js"
+        },
+        {
+            "Page" : "doc/08_circle.md",
+            "Sketch" : "sketches/p3.js"
+        },
+        {
+            "Page" : "doc/09_line.md",
+            "Sketch" : "sketches/p4.js"
+        },
+        {
+            "Page" : "doc/10_house_1.md",
+            "Sketch" : ""
+        },
+        {
+            "Page" : "doc/10_house_2.md",
+            "Sketch" : ""
+        },
+        {
+            "Page" : "doc/10_house_3.md",
+            "Sketch" : "sketches/p5.js"
+        },
+        {
+            "Page" : "doc/11_conclusion.md",
+            "Sketch" : ""
+        }
+    ]
+}
+

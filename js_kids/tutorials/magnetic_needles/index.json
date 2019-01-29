@@ -1,0 +1,9 @@
+{
+    "Name" : "Tutorial",
+    "Pages" : [
+        {
+            "Page" : "doc/10_Intro.md",
+            "Sketch" : "sketches/magnetic_field.js"
+        }
+    ]
+}

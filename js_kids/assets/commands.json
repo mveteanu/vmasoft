@@ -1,0 +1,252 @@
+{
+    "Commands" : {
+        "Structure" : [
+            {
+                "Text" : "let",
+                "Code" : "let x;\n",
+                "Desc" : "let can be used to declare a variable.",
+                "Tags" : ["variables"]
+            },
+            {
+                "Text" : "x = 100",
+                "Code" : "x = 100;\n",
+                "Desc" : "assign a numeric value to a variable.",
+                "Tags" : ["variables"]
+            },
+            {
+                "Text" : "s = 'Hello'",
+                "Code" : "s = 'Hello';\n",
+                "Desc" : "assign a string value to a variable.",
+                "Tags" : ["variables"]
+            },
+            {
+                "Text" : "ar = []",
+                "Code" : "ar = ['Hello', 'Code'];\n",
+                "Desc" : "define an inline array.",
+                "Tags" : ["variables", "array"]
+            },
+            {
+                "Text" : "o = {}",
+                "Code" : "o = { Type: 'car', x : 100, y : 200 };\n",
+                "Desc" : "define an inline object.",
+                "Tags" : ["variables"]
+            },
+            {
+                "Text" : "for",
+                "Code" : "for(let i = 0; i < 5; i++)\n{\n}\n",
+                "Desc" : "for loop can be used to execute a block of code a number of times.",
+                "Tags" : ["loop"]
+            },
+            {
+                "Text" : "while",
+                "Code" : "while(i < 100)\n{\n\t// ...\n\ti++;\n}\n",
+                "Desc" : "Run the block continously while the condition is true.",
+                "Tags" : ["loop"]
+            },
+            {
+                "Text" : "do - while",
+                "Code" : "do\n{\n\t// ...\n\ti++;\n}\nwhile(i < 100)\n",
+                "Desc" : "Run the block once, then re-run the block as long as the condition is true.",
+                "Tags" : ["loop"]
+            },
+            {
+                "Text" : "if",
+                "Code" : "if (mouseX < width)\n{\n}\n",
+                "Desc" : "Use the if statement to run a block of code only when a condition is met.",
+                "Tags" : ["condition"]
+            },
+            {
+                "Text" : "if - else",
+                "Code" : "if (hour < 12)\n{\n}\nelse\n{\n}\n",
+                "Desc" : "Execute the first block when the condition is met, othewise execute the second block.",
+                "Tags" : ["condition"]
+            },
+            {
+                "Text" : "if - else if",
+                "Code" : "if (minute <= 15)\n{\n}\nelse if(minute <= 30)\n{\n}\nelse\n{\n}\n",
+                "Desc" : "Use else if to specify a new condition when the previous condition is false.",
+                "Tags" : ["condition"]
+            },
+            {
+                "Text" : "switch",
+                "Code" : "switch(myExpresion)\n{\n\tcase 100:\n\t\t//...\n\t\tbreak;\n\tcase 200:\n\t\t//...\n\t\tbreak;\n\tcase 300:\n\t\t//...\n\t\tbreak;\n\tdefault:\n\t\t//...\n}\n",
+                "Desc" : "Use switch to execute codeblocks that meet the criteria.",
+                "Tags" : ["condition"]
+            },
+            {
+                "Text" : "function",
+                "Code" : "function myFn(x, y)\n{\n\treturn;\n}\n",
+                "Desc" : "define a new function",
+                "Tags" : ["functions"]
+            },
+            {
+                "Text" : "myFn()",
+                "Code" : "myFn(100, 200);\n",
+                "Desc" : "call a function",
+                "Tags" : ["functions"]
+            }
+        ],
+        "Events" : [
+            {
+                "Text" : "enter",
+                "Code" : "function enter()\n{\n}\n",
+                "Desc" : "Executes once each time the scene is shown.",
+                "Tags" : ["control"]
+            },
+            {
+                "Text" : "loop",
+                "Code" : "function loop()\n{\n}\n",
+                "Desc" : "Execute continously x times per second.",
+                "Tags" : ["control"]
+            },
+            {
+                "Text" : "mouseClicked",
+                "Code" : "function mouseClicked()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "mousePressed",
+                "Code" : "function mousePressed()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "mouseReleased",
+                "Code" : "function mouseReleased()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "mouseMoved",
+                "Code" : "function mouseMoved()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "mouseDragged",
+                "Code" : "function mouseDragged()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "doubleClicked",
+                "Code" : "function doubleClicked()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "mouseWheel",
+                "Code" : "function mouseWheel()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mouse"]
+            },
+            {
+                "Text" : "keyPressed",
+                "Code" : "function keyPressed()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["keyboard"]
+            },
+            {
+                "Text" : "keyReleased",
+                "Code" : "function keyReleased()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["keyboard"]
+            },
+            {
+                "Text" : "keyTyped",
+                "Code" : "function keyTyped()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["keyboard"]
+            },
+            {
+                "Text" : "touchStarted",
+                "Code" : "function touchStarted()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            },
+            {
+                "Text" : "touchMoved",
+                "Code" : "function touchMoved()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            },
+            {
+                "Text" : "touchEnded",
+                "Code" : "function touchEnded()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            },
+            {
+                "Text" : "deviceMoved",
+                "Code" : "function deviceMoved()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            },
+            {
+                "Text" : "deviceTurned",
+                "Code" : "function deviceTurned()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            },
+            {
+                "Text" : "deviceShaken",
+                "Code" : "function deviceShaken()\n{\n}\n",
+                "Desc" : "",
+                "Tags" : ["mobile"]
+            }
+        ],
+        "Common" : [
+            
+        ],
+        "Drawing" : [
+            {
+                "Text" : "circle",
+                "Code" : "circle(400, 300, 200);\n",
+                "Desc" : "Draw a circle on the screen.\n\ncircle(x, y, radius);\nx, y : coordinates of the circle center\nradius: radius of the circle",
+                "Tags" : ["shapes"]
+            },
+            {
+                "Text" : "ellipse",
+                "Code" : "ellipse(400, 300, 300, 200);\n",
+                "Desc" : "Draw an ellipse on the screen.\n\nellipse(x, y, w, h);\nx, y: coordinates of the ellipse center\nw, h: width and height of the ellipse",
+                "Tags" : ["shapes"]
+            },
+            {
+                "Text" : "rect",
+                "Code" : "rect(400, 300, 300, 200);\n",
+                "Desc" : "Draw a rectangle on the screen.\n\nrect(x, y, w, h);\nx, y: where to draw the rectangle. By default x and y reffer to the top-left corner of the rectangle\nw, h: width and height of the rectangle",
+                "Tags" : ["shapes"]
+            },
+            {
+                "Text" : "line",
+                "Code" : "line(400, 300, 500, 500);\n",
+                "Desc" : "Draw a line on the screen.\n\nline(x1, y1, x2, y2);\nx1, y1: coordinates of the first point of the line\nx2, y2: coordinates of the second point of the line",
+                "Tags" : ["shapes"]
+            },
+            {
+                "Text" : "point",
+                "Code" : "point(400, 300);\n",
+                "Desc" : "Draw a point on the screen.\n\npoint(x, y);\nx, y: coordinates of the point",
+                "Tags" : ["shapes"]
+            }
+
+
+        ],
+        "Media" : [
+            {
+                "Text" : "background",
+                "Code" : "background('lightblue');\n",
+                "Desc" : "Sets the background of the scene. For a quick setup just use the backgrounds toolbox.",
+                "Tags" : ["background"]
+            },
+            {
+                "Text" : "sprite",
+                "Code" : "sprite('game.walk', 100, 100, 0.5);\n",
+                "Desc" : "Loads and display the specified sprite.\n\nvar p = sprite(spriteName, x, y, scale);\nspriteName : name of the sprite. Can obtionaly contain also animation separated by a .\n x, y : optional - position of the sprite\nscale : optional - decimal number to specify scale of the sprite. Default 1.",
+                "Tags" : ["sprite"]
+            }
+            
+        ]
+    }
+}
