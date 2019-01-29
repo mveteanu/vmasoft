@@ -1,4 +1,7 @@
 
+// Note: 2019.01.23 - changed to save the sketch code in the Firestore DB itself, rather than the Storage
+// (for older version, please refer to backup v16)
+
 const UserStatus = {
     Unauthenticated : 0,
     AuthenticatedNotValidated : 1,
@@ -118,7 +121,7 @@ function FirebaseDB(onAuthenticateChanged)
     }
 
     // [awaitable] Creates a file info record in Firestore and returns the file name
-    function createFile()
+    function createFile(txt, title)
     {
         var user = firebase.auth().currentUser;
 
@@ -127,57 +130,68 @@ function FirebaseDB(onAuthenticateChanged)
         
         return db.collection("files").add({
             user : user.email,
-            name : "Untitled",
+            name : title || "Untitled",
             public : false,
-            creationDate : Date.now()
+            creationDate : Date.now(),
+            code : txt || ""
         });
     }
     
     // [awaitable] Save the txt string using the fileName
-    // NOTE: Alternatively to saving in 'Storage' I can save the sketch in a second root collection in 'Firestore' named: "fileData"
-    function saveFile(fileName, txt)
+    function saveFile(fileName, txt, title)
     {
-        var filePath = "files/" + fileName;
-
-        var storageRef = storage.ref();
-        var fileRef = storageRef.child(filePath);
-
-        return fileRef.putString(txt);
+        return db.collection("files").doc(fileName).set({
+            code : txt,
+            name : title || "Untitled",
+            creationDate : Date.now()
+        }, { merge : true })
     }
 
     // [awaitable] Get the content of specified file
-    function getFile(fileName)
+    async function getFile(fileName)
     {
-        var filePath = "files/" + fileName;
+        var doc = await db.collection("files").doc(fileName).get();
+        if (!doc.exists)
+            return "";
 
-        var storageRef = storage.ref();
-        var fileRef = storageRef.child(filePath);
+        var data = doc.data();
 
-        return fileRef.getDownloadURL()
-            .then(function(url) {
-                return fetch(url);
-            })
-            .then(function(response){
-                return response.text();
-            })
-            .catch(function(error){
-            })
+        // handle 'legacy' code when the sketch was saved in the "Firebase Storage..."
+        if (!data.code)
+        {
+            return await _getFile(fileName);
+        }
+        // end legacy handler
+
+        return data.code;
     }
+
+   // [awaitable] Get the content of specified file
+   function _getFile(fileName)
+   {
+       var filePath = "files/" + fileName;
+
+       var storageRef = storage.ref();
+       var fileRef = storageRef.child(filePath);
+
+       return fileRef.getDownloadURL()
+           .then(function(url) {
+               return fetch(url);
+           })
+           .then(function(response){
+               return response.text();
+           })
+           .catch(function(error){
+           })
+   }
 
     // [awaitable] Deletes the specified file
     function deleteFile(fileName)
     {
         if (!fileName)
             return null;
-        
-        var filePath = "files/" + fileName;
 
-        var storageRef = storage.ref();
-        var fileRef = storageRef.child(filePath);
-        
-        return fileRef.delete().then( function(){
-            return db.collection("files").doc(fileName).delete();
-        } );
+        return db.collection("files").doc(fileName).delete();
     }
 
     // [awaitable] Sets the public flag of a file

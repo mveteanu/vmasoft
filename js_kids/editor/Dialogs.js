@@ -1,7 +1,7 @@
 
 function Dialogs()
 {
-    var defaultTitle = "CodeBeanz";
+    var defaultTitle = "CodeGuppy";
     
     alertify.defaults.transition = "zoom";
 
@@ -100,7 +100,7 @@ function Dialogs()
                 h = 670;
             }
 
-            txtProgramUrl.value = `http://www.codebeanz.com/${page}?${id}`;
+            txtProgramUrl.value = `http://www.codeguppy.com/${page}?${id}`;
             txtProgramEmbed.value = `<embed src="${txtProgramUrl.value}" style="width:${w}px; height:${h}px;">`;
         }
 

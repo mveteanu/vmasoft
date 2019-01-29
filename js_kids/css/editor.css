@@ -107,6 +107,15 @@ a:hover, a:active {
 	padding-right: 4px;
 }
 
+.sketchTitle:hover {
+	color: lightblue;
+	cursor: pointer;
+}
+
+.sketchTitle:hover[contenteditable="true"] {
+	color: darkblue;
+}
+
 .sketchTitlePen {
 	padding-left: 8px;
 	cursor: pointer;
@@ -144,10 +153,13 @@ a:hover, a:active {
 
 
 .actionbar {
-	background-color: Black;
+	background-color: #0A0A0A;
 	color:white;
 	font-size:18px;
 	width:50px;
+
+	display: flex;
+	flex-direction: column;
 }
 
 .actionbar > a {
@@ -305,9 +317,9 @@ a:hover, a:active {
 
 .sidebarnavigationareabutton {
 	height: 30px;
-	background-color: navy;
+	background-color: #0058AD;
 	color: white;
-	border: 1px solid navy;
+	border: 1px solid #0058AD;
 	border-radius: 4px;
 	cursor: pointer;
 	width: 75px;
@@ -471,12 +483,30 @@ a:hover, a:active {
 	overflow: hidden;
 }
 
-/* Canvas (or div for canvas?) should be the first element in outputarea */
+/* div canvas (the div for canvas) should be the first element in outputarea */
 .outputarea > :first-child {
 	border: 1px dashed lightgray;
 
+	margin: 0px;
+	padding: 0px;
 	position: absolute; 
 	overflow: hidden;	
+}
+
+/* textarea (the textarea for text overlay) should be the second element in outputarea */
+.outputarea > :nth-child(2) {
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px;
+	background-color: transparent;
+	border: 0px;
+	resize: none;
+	position: absolute;
+	width: 800px;
+	height: 600px;
+	white-space:pre;
+	overflow: auto;
+	display: none;
 }
 
 /*

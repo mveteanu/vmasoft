@@ -1,25 +1,28 @@
 BIG TICKET ITEMS
 ================
 
-1. Secure the firebase assets (implement security)
+-. Secure the firebase assets (implement security)
+    - 2019.01.22 - after considerations, I've decided to move the code from "Storage" into a certain field of each document in the DB files collection
+    (this should simplify the security rules, at the expense of a potentially higher price / GB)
 
-2. Write tutorials
+-. Implement "pro" assets (displayed with a "pro" symbol but available only to paid subscribers)
 
-3. Implement "Forgot password"
+-. Host the site on the official domain (codeguppy?) and open social media accounts...
 
-4. Implement account activation
+-. Implement "Buy Now" flat fee subscription
 
-5. Implement "Buy Now" flat fee subscription
+-. Write tutorials
 
-6. Implement monthly subscription
+-. Implement "Forgot password"
+    - this can be made only if restricting users to login with their email address instead of a username
 
-7. Implement sketch management: e.g. delete sketch
+-. Implement account activation
 
-8. Implement "pro" assets (displayed with a "pro" symbol but available only to paid subscribers)
+-. Implement monthly subscription
 
-9. Host the site on the official domain (codeguppy?) and open social media accounts...
+-. Presentation video to use it on website, youtube ... and also send it to "investors" to explain what codeguppy is
 
-10. Presentation video to use it on website, youtube ... and also send it to "investors" to explain what codeguppy is
+... option: Offer codeguppy for free until I write the tutorials. Publish tutorials on medium.com and codeguppy.com as I write them... Introduce paid subscription after I write all important tutorials.
 
 ------------------------------------------
 
@@ -30,13 +33,15 @@ RUNTIME
 
 - implement use("sceneName"); to allow creation of modules with functions inside a scene
   E.g. 
-    var utils = use("Utils");
+    var utils = require("Utils");
     utils.doStuff();
-  (note: the function can be named `use` or `require`.)
 
 MISC
 ====
 
+- use * tippyjs for the buttons in the actionbar
+
+- use webguide for the code editor (first time an account is created)
 
 - implement layered backgrounds ... which are basically a static background plus an animated "sketch"
   the user will use background("static,animated");
@@ -58,8 +63,6 @@ MISC
 
 - consider adding also event draw() to be used in advanced sketches in place of loop()
   If user will use draw() then the engine won't clear the screen automatically ... and no buffering will be used! - Like in p5.js
-
-- use * tippyjs for the buttons in the actionbar
 
 - allow passing animation name in the sprite("sprite.animation") function...
   (useful when having a sprite full of single frame animations -- eg. for ui: buttons.ok, etc. )
@@ -151,5 +154,4 @@ DECIDE: Do I need a burger menu in the code editor? ... and all the other pages?
 
 - Keep track of sketch views (counter)
 
-	
 

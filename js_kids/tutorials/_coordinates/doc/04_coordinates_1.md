@@ -1,6 +1,6 @@
 # Coordinates
 
-When we draw a shape or character in CodeBeanz we need to specify where we want to draw it. Do we want to appear in the middle of the screen or a little bit to the left or right?
+When we draw a shape or character in CodeGuppy we need to specify where we want to draw it. Do we want to appear in the middle of the screen or a little bit to the left or right?
 
 We specify this position by “coordinates”.
 

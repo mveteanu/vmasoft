@@ -8,18 +8,18 @@ function DBFile(db)
         return db.getFile(id);
     }
 
-    async function save(txt, id)
+    async function save(txt, id, title)
     {
         if (!id)
         {
-            var doc = await db.createFile();
-            if (!doc)
-                return null;
-
-            id = doc.id;
+            var doc = await db.createFile(txt, title);
+            return doc.id;
         }
-
-        return db.saveFile(id, txt);
+        else
+        {
+            await db.saveFile(id, txt, title);
+            return id;
+        }
     }
 
 

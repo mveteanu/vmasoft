@@ -1,6 +1,6 @@
 # Coordinates 
 
-As in many other computer bases systems, CodeBeanz considers the first pixel as being the one in the upper-left corner. This pixel has coordinates (0, 0).
+As in many other computer bases systems, CodeGuppy considers the first pixel as being the one in the upper-left corner. This pixel has coordinates (0, 0).
 
 > Note: The first pixel on each direction is pixel “0” not “1”. The second pixel is “1”, the third one “2” and so on. That means that the last pixel that you can address on a given direction is 1 less than the dimension of the canvas on that direction.
 

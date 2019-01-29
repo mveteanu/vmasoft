@@ -16,6 +16,7 @@ function Shell()
     var codeBar;
     var btnCodeFullScreen;
     var btnTutorial;
+    var btnTrash;
     var tcEditor;
     var barCommands;
     var barBackgrounds;
@@ -151,6 +152,7 @@ function Shell()
         html.showInlineElement( btnReload, readOnly );
 
         html.showInlineElement( btnShare, addedSketch.Id );
+        html.showInlineElement( btnTrash, !readOnly );
     }
 
 
@@ -181,18 +183,11 @@ function Shell()
         var o = getSketch();
         var id = !bSaveAs && !isReadOnly ? o.Id : "";
 
-        var r = await sketchProvider.save(o, id);
-        if (!r || r.state != "success" || !r.metadata)
+        var newId = await sketchProvider.save(o, id);
+        if (!newId)
             return null;
 
-        var newId = r.metadata.name;
-
-        if(o.Name != addedSketch.Name || isReadOnly || bSaveAs)
-        {
-            await sketchProvider.setName(newId, o.Name);
-        }
-
-        if (id == newId || !id)
+        if (!isReadOnly && !bSaveAs)
             addedSketch = o;
 
         return newId;
@@ -257,6 +252,7 @@ function Shell()
         codeBar = html.findFirstElement("codebar");
         btnCodeFullScreen = html.findElement("btnCodeFullScreen");
         btnTutorial = html.findElement("tutorialButton");
+        btnTrash = html.findElement("trashButton");
         lblSketchTitle = html.findElement("lblSketchTitle");
         btnEditTitle = html.findElement("btnEditTitle");
         btnSave = html.findElement("btnSave");
@@ -279,10 +275,12 @@ function Shell()
         addButtonEventHandler("btnReload", handleSketchReload);
         addButtonEventHandler("btnSave", handleSketchSave);
         addButtonEventHandler("btnFork", handleSketchFork);
-        addButtonEventHandler("btnShare", handleShare)
+        addButtonEventHandler("btnShare", handleShare);
+        addButtonEventHandler("homeButton", handleHome);
+        addButtonEventHandler("trashButton", handleTrash);
 
         lblSketchTitle.addEventListener('blur', handleEditTitleExit, false);
-        lblSketchTitle.addEventListener('dblclick', handleEditTitleButtonClick, false);
+        lblSketchTitle.addEventListener('click', handleEditTitleButtonClick, false);
         lblSketchTitle.addEventListener('keypress', handleEditTitleKeyPress, false);
 
         addButtonEventHandler("btnEditTitle", handleEditTitleButtonClick);
@@ -290,7 +288,7 @@ function Shell()
         onresize();
     }
 
-
+    
     function HandleAuthChanged(user)
     {
         if (!user)
@@ -336,7 +334,7 @@ function Shell()
     {
         if (!user)
         {
-            dialogs.warning("<b>Unauthenticated user.</b><br><br>You can still follow some tutorials and even write code but you'll not be able to save your changes!<br><br>Please create a free account to enjoy full benefits of CodeBeanz.", 100);
+            dialogs.warning("<b>Unauthenticated user.</b><br><br>You can still follow some tutorials and even write code but you'll not be able to save your changes!<br><br>Please create a free account to enjoy full benefits of CodeGuppy.", 100);
             return UserStatus.Unauthenticated;
         }
 
@@ -540,7 +538,10 @@ function Shell()
 
         // Don't allow empty sketch names...
         if (!sketchName)
-            this.innerText = "Untitled";
+        {
+            sketchName = "Untitled";
+            this.innerText = sketchName;
+        }
         
         this.setAttribute("contenteditable", false);
     }
@@ -650,13 +651,42 @@ function Shell()
         window.location.href = location;
     }
 
+    async function handleHome(e)
+    {
+        await closeEditor();           
+    }
+
+    async function handleTrash(e)
+    {
+        if (oParams.isTutorial() || isReadOnly)
+            return;
+
+        dialogs.prompt("<b>Trash current program ?</b><br><br>Please confirm by typing the word <b>PRUNE</b> in the textbox below.<br><br>", "", doTrash);
+    }
+
+
+    async function doTrash(answer)
+    {
+        if (answer.trim().toUpperCase() != "PRUNE")
+        {
+            return;
+        }
+        
+        if (addedSketch && addedSketch.Id)
+        {
+            await sketchProvider.deleteFile(addedSketch.Id);
+        }
+
+        returnToIndex();
+    }
+
+
     async function handleActionButtonClick(e)
     {
         var barName = this.getAttribute("sidebar");
         if (!barName)
         {
             //shell.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-            await closeEditor();           
             return;
         }
         

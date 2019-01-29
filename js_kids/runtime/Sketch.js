@@ -136,6 +136,11 @@ function Sketch()
     {
         // remove HTML elements
         var htmlElements = HtmlElements();
+
+        // clears and hides the print layer
+        htmlElements.removePrint();
+
+        // remove elements created by sketch code (e.g. createEdit, createButton, ...)
         htmlElements.removeElements();
 
         // remove offscreen buffers...

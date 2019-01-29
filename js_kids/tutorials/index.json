@@ -352,6 +352,55 @@
             "Lists" : ["games"],
             "DateAdded" : "2018.07.24 9:12PM",
             "Description" : "Send your friends a special greeting... To see they first have to solve a classic game of word search."
+        },
+        {
+            "Name" : "Caesar Cipher",
+            "Folder" : "caesar_cipher",
+            "Lists" : ["strings"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Exchange secret messages with your friends by encrypting and decrypting them with the Caesar cipher."
+        },
+        {
+            "Name" : "Fibonacci",
+            "Folder" : "fibonacci",
+            "Lists" : ["math"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Calculate numbers from the Fibonacci series while learning about recursion and big numbers."
+        },
+        {
+            "Name" : "Fibonacci list",
+            "Folder" : "fibonacci_list",
+            "Lists" : ["math"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Use your computer power and clever programming to generate Fibonacci numbers with hundreds of digits."
+        },
+        {
+            "Name" : "Prime numbers",
+            "Folder" : "primes_display",
+            "Lists" : ["math"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Let your computer generate prime numbers with amazing speed."
+        },
+        {
+            "Name" : "Navigate primes",
+            "Folder" : "primes_pages",
+            "Lists" : ["math"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Navigate prime numbers, one page at a time."
+        },
+        {
+            "Name" : "Console math",
+            "Folder" : "console_math",
+            "Lists" : ["math"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Create a simple math game while coding in 'console' mode."
+        },
+        {
+            "Name" : "Escape the lab",
+            "Folder" : "escape_lab",
+            "Lists" : ["games"],
+            "DateAdded" : "2018.07.24 9:12PM",
+            "Description" : "Escape the lab is text adventure game that requires imagination rather than skills."
         }
     ],
     "Lists" :

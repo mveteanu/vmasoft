@@ -50,7 +50,7 @@ function SketchProvider(_db)
         if (!txt)
             return null;
 
-        return db.save(txt, id);
+        return db.save(txt, id, objSketch.Name);
     }
 
     async function setPublic(sketchId, bPublic)
@@ -66,6 +66,11 @@ function SketchProvider(_db)
     async function getMyFiles()
     {
         return _db.getMyFiles();
+    }
+
+    async function deleteFile(sketchId)
+    {
+        return _db.deleteFile(sketchId);
     }
 
     // ----------- Begin private functions ----------------------
@@ -92,6 +97,7 @@ function SketchProvider(_db)
         save : save,
         setPublic : setPublic,
         setName : setName,
-        getMyFiles : getMyFiles
+        getMyFiles : getMyFiles,
+        deleteFile : deleteFile
     }
 }
